@@ -1,3 +1,3 @@
-# Multilingual
+# Polyglot for Safari
 
-Multilingual is a Safari extension that translates selected text.
+Polyglot is a Safari extension that translates selected text on Google Translation Service.
