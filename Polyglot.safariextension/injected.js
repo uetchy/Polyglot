@@ -1,31 +1,43 @@
 safari.self.addEventListener('message', handleMessage, false);
-window.onmouseup = handleMouseUp;
+window.addEventListener('keydown', handleKeydown, false);
+window.addEventListener('mouseup', handleMouseUp, false);
 var isPanelOpen = false;
 
 // Get selected text and return to global script
 function handleMessage(msg) {
-  if (msg.name === 'getSelectedText') {
-    var sel = window.getSelection().toString();
-    safari.self.tab.dispatchMessage('finishedGetSelectedText', sel);
-  } else if (msg.name === 'showPanel') {
-    showPanel(msg);
+  switch (msg.name) {
+    case 'getSelectedText':
+      getSelectedText();
+      break;
+    case 'showPanel':
+      showPanel(msg.message);
+      break;
   }
+}
+
+function getSelectedText() {
+  var sel = window.getSelection().toString();
+  safari.self.tab.dispatchMessage('finishedGetSelectedText', sel);
 }
 
 function handleMouseUp(e) {
   var panel = document.getElementById('polyglot__panel');
-  if (isPanelOpen && e.target !== panel ) {
-    console.log("panel close");
+  if (isPanelOpen && e.target !== panel) {
     panel.remove();
     isPanelOpen = false;
   }
 }
 
+function handleKeydown(e) {
+  if (e.keyCode === 192) {
+    e.preventDefault();
+    getSelectedText();
+  }
+}
+
 // Show panel with given text
-function showPanel(msg) {
-  var translations = msg.message;
+function showPanel(translations) {
   var coords = getSelectionCoords();
-  console.log(coords.x + ", " + coords.y);
   var el = document.createElement('div');
   for (var t of translations) {
     el.innerHTML += t.translatedText + '\n';
