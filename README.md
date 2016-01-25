@@ -9,6 +9,6 @@ You can [download latest version](https://github.com/uetchy/Polyglot/releases/la
 1. Select word or sentence and right-click then click __Translate__.
 2. Select word or sentence and just type __`__ key.  
 
-![](http://randompaper.co.s3.amazonaws.com/Polyglot/sample1.png)
+![](http://randompaper.co.s3.amazonaws.com/Polyglot/screenshot1.png)
 
-![](http://randompaper.co.s3.amazonaws.com/Polyglot/sample2.png)
+![](http://randompaper.co.s3.amazonaws.com/Polyglot/screenshot2.png)
