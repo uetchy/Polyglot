@@ -43,7 +43,7 @@
 		</dict>
 	</dict>
 	<key>Description</key>
-	<string>Translate selected text</string>
+	<string>Translate selected text into your language.</string>
 	<key>DeveloperIdentifier</key>
 	<string>4C2L48JCT5</string>
 	<key>ExtensionInfoDictionaryVersion</key>
@@ -59,6 +59,6 @@
 		</dict>
 	</dict>
 	<key>Website</key>
-	<string>http://randompaper.co</string>
+	<string>https://github.com/uetchy/Polyglot</string>
 </dict>
 </plist>
