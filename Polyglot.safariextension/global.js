@@ -3,12 +3,14 @@ var request = window.superagent;
 safari.application.addEventListener('command', performCommand, false);
 safari.application.addEventListener('message', handleMessage, false);
 
+// Perform context menu commands
 function performCommand(event) {
   if (event.command === 'contextMenuTranslate') {
     safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('getSelectedText');
   }
 }
 
+// Handle each message by name
 function handleMessage(msg) {
   console.log(window.top);
   if (msg.name === 'finishedGetSelectedText') {

@@ -1,7 +1,8 @@
 safari.self.addEventListener('message', handleMessage, false);
-document.addEventListener('onmouseup', handleMouseUp, false);
+window.onmouseup = handleMouseUp;
+var isPanelOpen = false;
 
-// Get selected text and dispatch to global script
+// Get selected text and return to global script
 function handleMessage(msg) {
   if (msg.name === 'getSelectedText') {
     var sel = window.getSelection().toString();
@@ -12,7 +13,12 @@ function handleMessage(msg) {
 }
 
 function handleMouseUp(e) {
-
+  var panel = document.getElementById('polyglot__panel');
+  if (isPanelOpen && e.target !== panel ) {
+    console.log("panel close");
+    panel.remove();
+    isPanelOpen = false;
+  }
 }
 
 // Show panel with given text
@@ -24,15 +30,19 @@ function showPanel(msg) {
   for (var t of translations) {
     el.innerHTML += t.translatedText + '\n';
   }
+  el.id = 'polyglot__panel';
+  el.style.left = coords.x + 'px';
+  el.style.top = (coords.y + document.body.scrollTop) + 'px';
   el.style.position = 'absolute';
   el.style.padding = '20px';
   el.style.background = '#EFEFEF';
   el.style.borderRadius = '6px';
   el.style.minWidth = '200px';
   el.style.minHeight = '100px';
-  el.style.left = coords.x + 'px';
-  el.style.top = (coords.y + document.body.scrollTop) + 'px';
+  el.style.zIndex = 9999;
+  el.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.2)';
   document.body.insertBefore(el, document.body.firstChild);
+  isPanelOpen = true;
 }
 
 // Return selection coords
