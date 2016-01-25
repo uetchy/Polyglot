@@ -1,7 +1,13 @@
 var request = window.superagent;
 
+// Get settings
+var apiKey = safari.extension.secureSettings.apiKey;
+var targetLanguage = safari.extension.settings.targetLanguage;
+var keyboardShortcut = safari.extension.settings.keyboardShortcut;
+console.log(safari.extension);
 safari.application.addEventListener('command', performCommand, false);
 safari.application.addEventListener('message', handleMessage, false);
+safari.extension.settings.addEventListener('change', settingsChanged, false);
 
 // Perform context menu commands
 function performCommand(event) {
@@ -12,13 +18,10 @@ function performCommand(event) {
   }
 }
 
-// Handle each message by name
+// Handle message from injected script
 function handleMessage(msg) {
-  switch(msg.name) {
+  switch (msg.name) {
     case 'finishedGetSelectedText':
-      var apiKey = safari.extension.secureSettings.apiKey;
-      var targetLanguage = safari.extension.settings.targetLanguage;
-
       if (msg.message === '') {
         return;
       } else if (apiKey === '') {
@@ -38,7 +41,6 @@ function handleMessage(msg) {
         })
         .set('Accept', 'application/json')
         .end(function(err, res) {
-          console.log(res);
           var translations = res.body.data.translations;
           for (var t of translations) {
             console.log(t.translatedText, t.detectedSourceLanguage);
@@ -46,7 +48,23 @@ function handleMessage(msg) {
           safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('showPanel', translations);
         });
 
+      break;
+    case 'requestKeyboardShortcut':
+      console.log(keyboardShortcut);
+      safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('keyboardShortcutReceived', keyboardShortcut);
   }
 }
 
-// safari.application.addEventListener("popover", popoverHandler, true);
+function settingsChanged(e) {
+  switch (e.key) {
+    case 'apiKey':
+      apiKey = e.newValue;
+      break;
+    case 'targetLanguage':
+      targetLanguage = e.newValue;
+      break;
+    case 'keyboardShortcut':
+      keyboardShortcut = e.newValue;
+      break;
+  }
+}

@@ -1,11 +1,23 @@
-safari.self.addEventListener('message', handleMessage, false);
-window.addEventListener('keydown', handleKeydown, false);
-window.addEventListener('mouseup', handleMouseUp, false);
-var isPanelOpen = false;
+// Only initialize in a top-level page
+if (window.top === window) {
+  safari.self.addEventListener('message', handleMessage, false);
+
+  window.addEventListener('keydown', handleKeydown, false);
+  window.addEventListener('mouseup', handleMouseUp, false);
+
+  safari.self.tab.dispatchMessage('requestKeyboardShortcut');
+
+  var isPanelOpen = false;
+  var keyboardShortcut = null;
+}
 
 // Get selected text and return to global script
 function handleMessage(msg) {
   switch (msg.name) {
+    case 'keyboardShortcutReceived':
+      console.log(msg);
+      keyboardShortcut = parseInt(msg.message);
+      break;
     case 'getSelectedText':
       getSelectedText();
       break;
@@ -13,11 +25,6 @@ function handleMessage(msg) {
       showPanel(msg.message);
       break;
   }
-}
-
-function getSelectedText() {
-  var sel = window.getSelection().toString();
-  safari.self.tab.dispatchMessage('finishedGetSelectedText', sel);
 }
 
 function handleMouseUp(e) {
@@ -29,10 +36,15 @@ function handleMouseUp(e) {
 }
 
 function handleKeydown(e) {
-  if (e.keyCode === 192) {
+  if (e.keyCode === keyboardShortcut) {
     e.preventDefault();
     getSelectedText();
   }
+}
+
+function getSelectedText() {
+  var sel = window.getSelection().toString();
+  safari.self.tab.dispatchMessage('finishedGetSelectedText', sel);
 }
 
 // Show panel with given text

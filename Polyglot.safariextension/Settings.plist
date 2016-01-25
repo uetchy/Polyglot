@@ -8,7 +8,7 @@
 		<key>Secure</key>
 		<true/>
 		<key>Title</key>
-		<string>API Key</string>
+		<string>Google Cloud Platform API Key</string>
 		<key>Type</key>
 		<string>TextField</string>
 	</dict>
@@ -21,6 +21,26 @@
 		<string>Target Language</string>
 		<key>Type</key>
 		<string>TextField</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>192</string>
+		<key>Key</key>
+		<string>keyboardShortcut</string>
+		<key>Secure</key>
+		<false/>
+		<key>Title</key>
+		<string>Keyboard Shortcut</string>
+		<key>Titles</key>
+		<array>
+			<string>`</string>
+		</array>
+		<key>Type</key>
+		<string>ListBox</string>
+		<key>Values</key>
+		<array>
+			<string>192</string>
+		</array>
 	</dict>
 </array>
 </plist>
