@@ -13,16 +13,16 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Context Menu Items</key>
 		<array>
 			<dict>
 				<key>Command</key>
-				<string>contextMenuTranslate</string>
+				<string>translateSelectedText</string>
 				<key>Identifier</key>
 				<string>translate</string>
 				<key>Title</key>
@@ -31,6 +31,23 @@
 		</array>
 		<key>Global Page</key>
 		<string>global.html</string>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>translateSelectedText</string>
+				<key>Identifier</key>
+				<string>translate</string>
+				<key>Image</key>
+				<string>toolbar-icon.png</string>
+				<key>Include By Default</key>
+				<true/>
+				<key>Label</key>
+				<string>Translate</string>
+				<key>Tool Tip</key>
+				<string>Translate</string>
+			</dict>
+		</array>
 	</dict>
 	<key>Content</key>
 	<dict>
@@ -41,9 +58,13 @@
 				<string>injected.js</string>
 			</array>
 		</dict>
+		<key>Stylesheets</key>
+		<array>
+			<string>injected.css</string>
+		</array>
 	</dict>
 	<key>Description</key>
-	<string>Translate selected text into your language.</string>
+	<string>Translate selected text into your native language.</string>
 	<key>DeveloperIdentifier</key>
 	<string>4C2L48JCT5</string>
 	<key>ExtensionInfoDictionaryVersion</key>

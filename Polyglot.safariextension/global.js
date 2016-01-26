@@ -4,15 +4,16 @@ var request = window.superagent;
 var apiKey = safari.extension.secureSettings.apiKey;
 var targetLanguage = safari.extension.settings.targetLanguage;
 var keyboardShortcut = safari.extension.settings.keyboardShortcut;
-console.log(safari.extension);
+
 safari.application.addEventListener('command', performCommand, false);
 safari.application.addEventListener('message', handleMessage, false);
 safari.extension.settings.addEventListener('change', settingsChanged, false);
+safari.extension.secureSettings.addEventListener('change', settingsChanged, false);
 
 // Perform context menu commands
 function performCommand(event) {
   switch (event.command) {
-    case 'contextMenuTranslate':
+    case 'translateSelectedText':
       safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('getSelectedText');
       break;
   }
@@ -24,11 +25,15 @@ function handleMessage(msg) {
     case 'finishedGetSelectedText':
       if (msg.message === '') {
         return;
-      } else if (apiKey === '') {
-        console.log("Set api key");
+      }
+
+      safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('showPanel', '<div class="polyglot__loader">Loading</div>');
+
+      if (apiKey === '') {
+        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'Set api key');
         return;
       } else if (targetLanguage === '') {
-        console.log("Set target language");
+        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'Set target language');
         return;
       }
 
@@ -41,16 +46,28 @@ function handleMessage(msg) {
         })
         .set('Accept', 'application/json')
         .end(function(err, res) {
-          var translations = res.body.data.translations;
-          for (var t of translations) {
-            console.log(t.translatedText, t.detectedSourceLanguage);
+          if (res.body.error) {
+            var error = res.body.error.errors[0];
+            switch(error.reason) {
+              case 'invalid':
+                safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', "Target language is invalid. please check it again");
+                break;
+              case 'keyInvalid':
+                safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'API key is invalid. please check it again');
+                break;
+            }
+            return;
           }
-          safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('showPanel', translations);
+          var translations = res.body.data.translations;
+          var result = '';
+          for (var t of translations) {
+            result += t.translatedText + '<br/>';
+          }
+          safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', result);
         });
 
       break;
     case 'requestKeyboardShortcut':
-      console.log(keyboardShortcut);
       safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('keyboardShortcutReceived', keyboardShortcut);
   }
 }

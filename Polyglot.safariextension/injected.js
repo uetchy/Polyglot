@@ -15,7 +15,6 @@ if (window.top === window) {
 function handleMessage(msg) {
   switch (msg.name) {
     case 'keyboardShortcutReceived':
-      console.log(msg);
       keyboardShortcut = parseInt(msg.message);
       break;
     case 'getSelectedText':
@@ -23,6 +22,9 @@ function handleMessage(msg) {
       break;
     case 'showPanel':
       showPanel(msg.message);
+      break;
+    case 'updatePanel':
+      updatePanel(msg.message);
       break;
   }
 }
@@ -48,25 +50,20 @@ function getSelectedText() {
 }
 
 // Show panel with given text
-function showPanel(translations) {
+function showPanel(content) {
   var coords = getSelectionCoords();
   var el = document.createElement('div');
-  for (var t of translations) {
-    el.innerHTML += t.translatedText + '\n';
-  }
+  el.innerHTML = content;
   el.id = 'polyglot__panel';
   el.style.left = coords.x + 'px';
   el.style.top = (coords.y + document.body.scrollTop) + 'px';
-  el.style.position = 'absolute';
-  el.style.padding = '20px';
-  el.style.background = '#EFEFEF';
-  el.style.borderRadius = '6px';
-  el.style.minWidth = '200px';
-  el.style.minHeight = '100px';
-  el.style.zIndex = 9999;
-  el.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.2)';
   document.body.insertBefore(el, document.body.firstChild);
   isPanelOpen = true;
+}
+
+function updatePanel(content) {
+  var el = document.getElementById('polyglot__panel');
+  el.innerHTML = content;
 }
 
 // Return selection coords
