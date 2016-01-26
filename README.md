@@ -1,8 +1,8 @@
 ![](http://randompaper.co.s3.amazonaws.com/Polyglot/header.png)
 
-Polyglot is a Safari extension that translates selected text using Google Translation Service.
+Polyglot is a Safari extension that translates selected text into your native language.
 
-You can [download latest version](https://github.com/uetchy/Polyglot/releases/latest) of this extension.
+[Download latest version](https://github.com/uetchy/Polyglot/releases/latest) and double-click `Polyglot.safariextz` to install extension.
 
 ## Usage
 
