@@ -10,7 +10,7 @@ Polyglot is a Safari extension that translates selected text into your native la
 
 - Select word or sentence and right-click then click __Translate__.
 - or, Select word or sentence and just type __`__ key.  
-- or. Select word or sentence and blick __Translate__ button on tool bar.
+- or, Select word or sentence and click __Translate__ button on tool bar.
 
 ![](http://randompaper.co.s3.amazonaws.com/Polyglot/screenshot1.png)
 
