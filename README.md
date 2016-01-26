@@ -6,7 +6,7 @@ Polyglot is a Safari extension that translates selected text into your native la
 
 ## Usage
 
-> At first, you MUST obtain [Google Cloud Platform API key](https://cloud.google.com/translate/v2/getting_started) and put it on extension settings.
+> At first, you MUST follow [illustrated instruction](https://github.com/uetchy/Polyglot/wiki/How-to-obtain-Google-Cloud-Platform-API-key) to obtain Translation API key and put it on extension settings.
 
 - Select word or sentence and right-click then click __Translate__.
 - or, Select word or sentence and just type __`__ key.  
