@@ -5,12 +5,13 @@ var apiKey = safari.extension.secureSettings.apiKey;
 var targetLanguage = safari.extension.settings.targetLanguage;
 var keyboardShortcut = safari.extension.settings.keyboardShortcut;
 
+// Set event handler
 safari.application.addEventListener('command', performCommand, false);
 safari.application.addEventListener('message', handleMessage, false);
 safari.extension.settings.addEventListener('change', settingsChanged, false);
 safari.extension.secureSettings.addEventListener('change', settingsChanged, false);
 
-// Perform context menu commands
+// Perform commands from users
 function performCommand(event) {
   switch (event.command) {
     case 'translateSelectedText':
@@ -46,9 +47,10 @@ function handleMessage(msg) {
         })
         .set('Accept', 'application/json')
         .end(function(err, res) {
+          // Handle errors
           if (res.body.error) {
             var error = res.body.error.errors[0];
-            switch(error.reason) {
+            switch (error.reason) {
               case 'invalid':
                 safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', "Target language is invalid. please check it again");
                 break;
@@ -58,11 +60,13 @@ function handleMessage(msg) {
             }
             return;
           }
+
           var translations = res.body.data.translations;
           var result = '';
           for (var t of translations) {
             result += t.translatedText + '<br/>';
           }
+
           safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', result);
         });
 
@@ -72,6 +76,7 @@ function handleMessage(msg) {
   }
 }
 
+// Update setting values immediately
 function settingsChanged(e) {
   switch (e.key) {
     case 'apiKey':
