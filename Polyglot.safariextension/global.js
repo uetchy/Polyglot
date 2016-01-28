@@ -1,4 +1,4 @@
-var request = require('superagent');
+import request from 'superagent';
 
 // Get settings
 var apiKey = safari.extension.secureSettings.apiKey;
@@ -31,7 +31,7 @@ function handleMessage(msg) {
       safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('showPanel', '<div class="polyglot__loader">Loading</div>');
 
       if (apiKey === '') {
-        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'Set API key. See <a href="https://git.io/vzQ2y">visual guide</a>');
+        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'Set API key. See <a href="https://git.io/vzQ2y" target="_blank">visual guide</a>');
         return;
       } else if (targetLanguage === '') {
         safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'Set target language');

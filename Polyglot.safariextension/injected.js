@@ -9,6 +9,7 @@ if (window.top === window) {
 
   var isPanelOpen = false;
   var keyboardShortcut = null;
+  var panelId = 'polyglot__panel';
 }
 
 // Get selected text and return to global script
@@ -30,8 +31,9 @@ function handleMessage(msg) {
 }
 
 function handleMouseUp(e) {
-  var panel = document.getElementById('polyglot__panel');
-  if (isPanelOpen && e.target !== panel) {
+  var panel = document.getElementById(panelId);
+
+  if (isPanelOpen && !isDescendant(panel, e.target)) {
     panel.remove();
     isPanelOpen = false;
   }
@@ -54,7 +56,7 @@ function showPanel(content) {
   var coords = getSelectionCoords();
   var el = document.createElement('div');
   el.innerHTML = content;
-  el.id = 'polyglot__panel';
+  el.id = panelId;
   el.style.left = coords.x + 'px';
   el.style.top = (coords.y + document.body.scrollTop) + 'px';
   document.body.insertBefore(el, document.body.firstChild);
@@ -62,7 +64,7 @@ function showPanel(content) {
 }
 
 function updatePanel(content) {
-  var el = document.getElementById('polyglot__panel');
+  var el = document.getElementById(panelId);
   el.innerHTML = content;
 }
 
@@ -89,4 +91,18 @@ function getSelectionCoords(win) {
     x: x,
     y: y
   };
+}
+
+function isDescendant(parent, child) {
+  if (parent === child) {
+    return true;
+  }
+  var node = child.parentNode;
+  while (node !== null) {
+    if (node === parent) {
+      return true;
+    }
+    node = node.parentNode;
+  }
+  return false;
 }
