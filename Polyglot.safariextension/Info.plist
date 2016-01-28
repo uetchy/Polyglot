@@ -55,7 +55,7 @@
 		<dict>
 			<key>End</key>
 			<array>
-				<string>injected.js</string>
+				<string>injected.entry.js</string>
 			</array>
 		</dict>
 		<key>Stylesheets</key>

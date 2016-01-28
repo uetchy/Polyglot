@@ -1,4 +1,4 @@
-var request = window.superagent;
+var request = require('superagent');
 
 // Get settings
 var apiKey = safari.extension.secureSettings.apiKey;
@@ -31,7 +31,7 @@ function handleMessage(msg) {
       safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('showPanel', '<div class="polyglot__loader">Loading</div>');
 
       if (apiKey === '') {
-        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'Set api key');
+        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'Set API key. See <a href="https://git.io/vzQ2y">visual guide</a>');
         return;
       } else if (targetLanguage === '') {
         safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'Set target language');
@@ -52,10 +52,10 @@ function handleMessage(msg) {
             var error = res.body.error.errors[0];
             switch (error.reason) {
               case 'invalid':
-                safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', "Target language is invalid. please check it again");
+                safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', "Target language is invalid. please check it");
                 break;
               case 'keyInvalid':
-                safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'API key is invalid. please check it again');
+                safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'API key is invalid. please check it');
                 break;
             }
             return;
