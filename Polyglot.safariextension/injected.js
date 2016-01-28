@@ -72,14 +72,14 @@ function getSelectionCoords(win) {
   var doc = win.document;
   var x = 0,
     y = 0;
-  sel = win.getSelection();
+  var sel = win.getSelection();
   if (sel.rangeCount) {
-    range = sel.getRangeAt(0).cloneRange();
+    var range = sel.getRangeAt(0).cloneRange();
     if (range.getClientRects) {
       range.collapse(true);
-      rects = range.getClientRects();
+      var rects = range.getClientRects();
       if (rects.length > 0) {
-        rect = rects[0];
+        var rect = rects[0];
       }
       x = rect.left;
       y = rect.bottom;
