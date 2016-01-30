@@ -87,6 +87,7 @@ function settingsChanged(e) {
       break;
     case 'keyboardShortcut':
       keyboardShortcut = e.newValue;
+      safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('keyboardShortcutReceived', keyboardShortcut);
       break;
   }
 }

@@ -34,8 +34,7 @@ function handleMouseUp(e) {
   var panel = document.getElementById(panelId);
 
   if (isPanelOpen && !isDescendant(panel, e.target)) {
-    panel.remove();
-    isPanelOpen = false;
+    removePanel();
   }
 }
 
@@ -51,8 +50,17 @@ function getSelectedText() {
   safari.self.tab.dispatchMessage('finishedGetSelectedText', sel);
 }
 
+function removePanel() {
+  var panel = document.getElementById(panelId);
+  panel.remove();
+  isPanelOpen = false;
+}
+
 // Show panel with given text
 function showPanel(content) {
+  if (isPanelOpen) {
+    removePanel();
+  }
   var coords = getSelectionCoords();
   var el = document.createElement('div');
   el.innerHTML = content;
