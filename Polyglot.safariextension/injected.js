@@ -5,11 +5,11 @@ if (window.top === window) {
   window.addEventListener('keydown', handleKeydown, false);
   window.addEventListener('mouseup', handleMouseUp, false);
 
-  safari.self.tab.dispatchMessage('requestKeyboardShortcut');
-
   var isPanelOpen = false;
   var keyboardShortcut = null;
   var panelId = 'polyglot__panel';
+
+  safari.self.tab.dispatchMessage('requestKeyboardShortcut');
 }
 
 // Get selected text and return to global script

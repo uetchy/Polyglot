@@ -27,14 +27,14 @@ function handleMessage(msg) {
       if (msg.message === '') {
         return;
       }
-
-      safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('showPanel', '<div class="polyglot__loader">Loading</div>');
+      var target = msg.target;
+      target.page.dispatchMessage('showPanel', '<div class="polyglot__loader">Loading</div>');
 
       if (apiKey === '') {
-        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'Set API key. See <a href="https://git.io/vzQ2y" target="_blank">visual guide</a>');
+        target.page.dispatchMessage('updatePanel', 'Set API key. See <a href="https://git.io/vzQ2y" target="_blank">visual guide</a>');
         return;
       } else if (targetLanguage === '') {
-        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'Set target language');
+        target.page.dispatchMessage('updatePanel', 'Set target language');
         return;
       }
 
@@ -52,10 +52,10 @@ function handleMessage(msg) {
             var error = res.body.error.errors[0];
             switch (error.reason) {
               case 'invalid':
-                safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', "Target language is invalid. please check it");
+                target.page.dispatchMessage('updatePanel', "Target language is invalid. please check it");
                 break;
               case 'keyInvalid':
-                safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', 'API key is invalid. please check it');
+                target.page.dispatchMessage('updatePanel', 'API key is invalid. please check it');
                 break;
             }
             return;
@@ -67,26 +67,26 @@ function handleMessage(msg) {
             result += t.translatedText + '<br/>';
           }
 
-          safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('updatePanel', result);
+          target.page.dispatchMessage('updatePanel', result);
         });
 
       break;
     case 'requestKeyboardShortcut':
-      safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('keyboardShortcutReceived', keyboardShortcut);
+      msg.target.page.dispatchMessage('keyboardShortcutReceived', keyboardShortcut);
   }
 }
 
 // Update setting values immediately
-function settingsChanged(e) {
-  switch (e.key) {
+function settingsChanged(event) {
+  switch (event.key) {
     case 'apiKey':
-      apiKey = e.newValue;
+      apiKey = event.newValue;
       break;
     case 'targetLanguage':
-      targetLanguage = e.newValue;
+      targetLanguage = event.newValue;
       break;
     case 'keyboardShortcut':
-      keyboardShortcut = e.newValue;
+      keyboardShortcut = event.newValue;
       safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('keyboardShortcutReceived', keyboardShortcut);
       break;
   }
