@@ -2,3 +2,4 @@
 *.safariextz
 *.entry.js
 node_modules
+*.log

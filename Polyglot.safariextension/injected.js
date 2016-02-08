@@ -7,7 +7,7 @@ if (window.top === window) {
 
   var isPanelOpen = false;
   var keyboardShortcut = null;
-  var panelId = 'polyglot__panel';
+  var PANEL_ID = 'polyglot__panel';
 
   safari.self.tab.dispatchMessage('requestKeyboardShortcut');
 }
@@ -31,7 +31,7 @@ function handleMessage(msg) {
 }
 
 function handleMouseUp(e) {
-  var panel = document.getElementById(panelId);
+  let panel = document.getElementById(PANEL_ID);
 
   if (isPanelOpen && !isDescendant(panel, e.target)) {
     removePanel();
@@ -46,12 +46,12 @@ function handleKeydown(e) {
 }
 
 function getSelectedText() {
-  var sel = window.getSelection().toString();
+  let sel = window.getSelection().toString();
   safari.self.tab.dispatchMessage('finishedGetSelectedText', sel);
 }
 
 function removePanel() {
-  var panel = document.getElementById(panelId);
+  let panel = document.getElementById(PANEL_ID);
   panel.remove();
   isPanelOpen = false;
 }
@@ -61,51 +61,55 @@ function showPanel(content) {
   if (isPanelOpen) {
     removePanel();
   }
-  var coords = getSelectionCoords();
-  var el = document.createElement('div');
+  let bounds = getSelectionBoundingRect();
+  if (bounds === null) {
+    return false;
+  }
+  let el = document.createElement('div');
   el.innerHTML = content;
-  el.id = panelId;
-  el.style.left = coords.x + 'px';
-  el.style.top = (coords.y + document.body.scrollTop) + 'px';
+  el.id = PANEL_ID;
+  el.style.left = bounds.left + 'px';
+  el.style.top = bounds.bottom + 'px';
   document.body.insertBefore(el, document.body.firstChild);
   isPanelOpen = true;
 }
 
 function updatePanel(content) {
-  var el = document.getElementById(panelId);
+  let el = document.getElementById(PANEL_ID);
   el.innerHTML = content;
 }
 
 // Return selection coords
-function getSelectionCoords(win) {
-  win = win || window;
-  var doc = win.document;
-  var x = 0,
-    y = 0;
-  var sel = win.getSelection();
-  if (sel.rangeCount) {
-    var range = sel.getRangeAt(0).cloneRange();
-    if (range.getClientRects) {
-      range.collapse(true);
-      var rects = range.getClientRects();
-      if (rects.length > 0) {
-        var rect = rects[0];
-      }
-      x = rect.left;
-      y = rect.bottom;
-    }
-  }
-  return {
-    x: x,
-    y: y
+function getSelectionBoundingRect() {
+  let rect = {
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0
   };
-}
+
+  let sel = document.getSelection();
+  for (var i = 0; i < sel.rangeCount; ++i) {
+    let _rect = sel.getRangeAt(i).getBoundingClientRect();
+    if (rect.left < _rect.left) rect.left = _rect.left;
+    if (rect.top < _rect.top) rect.top = _rect.top;
+    if (rect.right < _rect.right) rect.right = _rect.right;
+    if (rect.bottom < _rect.bottom) rect.bottom = _rect.bottom;
+  }
+  rect.width = rect.right - rect.left;
+  rect.height = rect.bottom - rect.top;
+  rect.left += window.pageXOffset;
+  rect.top += window.pageYOffset;
+  rect.right += window.pageXOffset;
+  rect.bottom += window.pageYOffset;
+  return sel.rangeCount ? rect : null;
+};
 
 function isDescendant(parent, child) {
   if (parent === child) {
     return true;
   }
-  var node = child.parentNode;
+  let node = child.parentNode;
   while (node !== null) {
     if (node === parent) {
       return true;
