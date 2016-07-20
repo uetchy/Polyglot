@@ -6,7 +6,7 @@
     "build": "webpack"
   },
   "dependencies": {
-    "superagent": "^1.7.2"
+    "superagent": "^2.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
