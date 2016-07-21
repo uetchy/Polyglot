@@ -9,7 +9,7 @@
     "superagent": "^2.1.0"
   },
   "devDependencies": {
-    "babel-core": "^6.4.5",
+    "babel-core": "^6.11.4",
     "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
     "webpack": "^1.12.12"
