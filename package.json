@@ -2,6 +2,7 @@
   "name": "Polyglot",
   "private": true,
   "scripts": {
+    "test": "xo",
     "start": "webpack -w",
     "build": "webpack"
   },
@@ -10,8 +11,19 @@
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
-    "babel-loader": "^6.2.1",
-    "babel-preset-es2015": "^6.3.13",
-    "webpack": "^1.13.1"
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "webpack": "^1.13.1",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node",
+      "browser"
+    ],
+    "globals": [
+      "safari"
+    ]
   }
 }
