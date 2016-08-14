@@ -17,13 +17,14 @@
     "xo": "^0.16.0"
   },
   "xo": {
-    "esnext": true,
     "envs": [
-      "node",
       "browser"
     ],
     "globals": [
       "safari"
+    ],
+    "ignores": [
+      "**/*.entry.js"
     ]
   }
 }
