@@ -1,5 +1,7 @@
 ![](http://randompaper.co.s3.amazonaws.com/Polyglot/header.png)
 
+[![Join the chat at https://gitter.im/uetchy/Polyglot](https://badges.gitter.im/uetchy/Polyglot.svg)](https://gitter.im/uetchy/Polyglot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Polyglot is a Safari extension that translates selected text into your native language.
 
 [Download latest version](https://github.com/uetchy/Polyglot/releases/latest) and double-click `Polyglot.safariextz` to install extension.
