@@ -1,7 +1,7 @@
-import request from 'superagent';
+import url from 'url';
+import 'whatwg-fetch';
 
 // Get settings
-let apiKey = safari.extension.secureSettings.apiKey;
 let targetLanguage = safari.extension.settings.targetLanguage;
 let keyboardShortcut = safari.extension.settings.keyboardShortcut;
 
@@ -26,67 +26,57 @@ function performCommand(event) {
 function handleMessage(msg) {
 	switch (msg.name) {
 		case 'finishedGetSelectedText':
-			if (msg.message === '') {
-				return;
-			}
-			var target = msg.target;
-			target.page.dispatchMessage('showPanel', '<div class="polyglot__loader">Loading</div>');
-
-			if (apiKey === '') {
-				target.page.dispatchMessage('updatePanel', 'Set API key. See <a href="https://git.io/vzQ2y" target="_blank">visual guide</a>');
-				return;
-			} else if (targetLanguage === '') {
-				target.page.dispatchMessage('updatePanel', 'Set target language');
-				return;
-			}
-
-			request
-				.get('https://www.googleapis.com/language/translate/v2')
-				.query({
-					key: apiKey,
-					target: targetLanguage,
-					q: msg.message
-				})
-				.set('Accept', 'application/json')
-				.end(function(err, res) {
-					// Handle errors
-					if (res.body.error) {
-						var error = res.body.error.errors[0];
-						switch (error.reason) {
-							case 'invalid':
-								target.page.dispatchMessage('updatePanel', "Target language is invalid. please check it");
-								break;
-							case 'keyInvalid':
-								target.page.dispatchMessage('updatePanel', 'API key is invalid. please check it');
-								break;
-						}
-						return;
-					}
-
-					const translations = res.body.data.translations;
-					let result = '';
-					for (const t of translations) {
-						result += t.translatedText + '<br/>';
-					}
-
-					target.page.dispatchMessage('updatePanel', result);
-				});
-
+			handleFinishedGetSelectedText(msg);
 			break;
 		case 'requestKeyboardShortcut':
-			msg.target.page.dispatchMessage('keyboardShortcutReceived', keyboardShortcut);
+			handleRequestKeyboardShortcut(msg);
 			break;
 		default:
-
 	}
+}
+
+function handleFinishedGetSelectedText(msg) {
+	console.log(msg);
+	if (msg.message === '') {
+		return;
+	}
+	var target = msg.target;
+	target.page.dispatchMessage('showPanel', '<div class="polyglot__loader">Loading</div>');
+
+	if (targetLanguage === '') {
+		target.page.dispatchMessage('updatePanel', 'Set target language');
+		return;
+	}
+
+	const query = url.format({query: {
+		client: 'gtx',
+		sl: 'auto',
+		tl: targetLanguage,
+		dt: 't',
+		q: msg.message
+	}});
+	const api = 'http://translate.googleapis.com/translate_a/single' + query;
+
+	fetch(api)
+		.then(response => {
+			return response.text();
+		}).then(body => {
+			const data = JSON.parse(body.replace(/,,/g, ',null,').replace(/,,/g, ',null,'));
+			const translatedText = data[0][0][0];
+			target.page.dispatchMessage('updatePanel', translatedText);
+		})
+		.catch(err => {
+			target.page.dispatchMessage('updatePanel', err);
+		});
+}
+
+function handleRequestKeyboardShortcut(msg) {
+	msg.target.page.dispatchMessage('keyboardShortcutReceived', keyboardShortcut);
 }
 
 // Update setting values immediately
 function settingsChanged(event) {
 	switch (event.key) {
-		case 'apiKey':
-			apiKey = event.newValue;
-			break;
 		case 'targetLanguage':
 			targetLanguage = event.newValue;
 			break;

@@ -3,16 +3,6 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>Key</key>
-		<string>apiKey</string>
-		<key>Secure</key>
-		<true/>
-		<key>Title</key>
-		<string>Google Cloud Platform API Key</string>
-		<key>Type</key>
-		<string>TextField</string>
-	</dict>
-	<dict>
 		<key>DefaultValue</key>
 		<string>ja</string>
 		<key>Key</key>
