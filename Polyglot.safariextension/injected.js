@@ -1,22 +1,21 @@
+let settings = {};
 let isPanelOpen = false;
-let keyboardShortcut = null;
 const PANEL_ID = 'polyglot__panel';
 
 // Only initialize in a top-level page
 if (window.top === window) {
 	safari.self.addEventListener('message', handleMessage, false);
-
-	window.addEventListener('keydown', handleKeydown, false);
+	window.addEventListener('keypress', handleKeypress, false);
 	window.addEventListener('mouseup', handleMouseUp, false);
 
-	safari.self.tab.dispatchMessage('requestKeyboardShortcut');
+	safari.self.tab.dispatchMessage('getSettings');
 }
 
 // Get selected text and return to global script
 function handleMessage(msg) {
 	switch (msg.name) {
-		case 'keyboardShortcutReceived':
-			keyboardShortcut = parseInt(msg.message, 10);
+		case 'settingsReceived':
+			settings = msg.message;
 			break;
 		case 'getSelectedText':
 			getSelectedText();
@@ -40,8 +39,13 @@ function handleMouseUp(e) {
 	}
 }
 
-function handleKeydown(e) {
-	if (e.keyCode === keyboardShortcut) {
+function handleKeypress(e) {
+	const applyMeta = settings.useMetaKey ? e.metaKey : true;
+	const applyShift = settings.useShiftKey ? e.shiftKey : true;
+	const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true;
+	const applyAlt = settings.useAltKey ? e.altKey : true;
+	const applyKey = settings.keyValue.charCodeAt(0) === e.keyCode;
+	if (applyMeta && applyShift && applyCtrl && applyAlt && applyKey) {
 		e.preventDefault();
 		getSelectedText();
 	}
@@ -112,6 +116,7 @@ function getSelectionBoundingRect() {
 	rect.top += window.pageYOffset;
 	rect.right += window.pageXOffset;
 	rect.bottom += window.pageYOffset;
+
 	return sel.rangeCount ? rect : null;
 }
 
