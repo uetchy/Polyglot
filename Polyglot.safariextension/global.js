@@ -14,30 +14,23 @@ safari.extension.settings.addEventListener('change', settingsChanged, false);
 
 // Perform commands from users
 function performCommand(event) {
-	switch (event.command) {
-		case 'translateSelectedText':
-			safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('getSelectedText');
-			break;
-		default:
-
+	const {command} = event;
+	if (command === 'translateSelectedText') {
+		safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('getSelectedText');
 	}
 }
 
 // Handle message from injected script
 function handleMessage(msg) {
-	switch (msg.name) {
-		case 'finishedGetSelectedText':
-			handleFinishedGetSelectedText(msg);
-			break;
-		case 'getSettings':
-			handleGetSettings(msg);
-			break;
-		default:
+	const {name} = msg;
+	if (name === 'finishedGetSelectedText') {
+		handleFinishedGetSelectedText(msg);
+	} else if (name === 'getSettings') {
+		handleGetSettings(msg);
 	}
 }
 
-function handleFinishedGetSelectedText(msg) {
-	console.log(msg);
+async function handleFinishedGetSelectedText(msg) {
 	if (msg.message === '') {
 		return;
 	}
@@ -58,18 +51,15 @@ function handleFinishedGetSelectedText(msg) {
 	}});
 	const api = 'http://translate.googleapis.com/translate_a/single' + query;
 
-	fetch(api)
-		.then(response => {
-			return response.text();
-		})
-		.then(body => {
-			const data = JSON.parse(body.replace(/,,/g, ',null,').replace(/,,/g, ',null,'));
-			const translatedText = data[0][0][0];
-			target.page.dispatchMessage('updatePanel', translatedText);
-		})
-		.catch(err => {
-			target.page.dispatchMessage('updatePanel', err);
-		});
+	try {
+		const response = await fetch(api);
+		const body = await response.text();
+		const data = JSON.parse(body.replace(/,,/g, ',null,').replace(/,,/g, ',null,'));
+		const translatedText = data[0][0][0];
+		target.page.dispatchMessage('updatePanel', translatedText);
+	} catch (err) {
+		target.page.dispatchMessage('updatePanel', err);
+	}
 }
 
 function handleGetSettings(msg) {
