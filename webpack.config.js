@@ -5,8 +5,8 @@ const extensionPath = resolve(__dirname, 'Polyglot.safariextension');
 module.exports = {
 	context: extensionPath,
 	entry: {
-		global: './global.js',
-		injected: './injected.js'
+		global: ['babel-polyfill', './global.js'],
+		injected: ['babel-polyfill', './injected.js']
 	},
 	output: {
 		path: extensionPath,
@@ -18,7 +18,7 @@ module.exports = {
 			exclude: /(node_modules|bower_components)/,
 			loader: 'babel',
 			query: {
-				presets: ['es2015']
+				presets: ['es2015', 'stage-3']
 			}
 		}]
 	}

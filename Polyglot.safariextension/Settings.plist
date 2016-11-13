@@ -3,8 +3,6 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>DefaultValue</key>
-		<string>ja</string>
 		<key>Key</key>
 		<string>targetLanguage</string>
 		<key>Title</key>
@@ -226,26 +224,26 @@
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>
-  <dict>
-    <key>DefaultValue</key>
-    <string>false</string>
-    <key>Key</key>
-    <string>useCtrlKey</string>
-    <key>Title</key>
-    <string>Ctrl</string>
-    <key>Type</key>
-    <string>CheckBox</string>
-  </dict>
-  <dict>
-    <key>DefaultValue</key>
-    <string>false</string>
-    <key>Key</key>
-    <string>useAltKey</string>
-    <key>Title</key>
-    <string>Alt</string>
-    <key>Type</key>
-    <string>CheckBox</string>
-  </dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>false</string>
+		<key>Key</key>
+		<string>useCtrlKey</string>
+		<key>Title</key>
+		<string>Ctrl</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>false</string>
+		<key>Key</key>
+		<string>useAltKey</string>
+		<key>Title</key>
+		<string>Alt</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
 	<dict>
 		<key>DefaultValue</key>
 		<string>t</string>

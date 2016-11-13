@@ -1,5 +1,5 @@
 import url from 'url';
-import 'whatwg-fetch';
+import 'whatwg-fetch'; // eslint-disable-line import/no-unassigned-import
 
 // Get settings
 let settings = {};
@@ -14,34 +14,27 @@ safari.extension.settings.addEventListener('change', settingsChanged, false);
 
 // Perform commands from users
 function performCommand(event) {
-	switch (event.command) {
-		case 'translateSelectedText':
-			safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('getSelectedText');
-			break;
-		default:
-
+	const {command} = event;
+	if (command === 'translateSelectedText') {
+		safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('getSelectedText');
 	}
 }
 
 // Handle message from injected script
 function handleMessage(msg) {
-	switch (msg.name) {
-		case 'finishedGetSelectedText':
-			handleFinishedGetSelectedText(msg);
-			break;
-		case 'getSettings':
-			handleGetSettings(msg);
-			break;
-		default:
+	const {name} = msg;
+	if (name === 'finishedGetSelectedText') {
+		handleFinishedGetSelectedText(msg);
+	} else if (name === 'getSettings') {
+		handleGetSettings(msg);
 	}
 }
 
-function handleFinishedGetSelectedText(msg) {
-	console.log(msg);
+async function handleFinishedGetSelectedText(msg) {
 	if (msg.message === '') {
 		return;
 	}
-	var target = msg.target;
+	const target = msg.target;
 	target.page.dispatchMessage('showPanel', '<div class="polyglot__loader">Loading</div>');
 
 	if (settings.targetLanguage === '') {
@@ -58,18 +51,18 @@ function handleFinishedGetSelectedText(msg) {
 	}});
 	const api = 'http://translate.googleapis.com/translate_a/single' + query;
 
-	fetch(api)
-		.then(response => {
-			return response.text();
-		})
-		.then(body => {
-			const data = JSON.parse(body.replace(/,,/g, ',null,').replace(/,,/g, ',null,'));
-			const translatedText = data[0][0][0];
-			target.page.dispatchMessage('updatePanel', translatedText);
-		})
-		.catch(err => {
-			target.page.dispatchMessage('updatePanel', err);
-		});
+	try {
+		const response = await fetch(api);
+		const body = await response.text();
+		const data = JSON.parse(body.replace(/,,/g, ',null,').replace(/,,/g, ',null,'));
+		console.log(data[0]);
+		const translatedText = data[0]
+			.map(sentence => sentence[0])
+			.join('<br/>');
+		target.page.dispatchMessage('updatePanel', translatedText);
+	} catch (err) {
+		target.page.dispatchMessage('updatePanel', err);
+	}
 }
 
 function handleGetSettings(msg) {
@@ -79,4 +72,5 @@ function handleGetSettings(msg) {
 // Update setting values immediately
 function settingsChanged(event) {
 	settings[event.key] = event.newValue;
+	safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('settingsReceived', settings);
 }
