@@ -1,5 +1,5 @@
 import url from 'url';
-import 'whatwg-fetch';
+import 'whatwg-fetch'; // eslint-disable-line import/no-unassigned-import
 
 // Get settings
 let settings = {};
