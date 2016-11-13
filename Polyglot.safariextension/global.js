@@ -34,7 +34,7 @@ async function handleFinishedGetSelectedText(msg) {
 	if (msg.message === '') {
 		return;
 	}
-	var target = msg.target;
+	const target = msg.target;
 	target.page.dispatchMessage('showPanel', '<div class="polyglot__loader">Loading</div>');
 
 	if (settings.targetLanguage === '') {

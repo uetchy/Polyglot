@@ -6,6 +6,7 @@ const PANEL_ID = 'polyglot__panel';
 if (window.top === window) {
 	window.addEventListener('keypress', handleKeypress, false);
 	window.addEventListener('mouseup', handleMouseUp, false);
+
 	safari.self.addEventListener('message', handleMessage, false);
 	safari.self.tab.dispatchMessage('getSettings');
 }
@@ -45,8 +46,8 @@ function handleKeypress(e) {
 }
 
 function getSelectedText() {
-	const sel = window.getSelection().toString();
-	safari.self.tab.dispatchMessage('finishedGetSelectedText', sel);
+	const selectedText = window.getSelection().toString();
+	safari.self.tab.dispatchMessage('finishedGetSelectedText', selectedText);
 }
 
 function removePanel() {
