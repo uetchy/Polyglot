@@ -72,4 +72,5 @@ function handleGetSettings(msg) {
 // Update setting values immediately
 function settingsChanged(event) {
 	settings[event.key] = event.newValue;
+	safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('settingsReceived', settings);
 }
