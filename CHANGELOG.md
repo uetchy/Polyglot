@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/uetchy/Polyglot/compare/v2.0.0...v2.0.1) (2016-11-13)
+
+
+### Bug Fixes
+
+* **babel:** add babel-polyfill to avoid error ([3a7288a](https://github.com/uetchy/Polyglot/commit/3a7288a))
+* **settings:** remove default language ([6f7c2b4](https://github.com/uetchy/Polyglot/commit/6f7c2b4))
+* **settings:** update settings after changed ([3d7f0a7](https://github.com/uetchy/Polyglot/commit/3d7f0a7))
+* **translate:** translate multiple sentences ([ffb93bc](https://github.com/uetchy/Polyglot/commit/ffb93bc))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/uetchy/Polyglot/compare/v1.2.0...v2.0.0) (2016-09-07)
 
