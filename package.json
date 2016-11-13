@@ -17,9 +17,9 @@
     "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-stage-3": "^6.11.0",
-    "standard-version": "^2.4.0",
+    "standard-version": "^3.0.0",
     "webpack": "^1.13.2",
-    "xo": "^0.16.0"
+    "xo": "^0.17.0"
   },
   "xo": {
     "envs": [
