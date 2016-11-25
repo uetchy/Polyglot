@@ -1,5 +1,4 @@
-import url from 'url';
-import 'whatwg-fetch'; // eslint-disable-line import/no-unassigned-import
+const {translate} = require('./api');
 
 // Get settings
 let settings = {};
@@ -30,7 +29,7 @@ function handleMessage(msg) {
 	}
 }
 
-async function handleFinishedGetSelectedText(msg) {
+function handleFinishedGetSelectedText(msg) {
 	if (msg.message === '') {
 		return;
 	}
@@ -42,27 +41,11 @@ async function handleFinishedGetSelectedText(msg) {
 		return;
 	}
 
-	const query = url.format({query: {
-		client: 'gtx',
-		sl: 'auto',
-		tl: settings.targetLanguage,
-		dt: 't',
-		q: msg.message
-	}});
-	const api = 'http://translate.googleapis.com/translate_a/single' + query;
-
-	try {
-		const response = await fetch(api);
-		const body = await response.text();
-		const data = JSON.parse(body.replace(/,,/g, ',null,').replace(/,,/g, ',null,'));
-		console.log(data[0]);
-		const translatedText = data[0]
-			.map(sentence => sentence[0])
-			.join('<br/>');
+	translate(msg.message, settings.targetLanguage).then(translatedText => {
 		target.page.dispatchMessage('updatePanel', translatedText);
-	} catch (err) {
+	}).catch(err => {
 		target.page.dispatchMessage('updatePanel', err);
-	}
+	});
 }
 
 function handleGetSettings(msg) {
