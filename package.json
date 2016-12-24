@@ -9,19 +9,21 @@
     "release": "standard-version"
   },
   "dependencies": {
-    "whatwg-fetch": "^1.0.0"
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.5",
     "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.14.0",
-    "standard-version": "^3.0.0",
+    "standard-version": "^4.0.0",
     "webpack": "^1.13.2",
     "xo": "^0.17.0"
   },
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "xo": {
     "envs": [
