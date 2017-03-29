@@ -226,7 +226,7 @@
 	</dict>
 	<dict>
 		<key>DefaultValue</key>
-		<string>false</string>
+		<string>true</string>
 		<key>Key</key>
 		<string>useCtrlKey</string>
 		<key>Title</key>
@@ -246,7 +246,7 @@
 	</dict>
 	<dict>
 		<key>DefaultValue</key>
-		<string>t</string>
+		<string>`</string>
 		<key>Key</key>
 		<string>keyValue</string>
 		<key>Title</key>
