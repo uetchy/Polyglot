@@ -8,8 +8,18 @@ Polyglot is a Safari extension that translates selected text into your native la
 
 # Usage
 
+Visit the extension settings from Safari Preferences and change the target language to one you prefer and reconfigure keyboard shortcuts as you wish.
+
 - Select word or sentence and right-click then click **Translate**.
-- or, Select word or sentence and just type **`** key.
+- or, Select word or sentence and just type the configured key combination.
 - or, Select word or sentence and click **Translate** button on tool bar.
 
 ![](http://randompaper.co.s3.amazonaws.com/Polyglot/screencast1.gif)
+
+# Troubleshooting
+
+#### It seems a new settings have not been applied.
+Refresh web pages or restart Safari and try it again. If you continue to face same problem, please open an issue on GitHub.
+
+#### My key combination didn't work
+Some key combinations are preblematic. Try another one.
