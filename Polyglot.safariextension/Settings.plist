@@ -206,7 +206,7 @@
 	</dict>
 	<dict>
 		<key>DefaultValue</key>
-		<string>true</string>
+		<string>false</string>
 		<key>Key</key>
 		<string>useMetaKey</string>
 		<key>Title</key>
