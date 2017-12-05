@@ -1,6 +1,5 @@
 {
   "name": "Polyglot",
-  "version": "2.1.0",
   "private": true,
   "scripts": {
     "start": "webpack -w",
