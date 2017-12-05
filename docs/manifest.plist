@@ -14,9 +14,9 @@
       <key>CFBundleShortVersionString</key>
       <string>2.1.0</string>
       <key>URL</key>
-      <string>https://github.com/uetchy/Polyglot/releases/download/v2.0.1/Polyglot.safariextz</string>
+      <string>https://github.com/uetchy/Polyglot/releases/download/v2.1.0/Polyglot.safariextz</string>
       <key>Update From Gallery</key>
-      <true/>
+      <false/>
     </dict>
   </array>
 </dict>
