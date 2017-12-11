@@ -39,10 +39,10 @@ function handleKeypress(e) {
     return;
   }
 
-  const applyMeta = settings.useMetaKey ? e.metaKey : true;
-  const applyShift = settings.useShiftKey ? e.shiftKey : true;
-  const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true;
-  const applyAlt = settings.useAltKey ? e.altKey : true;
+  const applyMeta = settings.useMetaKey === 'true' ? e.metaKey : true;
+  const applyShift = settings.useShiftKey === 'true' ? e.shiftKey : true;
+  const applyCtrl = settings.useCtrlKey === 'true' ? e.ctrlKey : true;
+  const applyAlt = settings.useAltKey === 'true' ? e.altKey : true;
   const applyKey = settings.keyValue.charCodeAt(0) === e.keyCode;
   if (applyMeta && applyShift && applyCtrl && applyAlt && applyKey) {
     e.preventDefault();

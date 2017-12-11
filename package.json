@@ -4,8 +4,7 @@
   "scripts": {
     "start": "webpack -w",
     "build": "webpack",
-    "format":
-      "prettier --write --no-semi --single-quote '{!(node_modules)/**/!(*.entry).{js,jsx},*.js}'"
+    "format": "prettier --write --no-semi --single-quote '{!(node_modules)/**/!(*.entry).{js,jsx},*.js}'"
   },
   "dependencies": {
     "whatwg-fetch": "^2.0.1"
@@ -19,7 +18,12 @@
     "webpack": "^3.10.0"
   },
   "babel": {
-    "presets": ["es2015", "stage-3"],
-    "plugins": ["transform-runtime"]
+    "presets": [
+      "es2015",
+      "stage-3"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
   }
 }

@@ -1,8 +1,16 @@
 const { translate } = require('./api');
 
 // Get settings
+const settingsKeys = [
+  'keyValue',
+  'useCtrlKey',
+  'useMetaKey',
+  'useShiftKey',
+  'useAltKey',
+  'targetLanguage',
+];
 let settings = {};
-Object.keys(safari.extension.settings).forEach(key => {
+settingsKeys.forEach(key => {
   settings[key] = safari.extension.settings[key];
 });
 

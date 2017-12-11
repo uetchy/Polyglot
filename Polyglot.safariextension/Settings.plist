@@ -3,6 +3,8 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>DefaultValue</key>
+		<string>en</string>
 		<key>Key</key>
 		<string>targetLanguage</string>
 		<key>Title</key>
