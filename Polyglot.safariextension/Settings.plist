@@ -209,40 +209,56 @@
 	<dict>
 		<key>DefaultValue</key>
 		<string>false</string>
+		<key>FalseValue</key>
+		<string>false</string>
 		<key>Key</key>
 		<string>useMetaKey</string>
 		<key>Title</key>
 		<string>Command</string>
+		<key>TrueValue</key>
+		<string>true</string>
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>
 	<dict>
 		<key>DefaultValue</key>
 		<string>false</string>
+		<key>FalseValue</key>
+		<string>false</string>
 		<key>Key</key>
 		<string>useShiftKey</string>
 		<key>Title</key>
 		<string>Shift</string>
+		<key>TrueValue</key>
+		<string>true</string>
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>
 	<dict>
 		<key>DefaultValue</key>
 		<string>true</string>
+		<key>FalseValue</key>
+		<string>false</string>
 		<key>Key</key>
 		<string>useCtrlKey</string>
 		<key>Title</key>
 		<string>Ctrl</string>
+		<key>TrueValue</key>
+		<string>true</string>
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>
 	<dict>
 		<key>DefaultValue</key>
 		<string>false</string>
+		<key>FalseValue</key>
+		<string>false</string>
 		<key>Key</key>
 		<string>useAltKey</string>
 		<key>Title</key>
 		<string>Alt</string>
+		<key>TrueValue</key>
+		<string>true</string>
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>

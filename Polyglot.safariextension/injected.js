@@ -35,18 +35,17 @@ function handleMouseUp(e) {
 
 function handleKeypress(e) {
   // Check if shortcut key is properly configured
-  if (settings.keyValue === '') {
-    return;
-  }
+  if (settings.keyValue !== '') {
+    const applyMeta = settings.useMetaKey === 'true' ? e.metaKey : true;
+    const applyShift = settings.useShiftKey === 'true' ? e.shiftKey : true;
+    const applyCtrl = settings.useCtrlKey === 'true' ? e.ctrlKey : true;
+    const applyAlt = settings.useAltKey === 'true' ? e.altKey : true;
+    const applyKey = settings.keyValue.charCodeAt(0) === e.keyCode;
 
-  const applyMeta = settings.useMetaKey === 'true' ? e.metaKey : true;
-  const applyShift = settings.useShiftKey === 'true' ? e.shiftKey : true;
-  const applyCtrl = settings.useCtrlKey === 'true' ? e.ctrlKey : true;
-  const applyAlt = settings.useAltKey === 'true' ? e.altKey : true;
-  const applyKey = settings.keyValue.charCodeAt(0) === e.keyCode;
-  if (applyMeta && applyShift && applyCtrl && applyAlt && applyKey) {
-    e.preventDefault();
-    getSelectedText();
+    if (applyMeta && applyShift && applyCtrl && applyAlt && applyKey) {
+      e.preventDefault();
+      getSelectedText();
+    }
   }
 }
 
