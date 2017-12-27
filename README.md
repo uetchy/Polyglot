@@ -29,3 +29,16 @@ same problem, please open an issue on GitHub.
 #### My key combination didn't work
 
 Some key combinations are preblematic. Try another one.
+
+# Development
+
+Install npm dependencies.
+
+```
+npm install
+npm start
+```
+
+then open up `Developer > Extention Builder` in Safari and add the folder named `Polyglot.safariextention` to the builder panel and press `Install` button.
+
+If you made any changes, press `Reload` to refresh the extention.
