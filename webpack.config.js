@@ -1,6 +1,6 @@
-const { resolve } = require('path');
+const { resolve } = require('path')
 
-const extensionPath = resolve(__dirname, 'Polyglot.safariextension');
+const extensionPath = resolve(__dirname, 'Polyglot.safariextension')
 
 module.exports = {
   context: extensionPath,
@@ -21,4 +21,4 @@ module.exports = {
       },
     ],
   },
-};
+}

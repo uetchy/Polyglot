@@ -1,4 +1,4 @@
-const { translate } = require('./api');
+const { translate } = require('./api')
 
 // Get settings
 const settingsKeys = [
@@ -8,70 +8,65 @@ const settingsKeys = [
   'useShiftKey',
   'useAltKey',
   'targetLanguage',
-];
-let settings = {};
+]
+let settings = {}
 settingsKeys.forEach(key => {
-  settings[key] = safari.extension.settings[key];
-});
+  settings[key] = safari.extension.settings[key]
+})
 
 // Set event handler
-safari.application.addEventListener('command', performCommand, false);
-safari.application.addEventListener('message', handleMessage, false);
-safari.extension.settings.addEventListener('change', settingsChanged, false);
+safari.application.addEventListener('command', performCommand, false)
+safari.application.addEventListener('message', handleMessage, false)
+safari.extension.settings.addEventListener('change', settingsChanged, false)
 
 // Perform commands from users
 function performCommand(event) {
-  const { command } = event;
+  const { command } = event
   if (command === 'translateSelectedText') {
-    safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-      'getSelectedText'
-    );
+    safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('getSelectedText')
   }
 }
 
 // Handle message from injected script
 function handleMessage(msg) {
-  const { name } = msg;
+  const { name } = msg
   if (name === 'finishedGetSelectedText') {
-    handleFinishedGetSelectedText(msg);
+    handleFinishedGetSelectedText(msg)
   } else if (name === 'getSettings') {
-    handleGetSettings(msg);
+    handleGetSettings(msg)
   }
 }
 
 function handleFinishedGetSelectedText(msg) {
   if (msg.message === '') {
-    return;
+    return
   }
-  const target = msg.target;
-  target.page.dispatchMessage(
-    'showPanel',
-    '<div class="polyglot__loader">Loading</div>'
-  );
+  const target = msg.target
+  target.page.dispatchMessage('showPanel', '<div class="polyglot__loader">Loading</div>')
 
   if (settings.targetLanguage === '') {
-    target.page.dispatchMessage('updatePanel', 'Set target language');
-    return;
+    target.page.dispatchMessage('updatePanel', 'Set target language')
+    return
   }
 
   translate(msg.message, settings.targetLanguage)
     .then(translatedText => {
-      target.page.dispatchMessage('updatePanel', translatedText);
+      target.page.dispatchMessage('updatePanel', translatedText)
     })
     .catch(err => {
-      target.page.dispatchMessage('updatePanel', err);
-    });
+      target.page.dispatchMessage('updatePanel', err)
+    })
 }
 
 function handleGetSettings(msg) {
-  msg.target.page.dispatchMessage('settingsReceived', settings);
+  msg.target.page.dispatchMessage('settingsReceived', settings)
 }
 
 // Update setting values immediately
 function settingsChanged(event) {
-  settings[event.key] = event.newValue;
+  settings[event.key] = event.newValue
   safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
     'settingsReceived',
     settings
-  );
+  )
 }
