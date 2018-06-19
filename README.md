@@ -1,4 +1,4 @@
-![](http://uechi.s3.amazonaws.com/github/Polyglot/header.png)
+![](http://uechi-public.s3.amazonaws.com/github/Polyglot/header.png)
 
 [![Join the chat at https://gitter.im/uetchy/Polyglot](https://badges.gitter.im/uetchy/Polyglot.svg)](https://gitter.im/uetchy/Polyglot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -17,7 +17,7 @@ language to one you prefer and reconfigure keyboard shortcuts as you wish.
 * or, Select word or sentence and just type the configured key combination.
 * or, Select word or sentence and click **Translate** button on tool bar.
 
-![](http://uechi.s3.amazonaws.com/github/Polyglot/screencast1.gif)
+![](http://uechi-public.s3.amazonaws.com/github/Polyglot/screencast1.gif)
 
 # Troubleshooting
 
