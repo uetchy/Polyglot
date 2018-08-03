@@ -51,7 +51,7 @@ function handleKeypress(e) {
 }
 
 function handleClick(e) {
-  if (e.target.id === PANEL_ID) {
+  if (!settings.instantTranslation || e.target.id === PANEL_ID) {
     return
   }
   getSelectedText()

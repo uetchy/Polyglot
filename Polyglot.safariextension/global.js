@@ -8,6 +8,7 @@ const settingsKeys = [
   'useShiftKey',
   'useAltKey',
   'targetLanguage',
+  'instantTranslation',
 ]
 let settings = {}
 settingsKeys.forEach(key => {
