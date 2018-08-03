@@ -6,6 +6,7 @@ const PANEL_ID = 'polyglot__panel'
 if (window.top === window) {
   window.addEventListener('keypress', handleKeypress, false)
   window.addEventListener('mouseup', handleMouseUp, false)
+  window.addEventListener('click', handleClick, false)
 
   safari.self.addEventListener('message', handleMessage, false)
   safari.self.tab.dispatchMessage('getSettings')
@@ -47,6 +48,13 @@ function handleKeypress(e) {
       getSelectedText()
     }
   }
+}
+
+function handleClick(e) {
+  if (e.target.id === PANEL_ID) {
+    return
+  }
+  getSelectedText()
 }
 
 function getSelectedText() {
