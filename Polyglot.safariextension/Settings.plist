@@ -201,6 +201,16 @@
 		</array>
 	</dict>
 	<dict>
+		<key>DefaultValue</key>
+		<string>false</string>
+		<key>Key</key>
+		<string>instantTranslation</string>
+		<key>Title</key>
+		<string>Instant translation (when you select text on a page)</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
 		<key>Title</key>
 		<string>Keyboard Shortcut</string>
 		<key>Type</key>
