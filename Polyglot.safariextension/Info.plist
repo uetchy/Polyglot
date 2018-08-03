@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Yasuaki Uechi</string>
 	<key>Builder Version</key>
-	<string>13604.5.6</string>
+	<string>13605.3.8</string>
 	<key>CFBundleDisplayName</key>
 	<string>Polyglot</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.3.0</string>
+	<string>2.4.0</string>
 	<key>CFBundleVersion</key>
-	<string>2.3.0</string>
+	<string>2.4.0</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Context Menu Items</key>
