@@ -13,7 +13,8 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
   transform: scale(0) !important;
   transform-origin: 0 0 !important;
-  animation: polyglot__envelope 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+  animation: polyglot__envelope 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    forwards !important;
 }
 
 .polyglot__loader {

@@ -10,13 +10,13 @@ for commit guidelines.
 
 ### Bug Fixes
 
-* **babel:** add babel-polyfill to avoid error
+- **babel:** add babel-polyfill to avoid error
   ([3a7288a](https://github.com/uetchy/Polyglot/commit/3a7288a))
-* **settings:** remove default language
+- **settings:** remove default language
   ([6f7c2b4](https://github.com/uetchy/Polyglot/commit/6f7c2b4))
-* **settings:** update settings after changed
+- **settings:** update settings after changed
   ([3d7f0a7](https://github.com/uetchy/Polyglot/commit/3d7f0a7))
-* **translate:** translate multiple sentences
+- **translate:** translate multiple sentences
   ([ffb93bc](https://github.com/uetchy/Polyglot/commit/ffb93bc))
 
 <a name="2.0.0"></a>
@@ -25,14 +25,14 @@ for commit guidelines.
 
 ### Features
 
-* **settings:** flexible keyboard shortcut (#12)
+- **settings:** flexible keyboard shortcut (#12)
   ([c63d1d3](https://github.com/uetchy/Polyglot/commit/c63d1d3))
 
 ### BREAKING CHANGES
 
-* settings: new settings value
+- settings: new settings value
 
-* chore: update builder version
+- chore: update builder version
 
 <a name="1.2.0"></a>
 
@@ -40,5 +40,5 @@ for commit guidelines.
 
 ### Features
 
-* don’t require API key anymore
+- don’t require API key anymore
   ([4548ad2](https://github.com/uetchy/Polyglot/commit/4548ad2))
