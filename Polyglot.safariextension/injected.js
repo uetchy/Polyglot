@@ -59,7 +59,9 @@ function handleClick(e) {
 
 function getSelectedText() {
   const selectedText = window.getSelection().toString()
-  safari.self.tab.dispatchMessage('finishedGetSelectedText', selectedText)
+  if (selectedText && selectedText !== '\n') {
+    safari.self.tab.dispatchMessage('finishedGetSelectedText', selectedText)
+  }
 }
 
 function removePanel() {
@@ -88,7 +90,9 @@ function showPanel(content) {
 
 function updatePanel(content) {
   const el = document.getElementById(PANEL_ID)
-  el.innerHTML = content
+  if (el) {
+    el.innerHTML = content
+  }
 }
 
 // Return selection coords
