@@ -6,7 +6,7 @@ module.exports = {
   context: extensionPath,
   entry: {
     global: ['./global.js'],
-    injected: ['./injected.js'],
+    content: ['./content.js'],
   },
   output: {
     path: extensionPath,
