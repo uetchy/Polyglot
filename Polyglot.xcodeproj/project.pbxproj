@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		99ED827E2118127C00505D83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED827D2118127C00505D83 /* AppDelegate.swift */; };
+		99ED82802118127D00505D83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99ED827F2118127D00505D83 /* Assets.xcassets */; };
+		99ED82832118127D00505D83 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82812118127D00505D83 /* MainMenu.xib */; };
+		99ED8292211812AB00505D83 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED8291211812AB00505D83 /* Cocoa.framework */; };
+		99ED8295211812AB00505D83 /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED8294211812AB00505D83 /* SafariExtensionHandler.swift */; };
+		99ED8297211812AB00505D83 /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED8296211812AB00505D83 /* SafariExtensionViewController.swift */; };
+		99ED829A211812AB00505D83 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED8298211812AB00505D83 /* SafariExtensionViewController.xib */; };
+		99ED829D211812AB00505D83 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 99ED829C211812AB00505D83 /* script.js */; };
+		99ED829F211812AB00505D83 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 99ED829E211812AB00505D83 /* ToolbarItemIcon.pdf */; };
+		99ED82A3211812AB00505D83 /* PolyglotSafariExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 99ED828F211812AB00505D83 /* PolyglotSafariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		99ED82A1211812AB00505D83 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 99ED82722118127C00505D83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 99ED828E211812AB00505D83;
+			remoteInfo = PolyglotSafariExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		99ED82A7211812AB00505D83 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				99ED82A3211812AB00505D83 /* PolyglotSafariExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		99ED827A2118127C00505D83 /* Polyglot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Polyglot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		99ED827D2118127C00505D83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		99ED827F2118127D00505D83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		99ED82822118127D00505D83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		99ED82842118127D00505D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99ED82852118127D00505D83 /* Polyglot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Polyglot.entitlements; sourceTree = "<group>"; };
+		99ED828F211812AB00505D83 /* PolyglotSafariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PolyglotSafariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		99ED8291211812AB00505D83 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		99ED8294211812AB00505D83 /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
+		99ED8296211812AB00505D83 /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
+		99ED8299211812AB00505D83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
+		99ED829B211812AB00505D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99ED829C211812AB00505D83 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
+		99ED829E211812AB00505D83 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
+		99ED82A0211812AB00505D83 /* PolyglotSafariExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyglotSafariExtension.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		99ED82772118127C00505D83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99ED828C211812AB00505D83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99ED8292211812AB00505D83 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		99ED82712118127C00505D83 = {
+			isa = PBXGroup;
+			children = (
+				99ED827C2118127C00505D83 /* Polyglot */,
+				99ED8293211812AB00505D83 /* PolyglotSafariExtension */,
+				99ED8290211812AB00505D83 /* Frameworks */,
+				99ED827B2118127C00505D83 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		99ED827B2118127C00505D83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				99ED827A2118127C00505D83 /* Polyglot.app */,
+				99ED828F211812AB00505D83 /* PolyglotSafariExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		99ED827C2118127C00505D83 /* Polyglot */ = {
+			isa = PBXGroup;
+			children = (
+				99ED827D2118127C00505D83 /* AppDelegate.swift */,
+				99ED827F2118127D00505D83 /* Assets.xcassets */,
+				99ED82812118127D00505D83 /* MainMenu.xib */,
+				99ED82842118127D00505D83 /* Info.plist */,
+				99ED82852118127D00505D83 /* Polyglot.entitlements */,
+			);
+			path = Polyglot;
+			sourceTree = "<group>";
+		};
+		99ED8290211812AB00505D83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				99ED8291211812AB00505D83 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99ED8293211812AB00505D83 /* PolyglotSafariExtension */ = {
+			isa = PBXGroup;
+			children = (
+				99ED8294211812AB00505D83 /* SafariExtensionHandler.swift */,
+				99ED8296211812AB00505D83 /* SafariExtensionViewController.swift */,
+				99ED8298211812AB00505D83 /* SafariExtensionViewController.xib */,
+				99ED829B211812AB00505D83 /* Info.plist */,
+				99ED829C211812AB00505D83 /* script.js */,
+				99ED829E211812AB00505D83 /* ToolbarItemIcon.pdf */,
+				99ED82A0211812AB00505D83 /* PolyglotSafariExtension.entitlements */,
+			);
+			path = PolyglotSafariExtension;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		99ED82792118127C00505D83 /* Polyglot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99ED82882118127D00505D83 /* Build configuration list for PBXNativeTarget "Polyglot" */;
+			buildPhases = (
+				99ED82762118127C00505D83 /* Sources */,
+				99ED82772118127C00505D83 /* Frameworks */,
+				99ED82782118127C00505D83 /* Resources */,
+				99ED82A7211812AB00505D83 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				99ED82A2211812AB00505D83 /* PBXTargetDependency */,
+			);
+			name = Polyglot;
+			productName = Polyglot;
+			productReference = 99ED827A2118127C00505D83 /* Polyglot.app */;
+			productType = "com.apple.product-type.application";
+		};
+		99ED828E211812AB00505D83 /* PolyglotSafariExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99ED82A4211812AB00505D83 /* Build configuration list for PBXNativeTarget "PolyglotSafariExtension" */;
+			buildPhases = (
+				99ED828B211812AB00505D83 /* Sources */,
+				99ED828C211812AB00505D83 /* Frameworks */,
+				99ED828D211812AB00505D83 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PolyglotSafariExtension;
+			productName = PolyglotSafariExtension;
+			productReference = 99ED828F211812AB00505D83 /* PolyglotSafariExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		99ED82722118127C00505D83 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Yasuaki Uechi";
+				TargetAttributes = {
+					99ED82792118127C00505D83 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					99ED828E211812AB00505D83 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 99ED82752118127C00505D83 /* Build configuration list for PBXProject "Polyglot" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 99ED82712118127C00505D83;
+			productRefGroup = 99ED827B2118127C00505D83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				99ED82792118127C00505D83 /* Polyglot */,
+				99ED828E211812AB00505D83 /* PolyglotSafariExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		99ED82782118127C00505D83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99ED82802118127D00505D83 /* Assets.xcassets in Resources */,
+				99ED82832118127D00505D83 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99ED828D211812AB00505D83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99ED829F211812AB00505D83 /* ToolbarItemIcon.pdf in Resources */,
+				99ED829A211812AB00505D83 /* SafariExtensionViewController.xib in Resources */,
+				99ED829D211812AB00505D83 /* script.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		99ED82762118127C00505D83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99ED827E2118127C00505D83 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99ED828B211812AB00505D83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99ED8297211812AB00505D83 /* SafariExtensionViewController.swift in Sources */,
+				99ED8295211812AB00505D83 /* SafariExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		99ED82A2211812AB00505D83 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 99ED828E211812AB00505D83 /* PolyglotSafariExtension */;
+			targetProxy = 99ED82A1211812AB00505D83 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		99ED82812118127D00505D83 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99ED82822118127D00505D83 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		99ED8298211812AB00505D83 /* SafariExtensionViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99ED8299211812AB00505D83 /* Base */,
+			);
+			name = SafariExtensionViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		99ED82862118127D00505D83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		99ED82872118127D00505D83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		99ED82892118127D00505D83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Polyglot/Polyglot.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				INFOPLIST_FILE = Polyglot/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.uechi.Polyglot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		99ED828A2118127D00505D83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Polyglot/Polyglot.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				INFOPLIST_FILE = Polyglot/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.uechi.Polyglot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		99ED82A5211812AB00505D83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PolyglotSafariExtension/PolyglotSafariExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				INFOPLIST_FILE = PolyglotSafariExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.uechi.Polyglot.PolyglotSafariExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		99ED82A6211812AB00505D83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PolyglotSafariExtension/PolyglotSafariExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				INFOPLIST_FILE = PolyglotSafariExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.uechi.Polyglot.PolyglotSafariExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		99ED82752118127C00505D83 /* Build configuration list for PBXProject "Polyglot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99ED82862118127D00505D83 /* Debug */,
+				99ED82872118127D00505D83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		99ED82882118127D00505D83 /* Build configuration list for PBXNativeTarget "Polyglot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99ED82892118127D00505D83 /* Debug */,
+				99ED828A2118127D00505D83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		99ED82A4211812AB00505D83 /* Build configuration list for PBXNativeTarget "PolyglotSafariExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99ED82A5211812AB00505D83 /* Debug */,
+				99ED82A6211812AB00505D83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 99ED82722118127C00505D83 /* Project object */;
+}

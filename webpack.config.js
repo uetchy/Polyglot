@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 
-const extensionPath = resolve(__dirname, 'Polyglot.safariextension')
+const extensionPath = resolve(__dirname, 'PolyglotSafariExtension')
 
 module.exports = {
   context: extensionPath,
