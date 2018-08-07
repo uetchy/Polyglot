@@ -1,3 +1,5 @@
+import { getEventCode } from './keymap'
+
 let settings = {}
 let isPanelOpen = false
 const PANEL_ID = 'polyglot__panel'
@@ -41,7 +43,7 @@ function handleKeypress(e) {
     const applyShift = settings.useShiftKey ? e.shiftKey : true
     const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true
     const applyAlt = settings.useAltKey ? e.altKey : true
-    const applyKey = settings.keyValue.charCodeAt(0) === e.keyCode
+    const applyKey = getEventCode(settings.keyValue.charAt(0)) === e.code
 
     if (applyMeta && applyShift && applyCtrl && applyAlt && applyKey) {
       e.preventDefault()
