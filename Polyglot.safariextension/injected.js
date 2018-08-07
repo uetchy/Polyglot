@@ -54,6 +54,12 @@ function handleClick(e) {
   if (!settings.instantTranslation || e.target.id === PANEL_ID) {
     return
   }
+  if (document.activeElement) {
+    const activeEl = document.activeElement.tagName.toLowerCase()
+    if (activeEl === 'textarea' || activeEl === 'input') {
+      return
+    }
+  }
   getSelectedText()
 }
 
