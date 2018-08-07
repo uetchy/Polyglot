@@ -12,7 +12,16 @@ const settingsKeys = [
 ]
 let settings = {}
 settingsKeys.forEach(key => {
-  settings[key] = safari.extension.settings[key]
+  let value = safari.extension.settings[key]
+  switch (value) {
+    case 'true':
+      value = true
+      break
+    case 'false':
+      value = false
+    default:
+  }
+  settings[key] = value
 })
 
 // Set event handler
