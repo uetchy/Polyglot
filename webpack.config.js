@@ -13,11 +13,11 @@ module.exports = {
     filename: '[name].entry.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
       },
     ],
   },
