@@ -51,5 +51,5 @@ const keymap = {
 }
 
 export function getEventCode(char) {
-  return keymap[char]
+  return keymap[char.toLowerCase()]
 }
