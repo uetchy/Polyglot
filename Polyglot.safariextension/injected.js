@@ -39,11 +39,14 @@ function handleMouseUp(e) {
 function handleKeypress(e) {
   // Check if shortcut key is properly configured
   if (settings.keyValue !== '') {
+    const keyValue = settings.keyValue
+    const keyCode = getEventCode(keyValue.charAt(0))
+
     const applyMeta = settings.useMetaKey ? e.metaKey : true
     const applyShift = settings.useShiftKey ? e.shiftKey : true
     const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true
     const applyAlt = settings.useAltKey ? e.altKey : true
-    const applyKey = getEventCode(settings.keyValue.charAt(0)) === e.code
+    const applyKey = keyCode ? keyCode === e.code : keyValue.charCodeAt(0) === e.keyCode
 
     if (applyMeta && applyShift && applyCtrl && applyAlt && applyKey) {
       e.preventDefault()
