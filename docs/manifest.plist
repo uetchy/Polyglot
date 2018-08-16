@@ -10,11 +10,11 @@
       <key>Developer Identifier</key>
       <string>58XDWHK3JX</string>
       <key>CFBundleVersion</key>
-      <string>2.4.1</string>
+      <string>2.5.0</string>
       <key>CFBundleShortVersionString</key>
-      <string>2.4.1</string>
+      <string>2.5.0</string>
       <key>URL</key>
-      <string>https://github.com/uetchy/Polyglot/releases/download/v2.4.1/Polyglot.safariextz</string>
+      <string>https://github.com/uetchy/Polyglot/releases/download/v2.5.0/Polyglot.safariextz</string>
       <key>Update From Gallery</key>
       <false/>
     </dict>
