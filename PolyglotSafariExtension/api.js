@@ -1,5 +1,5 @@
 import url from 'url'
-import 'whatwg-fetch' // eslint-disable-line import/no-unassigned-import
+import 'whatwg-fetch'
 
 export async function translate(text, targetLanguage) {
   const query = url.format({

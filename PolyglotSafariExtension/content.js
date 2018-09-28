@@ -46,7 +46,9 @@ function handleKeypress(e) {
     const applyShift = settings.useShiftKey ? e.shiftKey : true
     const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true
     const applyAlt = settings.useAltKey ? e.altKey : true
-    const applyKey = keyCode ? keyCode === e.code : keyValue.charCodeAt(0) === e.keyCode
+    const applyKey = keyCode
+      ? keyCode === e.code
+      : keyValue.charCodeAt(0) === e.keyCode
 
     if (applyMeta && applyShift && applyCtrl && applyAlt && applyKey) {
       e.preventDefault()
