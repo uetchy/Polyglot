@@ -1,6 +1,6 @@
 *.safariextz
 *.entry.js
-.vscode/tasks.json
+.vscode
 
 # Created by https://www.gitignore.io/api/xcode
 
