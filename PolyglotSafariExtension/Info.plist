@@ -24,6 +24,10 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSExtension</key>
 	<dict>
+		<key>SFSafariExtensionBundleIdentifiersToUninstall</key>
+		<array>
+			<string>co.randompaper.polyglot.extension</string>
+		</array>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.Safari.extension</string>
 		<key>NSExtensionPrincipalClass</key>
@@ -32,7 +36,7 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>content.js</string>
+				<string>content.entry.js</string>
 			</dict>
 		</array>
 		<key>SFSafariToolbarItem</key>
@@ -48,12 +52,8 @@
 		</dict>
 		<key>SFSafariWebsiteAccess</key>
 		<dict>
-			<key>Allowed Domains</key>
-			<array>
-				<string>*.webkit.org</string>
-			</array>
 			<key>Level</key>
-			<string>Some</string>
+			<string>All</string>
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>

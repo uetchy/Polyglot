@@ -202,9 +202,11 @@
 				TargetAttributes = {
 					99ED82792118127C00505D83 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 					99ED828E211812AB00505D83 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -432,7 +434,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.uechi.Polyglot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -452,7 +454,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.uechi.Polyglot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -471,7 +473,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.uechi.Polyglot.PolyglotSafariExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -490,7 +492,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.uechi.Polyglot.PolyglotSafariExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

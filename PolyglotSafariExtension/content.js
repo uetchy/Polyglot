@@ -6,12 +6,13 @@ const PANEL_ID = 'polyglot__panel'
 
 // Only initialize in a top-level page
 if (window.top === window) {
+  console.log('Polyglot loaded')
   window.addEventListener('keypress', handleKeypress, false)
   window.addEventListener('mouseup', handleMouseUp, false)
   window.addEventListener('click', handleClick, false)
 
   safari.self.addEventListener('message', handleMessage, false)
-  safari.self.tab.dispatchMessage('getSettings')
+  safari.extension.dispatchMessage('getSettings')
 }
 
 // Get selected text and return to global script
@@ -73,7 +74,7 @@ function handleClick(e) {
 function getSelectedText() {
   const selectedText = window.getSelection().toString()
   if (selectedText && selectedText !== '\n') {
-    safari.self.tab.dispatchMessage('finishedGetSelectedText', selectedText)
+    safari.extension.dispatchMessage('finishedGetSelectedText', selectedText)
   }
 }
 
