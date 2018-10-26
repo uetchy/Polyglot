@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		991C479E2182CA0C0075EFE5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; };
+		991C479F2182CA0C0075EFE5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		991C47A12182CA9D0075EFE5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; };
 		99ED827E2118127C00505D83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED827D2118127C00505D83 /* AppDelegate.swift */; };
 		99ED82802118127D00505D83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99ED827F2118127D00505D83 /* Assets.xcassets */; };
 		99ED82832118127D00505D83 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82812118127D00505D83 /* MainMenu.xib */; };
@@ -36,6 +39,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		991C47A02182CA0C0075EFE5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				991C479F2182CA0C0075EFE5 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99ED82A7211812AB00505D83 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		99CE36602169BAF800DBB2F7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
 		99ED827A2118127C00505D83 /* Polyglot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Polyglot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99ED827D2118127C00505D83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99ED827F2118127D00505D83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				991C479E2182CA0C0075EFE5 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +102,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99ED8292211812AB00505D83 /* Cocoa.framework in Frameworks */,
+				991C47A12182CA9D0075EFE5 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +143,7 @@
 		99ED8290211812AB00505D83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99CE36602169BAF800DBB2F7 /* Alamofire.framework */,
 				99ED8291211812AB00505D83 /* Cocoa.framework */,
 			);
 			name = Frameworks;
@@ -162,6 +180,7 @@
 				99ED82772118127C00505D83 /* Frameworks */,
 				99ED82782118127C00505D83 /* Resources */,
 				99ED82A7211812AB00505D83 /* Embed App Extensions */,
+				991C47A02182CA0C0075EFE5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -427,6 +446,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Polyglot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -447,6 +470,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Polyglot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -464,6 +491,10 @@
 				CODE_SIGN_ENTITLEMENTS = PolyglotSafariExtension/PolyglotSafariExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = PolyglotSafariExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -483,6 +514,10 @@
 				CODE_SIGN_ENTITLEMENTS = PolyglotSafariExtension/PolyglotSafariExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = PolyglotSafariExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
