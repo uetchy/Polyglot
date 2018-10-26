@@ -10,6 +10,10 @@
 		991C479E2182CA0C0075EFE5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; };
 		991C479F2182CA0C0075EFE5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		991C47A12182CA9D0075EFE5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; };
+		99ED036C2182D21C0040BD34 /* KeyHolder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03692182D2130040BD34 /* KeyHolder.framework */; };
+		99ED036D2182D21C0040BD34 /* KeyHolder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03692182D2130040BD34 /* KeyHolder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		99ED036E2182D21C0040BD34 /* Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03682182D2130040BD34 /* Magnet.framework */; };
+		99ED036F2182D21C0040BD34 /* Magnet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03682182D2130040BD34 /* Magnet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		99ED827E2118127C00505D83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED827D2118127C00505D83 /* AppDelegate.swift */; };
 		99ED82802118127D00505D83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99ED827F2118127D00505D83 /* Assets.xcassets */; };
 		99ED82832118127D00505D83 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82812118127D00505D83 /* MainMenu.xib */; };
@@ -45,6 +49,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				99ED036D2182D21C0040BD34 /* KeyHolder.framework in Embed Frameworks */,
+				99ED036F2182D21C0040BD34 /* Magnet.framework in Embed Frameworks */,
 				991C479F2182CA0C0075EFE5 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -65,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		99CE36602169BAF800DBB2F7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
+		99ED03682182D2130040BD34 /* Magnet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Magnet.framework; path = Carthage/Build/Mac/Magnet.framework; sourceTree = "<group>"; };
+		99ED03692182D2130040BD34 /* KeyHolder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeyHolder.framework; path = Carthage/Build/Mac/KeyHolder.framework; sourceTree = "<group>"; };
 		99ED827A2118127C00505D83 /* Polyglot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Polyglot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99ED827D2118127C00505D83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99ED827F2118127D00505D83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99ED036C2182D21C0040BD34 /* KeyHolder.framework in Frameworks */,
+				99ED036E2182D21C0040BD34 /* Magnet.framework in Frameworks */,
 				991C479E2182CA0C0075EFE5 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +153,8 @@
 		99ED8290211812AB00505D83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99ED03692182D2130040BD34 /* KeyHolder.framework */,
+				99ED03682182D2130040BD34 /* Magnet.framework */,
 				99CE36602169BAF800DBB2F7 /* Alamofire.framework */,
 				99ED8291211812AB00505D83 /* Cocoa.framework */,
 			);
@@ -222,10 +234,20 @@
 					99ED82792118127C00505D83 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					99ED828E211812AB00505D83 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

@@ -17,6 +17,9 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       switch messageName {
       case "getSettings":
         NSLog("getSettings")
+        self.googleTranslate(text: "Hello", targetLanguage: "ja", completionHandler: {result in
+          print(result)
+        })
       case "translate":
         self.translateHandler(userInfo?["text"] as! String, targetLanguage: "ja")
       default:
@@ -28,6 +31,11 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   override func toolbarItemClicked(in window: SFSafariWindow) {
     // This method will be called when your toolbar item is clicked.
     NSLog("The extension's toolbar item was clicked")
+    window.getActiveTab { (tab) in
+      tab?.getActivePage(completionHandler: { (page) in
+        page?.dispatchMessageToScript(withName: "getSelectedText", userInfo: [:])
+      })
+    }
   }
   
   override func validateToolbarItem(in window: SFSafariWindow, validationHandler: @escaping ((Bool, String) -> Void)) {
@@ -46,7 +54,8 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   }
   
   func googleTranslate(text: String, targetLanguage: String, completionHandler: @escaping (String) -> ()) {
-    let endpoint: String = "http://translate.googleapis.com/translate_a/single"
+    NSLog("Start translate")
+    let endpoint: String = "https://translate.googleapis.com/translate_a/single"
     let parameters: Alamofire.Parameters = [
       "client": "gtx",
       "sl": "auto",
@@ -54,22 +63,14 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       "dt": "t",
       "q": text,
     ]
-    Alamofire.request(endpoint, parameters: parameters)
-      .responseString { response in
-        guard let value = response.result.value else {
+    Alamofire.request(endpoint, method: .get, parameters: parameters)
+      .validate(statusCode: 200..<300)
+      .responseJSON { response in
+        guard let json = response.result.value as? NSArray else {
           return
         }
-        let purified = value.replacingOccurrences(of: ",,", with: ",null,")
-        do {
-          let jsonResponse = try JSONSerialization.jsonObject(with: value.data(using: String.Encoding.utf8)!, options: [])
-          if let objs = jsonResponse as? NSArray {
-            print(objs[0])
-          }
-//          print(jsonResponse[0] as String)
-        } catch let parsingError {
-          print("Error", parsingError)
-        }
-        completionHandler(purified)
+        print(json)
+        completionHandler(((json[0] as! NSArray)[0] as! NSArray)[0] as! String)
       }
 //
 //    try {
