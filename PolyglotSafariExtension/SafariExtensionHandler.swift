@@ -17,11 +17,9 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       switch messageName {
       case "getSettings":
         NSLog("getSettings")
-        self.googleTranslate(text: "Hello", targetLanguage: "ja", completionHandler: {result in
-          print(result)
-        })
+        self.getSettingsHandler(page: page)
       case "translate":
-        self.translateHandler(userInfo?["text"] as! String, targetLanguage: "ja")
+        self.translateHandler(userInfo?["text"] as? String ?? "", targetLanguage: "ja")
       default:
         NSLog("The extension received a message (\(messageName)) from a script injected into (\(String(describing: properties?.url))) with userInfo (\(userInfo ?? [:]))")
       }
@@ -47,43 +45,47 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     return SafariExtensionViewController.shared
   }
   
+  func getSettingsHandler(page: SFSafariPage) {
+    let ud = UserDefaults.standard
+    let keyCode = ud.string(forKey: "keyCode")
+    let settings = [
+      "keyCode": keyCode ?? ""
+    ]
+    page.dispatchMessageToScript(withName: "settingsReceived", userInfo: settings)
+  }
+  
   func translateHandler(_ text: String, targetLanguage: String) {
-    googleTranslate(text: text, targetLanguage: targetLanguage) { translatedText in
+    googleTranslate(text, targetLanguage: targetLanguage) { translatedText in
       NSLog("translated \(translatedText)")
     }
   }
   
-  func googleTranslate(text: String, targetLanguage: String, completionHandler: @escaping (String) -> ()) {
-    NSLog("Start translate")
+  func googleTranslate(_ text: String, targetLanguage: String, completionHandler: @escaping (String) -> ()) {
     let endpoint: String = "https://translate.googleapis.com/translate_a/single"
-    let parameters: Alamofire.Parameters = [
+    let params: Alamofire.Parameters = [
       "client": "gtx",
       "sl": "auto",
       "tl": targetLanguage,
       "dt": "t",
       "q": text,
     ]
-    Alamofire.request(endpoint, method: .get, parameters: parameters)
+    Alamofire.request(endpoint, method: .get, parameters: params)
       .validate(statusCode: 200..<300)
       .responseJSON { response in
-        guard let json = response.result.value as? NSArray else {
+        guard let json = response.result.value as? NSArray,
+              let textArray = json[0] as? NSArray else {
           return
         }
-        print(json)
-        completionHandler(((json[0] as! NSArray)[0] as! NSArray)[0] as! String)
+        let sentenceArray = textArray.compactMap({ (item) -> String in
+          guard let item = item as? NSArray,
+                let text = item[0] as? String else {
+            return ""
+          }
+          return text
+        })
+        let sentence = sentenceArray.joined(separator: "\n")
+        completionHandler(sentence)
       }
-//
-//    try {
-//      const response = await fetch(endpoint)
-//      const body = await response.text()
-//      const data = JSON.parse(
-//        body.replace(/,,/g, ',null,').replace(/,,/g, ',null,')
-//      )
-//      const translatedText = data[0].map(sentence => sentence[0]).join('<br/>')
-//      return translatedText
-//    } catch (err) {
-//      Promise.reject(err)
-//    }
   }
   
 }
