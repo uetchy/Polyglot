@@ -1,10 +1,10 @@
 {
   "name": "polyglot",
+  "description": "Polyglot extension",
   "version": "2.5.0",
-  "private": true,
   "scripts": {
-    "start": "webpack -w --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "start": "webpack -w --mode development"
   },
   "dependencies": {
     "whatwg-fetch": "^3.0.0"
@@ -16,5 +16,6 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "webpack": "^4.19.1",
     "webpack-command": "^0.4.1"
-  }
+  },
+  "private": true
 }
