@@ -7,7 +7,7 @@
     "start": "webpack -w --mode development"
   },
   "dependencies": {
-    "whatwg-fetch": "^3.0.0"
+    "isomorphic-unfetch": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",

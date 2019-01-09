@@ -1,5 +1,5 @@
 import url from 'url'
-import 'whatwg-fetch'
+import fetch from 'isomorphic-unfetch'
 
 export async function translate(text, targetLanguage) {
   const query = url.format({
