@@ -1,6 +1,8 @@
 .vscode
 *.entry.js
+
 # Created by https://www.gitignore.io/api/node
+# Edit at https://www.gitignore.io/?templates=node
 
 ### Node ###
 # Logs
@@ -61,6 +63,7 @@ typings/
 
 # dotenv environment variables file
 .env
+.env.test
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -75,12 +78,18 @@ typings/
 .vuepress/dist
 
 # Serverless directories
-.serverless
+.serverless/
 
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
 
 # End of https://www.gitignore.io/api/node
 
 # Created by https://www.gitignore.io/api/xcode
+# Edit at https://www.gitignore.io/?templates=xcode
 
 ### Xcode ###
 # Xcode
@@ -115,10 +124,10 @@ DerivedData/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-
 # End of https://www.gitignore.io/api/xcode
 
 # Created by https://www.gitignore.io/api/swift
+# Edit at https://www.gitignore.io/?templates=swift
 
 ### Swift ###
 # Xcode
@@ -199,6 +208,5 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
-
 
 # End of https://www.gitignore.io/api/swift
