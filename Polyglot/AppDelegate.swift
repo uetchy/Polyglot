@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Polyglot
-//
-//  Created by Yasuaki Uechi on 18/8/6.
-//  Copyright © 2018 Yasuaki Uechi. All rights reserved.
-//
-
 import Cocoa
 import Magnet
 import KeyHolder
