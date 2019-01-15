@@ -23,13 +23,10 @@
 		99ED829A211812AB00505D83 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED8298211812AB00505D83 /* SafariExtensionViewController.xib */; };
 		99ED829F211812AB00505D83 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 99ED829E211812AB00505D83 /* ToolbarItemIcon.pdf */; };
 		99ED82A3211812AB00505D83 /* PolyglotSafariExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 99ED828F211812AB00505D83 /* PolyglotSafariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		99ED82B0211816D500505D83 /* global.js in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82A8211816D400505D83 /* global.js */; };
 		99ED82B1211816D500505D83 /* api.js in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82A9211816D400505D83 /* api.js */; };
 		99ED82B2211816D500505D83 /* content.css in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82AA211816D400505D83 /* content.css */; };
 		99ED82B4211816D500505D83 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82AC211816D400505D83 /* content.js */; };
 		99ED82B5211816D500505D83 /* content.entry.js in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82AD211816D500505D83 /* content.entry.js */; };
-		99ED82B6211816D500505D83 /* global.entry.js in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82AE211816D500505D83 /* global.entry.js */; };
-		99ED82B7211816D500505D83 /* global.html in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82AF211816D500505D83 /* global.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,13 +84,10 @@
 		99ED829B211812AB00505D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99ED829E211812AB00505D83 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		99ED82A0211812AB00505D83 /* PolyglotSafariExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyglotSafariExtension.entitlements; sourceTree = "<group>"; };
-		99ED82A8211816D400505D83 /* global.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = global.js; sourceTree = "<group>"; };
 		99ED82A9211816D400505D83 /* api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = api.js; sourceTree = "<group>"; };
 		99ED82AA211816D400505D83 /* content.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = content.css; sourceTree = "<group>"; };
 		99ED82AC211816D400505D83 /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 		99ED82AD211816D500505D83 /* content.entry.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.entry.js; sourceTree = "<group>"; };
-		99ED82AE211816D500505D83 /* global.entry.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = global.entry.js; sourceTree = "<group>"; };
-		99ED82AF211816D500505D83 /* global.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = global.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,11 +163,8 @@
 				99ED8298211812AB00505D83 /* SafariExtensionViewController.xib */,
 				99ED829B211812AB00505D83 /* Info.plist */,
 				99ED82A9211816D400505D83 /* api.js */,
-				99ED82AF211816D500505D83 /* global.html */,
-				99ED82A8211816D400505D83 /* global.js */,
 				99ED82AC211816D400505D83 /* content.js */,
 				99ED82AA211816D400505D83 /* content.css */,
-				99ED82AE211816D500505D83 /* global.entry.js */,
 				99ED82AD211816D500505D83 /* content.entry.js */,
 				99ED829E211812AB00505D83 /* ToolbarItemIcon.pdf */,
 				99ED82A0211812AB00505D83 /* PolyglotSafariExtension.entitlements */,
@@ -286,12 +277,9 @@
 			files = (
 				99ED82B1211816D500505D83 /* api.js in Resources */,
 				99ED82B2211816D500505D83 /* content.css in Resources */,
-				99ED82B7211816D500505D83 /* global.html in Resources */,
 				99ED82B5211816D500505D83 /* content.entry.js in Resources */,
 				99ED829F211812AB00505D83 /* ToolbarItemIcon.pdf in Resources */,
 				99ED82B4211816D500505D83 /* content.js in Resources */,
-				99ED82B0211816D500505D83 /* global.js in Resources */,
-				99ED82B6211816D500505D83 /* global.entry.js in Resources */,
 				99ED829A211812AB00505D83 /* SafariExtensionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,7 +455,7 @@
 				CODE_SIGN_ENTITLEMENTS = Polyglot/Polyglot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				DEVELOPMENT_TEAM = 287J96B97G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -491,7 +479,7 @@
 				CODE_SIGN_ENTITLEMENTS = Polyglot/Polyglot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				DEVELOPMENT_TEAM = 287J96B97G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -512,7 +500,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PolyglotSafariExtension/PolyglotSafariExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				DEVELOPMENT_TEAM = 287J96B97G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -535,7 +523,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PolyglotSafariExtension/PolyglotSafariExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 58XDWHK3JX;
+				DEVELOPMENT_TEAM = 287J96B97G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",

@@ -5,7 +5,6 @@ const extensionPath = resolve(__dirname, 'PolyglotSafariExtension')
 module.exports = {
   context: extensionPath,
   entry: {
-    global: ['./global.js'],
     content: ['./content.js'],
   },
   output: {

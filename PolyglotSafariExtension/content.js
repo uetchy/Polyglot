@@ -10,7 +10,8 @@ if (window.top === window) {
   window.addEventListener('keypress', handleKeypress, false)
   window.addEventListener('mouseup', handleMouseUp, false)
   window.addEventListener('click', handleClick, false)
-
+  
+  console.log("getting settings")
   safari.self.addEventListener('message', handleMessage, false)
   safari.extension.dispatchMessage('getSettings')
 }

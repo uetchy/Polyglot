@@ -24,10 +24,6 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSExtension</key>
 	<dict>
-		<key>SFSafariExtensionBundleIdentifiersToUninstall</key>
-		<array>
-			<string>co.randompaper.polyglot.extension</string>
-		</array>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.Safari.extension</string>
 		<key>NSExtensionPrincipalClass</key>
@@ -39,6 +35,10 @@
 				<string>content.entry.js</string>
 			</dict>
 		</array>
+		<key>SFSafariExtensionBundleIdentifiersToUninstall</key>
+		<array>
+			<string>co.randompaper.polyglot.extension</string>
+		</array>
 		<key>SFSafariToolbarItem</key>
 		<dict>
 			<key>Action</key>
@@ -48,7 +48,7 @@
 			<key>Image</key>
 			<string>ToolbarItemIcon.pdf</string>
 			<key>Label</key>
-			<string>Your Button</string>
+			<string>Translate</string>
 		</dict>
 		<key>SFSafariWebsiteAccess</key>
 		<dict>
@@ -57,8 +57,8 @@
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2018 Yasuaki Uechi. All rights reserved.</string>
+	<string>Copyright © 2018 Yasuaki Uechi. MIT license.</string>
 	<key>NSHumanReadableDescription</key>
-	<string>This is a Safari Extension. You should tell us what your extension does here.</string>
+	<string>Translate selected text into your native language.</string>
 </dict>
 </plist>
