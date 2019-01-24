@@ -49,28 +49,30 @@ function handleMessage(msg) {
   }
 }
 
-function handleFinishedGetSelectedText(msg) {
+async function handleFinishedGetSelectedText(msg) {
   if (msg.message === '') {
     return
   }
-  const target = msg.target
+
+  const { target, message } = msg
+  const { targetLanguage } = settings
+
   target.page.dispatchMessage(
     'showPanel',
     '<div class="polyglot__loader">Loading</div>'
   )
 
-  if (settings.targetLanguage === '') {
+  if (targetLanguage === '') {
     target.page.dispatchMessage('updatePanel', 'Set target language')
     return
   }
 
-  translate(msg.message, settings.targetLanguage)
-    .then(translatedText => {
-      target.page.dispatchMessage('updatePanel', translatedText)
-    })
-    .catch(err => {
-      target.page.dispatchMessage('updatePanel', err)
-    })
+  try {
+    const translatedText = await translate(message, targetLanguage)
+    target.page.dispatchMessage('updatePanel', translatedText)
+  } catch (err) {
+    target.page.dispatchMessage('updatePanel', err)
+  }
 }
 
 function handleGetSettings(msg) {

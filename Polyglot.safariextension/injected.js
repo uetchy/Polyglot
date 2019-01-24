@@ -6,6 +6,10 @@ const PANEL_ID = 'polyglot__panel'
 
 // Only initialize in a top-level page
 if (window.top === window) {
+  setup()
+}
+
+function setup() {
   window.addEventListener('keypress', handleKeypress, false)
   window.addEventListener('mouseup', handleMouseUp, false)
   window.addEventListener('click', handleClick, false)
@@ -16,20 +20,57 @@ if (window.top === window) {
 
 // Get selected text and return to global script
 function handleMessage(msg) {
-  const name = msg.name
+  const { name, message } = msg
   if (name === 'settingsReceived') {
-    settings = msg.message
+    settings = message
   } else if (name === 'getSelectedText') {
     getSelectedText()
   } else if (name === 'showPanel') {
-    showPanel(msg.message)
+    showPanel(message)
   } else if (name === 'updatePanel') {
-    updatePanel(msg.message)
+    updatePanel(message)
+  }
+}
+
+function getPanel() {
+  return document.getElementById(PANEL_ID)
+}
+
+function removePanel() {
+  const panel = getPanel()
+  panel.remove()
+  isPanelOpen = false
+}
+
+// Show panel with given text
+function showPanel(content) {
+  if (isPanelOpen) {
+    removePanel()
+  }
+
+  const bounds = getSelectionBoundingRect()
+  if (bounds === null) {
+    return false
+  }
+
+  const el = document.createElement('div')
+  el.innerHTML = content
+  el.id = PANEL_ID
+  el.style.left = bounds.left + 'px'
+  el.style.top = bounds.bottom + 'px'
+  document.body.insertBefore(el, document.body.firstChild)
+  isPanelOpen = true
+}
+
+function updatePanel(content) {
+  const panel = getPanel()
+  if (panel) {
+    panel.innerHTML = content
   }
 }
 
 function handleMouseUp(e) {
-  const panel = document.getElementById(PANEL_ID)
+  const panel = getPanel()
 
   if (isPanelOpen && !isDescendant(panel, e.target)) {
     removePanel()
@@ -38,20 +79,23 @@ function handleMouseUp(e) {
 
 function handleKeypress(e) {
   // Check if shortcut key is properly configured
-  if (settings.keyValue !== '') {
-    const keyValue = settings.keyValue
-    const keyCode = getEventCode(keyValue.charAt(0))
+  if (settings.keyValue === '') {
+    return
+  }
 
-    const applyMeta = settings.useMetaKey ? e.metaKey : true
-    const applyShift = settings.useShiftKey ? e.shiftKey : true
-    const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true
-    const applyAlt = settings.useAltKey ? e.altKey : true
-    const applyKey = keyCode ? keyCode === e.code : keyValue.charCodeAt(0) === e.keyCode
+  const { keyValue } = settings
+  const keyCode = getEventCode(keyValue.charAt(0))
+  const verifier = [
+    settings.useMetaKey ? e.metaKey : true, // applyMeta
+    settings.useShiftKey ? e.shiftKey : true, // applyShift
+    settings.useCtrlKey ? e.ctrlKey : true, // applyCtrl
+    settings.useAltKey ? e.altKey : true, // applyAlt
+    keyCode ? keyCode === e.code : keyValue.charCodeAt(0) === e.keyCode, // applyKey
+  ]
 
-    if (applyMeta && applyShift && applyCtrl && applyAlt && applyKey) {
-      e.preventDefault()
-      getSelectedText()
-    }
+  if (verifier.every(v => v)) {
+    e.preventDefault()
+    getSelectedText()
   }
 }
 
@@ -59,6 +103,7 @@ function handleClick(e) {
   if (!settings.instantTranslation || e.target.id === PANEL_ID) {
     return
   }
+
   if (document.activeElement) {
     const activeEl = document.activeElement.tagName.toLowerCase()
     if (activeEl === 'textarea' || activeEl === 'input') {
@@ -72,37 +117,6 @@ function getSelectedText() {
   const selectedText = window.getSelection().toString()
   if (selectedText && selectedText !== '\n') {
     safari.self.tab.dispatchMessage('finishedGetSelectedText', selectedText)
-  }
-}
-
-function removePanel() {
-  const panel = document.getElementById(PANEL_ID)
-  panel.remove()
-  isPanelOpen = false
-}
-
-// Show panel with given text
-function showPanel(content) {
-  if (isPanelOpen) {
-    removePanel()
-  }
-  const bounds = getSelectionBoundingRect()
-  if (bounds === null) {
-    return false
-  }
-  const el = document.createElement('div')
-  el.innerHTML = content
-  el.id = PANEL_ID
-  el.style.left = bounds.left + 'px'
-  el.style.top = bounds.bottom + 'px'
-  document.body.insertBefore(el, document.body.firstChild)
-  isPanelOpen = true
-}
-
-function updatePanel(content) {
-  const el = document.getElementById(PANEL_ID)
-  if (el) {
-    el.innerHTML = content
   }
 }
 
