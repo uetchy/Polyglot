@@ -15,6 +15,7 @@
     "@babel/preset-env": "^7.3.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-loader": "^8.0.5",
+    "plist": "^3.0.1",
     "webpack": "^4.16.4",
     "webpack-command": "^0.4.1"
   },
