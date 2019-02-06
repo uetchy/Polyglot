@@ -37,7 +37,3 @@ console.log(`rewriting '${packagePath}'`)
 const package = require(packagePath)
 package.version = targetVersion
 fs.writeFileSync(packagePath, JSON.stringify(package, null, 2))
-
-// postprocess
-console.log(String(execSync('fixpack')))
-console.log(String(execSync('yarn')))
