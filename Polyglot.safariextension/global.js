@@ -1,4 +1,4 @@
-const { translate } = require('./api')
+import { translate } from './api'
 
 // Get settings
 const settingsKeys = [

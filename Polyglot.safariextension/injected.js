@@ -1,8 +1,8 @@
 import { getEventCode } from './keymap'
 
+const PANEL_ID = 'polyglot__panel'
 let settings = {}
 let isPanelOpen = false
-const PANEL_ID = 'polyglot__panel'
 
 // Only initialize in a top-level page
 if (window.top === window) {
@@ -37,8 +37,7 @@ function getPanel() {
 }
 
 function removePanel() {
-  const panel = getPanel()
-  panel.remove()
+  getPanel().remove()
   isPanelOpen = false
 }
 
