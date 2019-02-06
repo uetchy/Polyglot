@@ -1,7 +1,7 @@
 {
   "name": "polyglot",
   "description": "translate selected text into your native language",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "main": "Polyglot.safariextension/injected.js",
   "scripts": {
     "build": "webpack --mode production",
