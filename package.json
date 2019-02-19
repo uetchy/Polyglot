@@ -5,7 +5,8 @@
   "main": "Polyglot.safariextension/injected.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack -w --mode development"
+    "start": "webpack -w --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5"
@@ -19,5 +20,16 @@
     "webpack": "^4.16.4",
     "webpack-command": "^0.4.1"
   },
-  "private": true
+  "bugs": {
+    "url": "https://github.com/uetchy/Polyglot/issues"
+  },
+  "homepage": "https://github.com/uetchy/Polyglot",
+  "keywords": [
+    "Polyglot"
+  ],
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uetchy/Polyglot.git"
+  }
 }
