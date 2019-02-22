@@ -24,6 +24,18 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSExtension</key>
 	<dict>
+		<key>SFSafariContextMenu</key>
+		<dict>
+			<key>Command</key>
+			<string>tarnslateSelectedText</string>
+			<key>Text</key>
+			<string>Translate</string>
+		</dict>
+		<key>SFSafariStyleSheet</key>
+		<dict>
+			<key>Style Sheet</key>
+			<string>content.css</string>
+		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.Safari.extension</string>
 		<key>NSExtensionPrincipalClass</key>
@@ -32,7 +44,7 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>content.entry.js</string>
+				<string>content.bundle.js</string>
 			</dict>
 		</array>
 		<key>SFSafariExtensionBundleIdentifiersToUninstall</key>
@@ -44,7 +56,7 @@
 			<key>Action</key>
 			<string>Command</string>
 			<key>Identifier</key>
-			<string>Button</string>
+			<string>translateButton</string>
 			<key>Image</key>
 			<string>ToolbarItemIcon.pdf</string>
 			<key>Label</key>
@@ -57,7 +69,7 @@
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2018 Yasuaki Uechi. MIT license.</string>
+	<string>Copyright © 2019 Yasuaki Uechi. MIT license.</string>
 	<key>NSHumanReadableDescription</key>
 	<string>Translate selected text into your native language.</string>
 </dict>

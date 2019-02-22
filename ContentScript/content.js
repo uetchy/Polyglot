@@ -10,14 +10,15 @@ if (window.top === window) {
   window.addEventListener('keypress', handleKeypress, false)
   window.addEventListener('mouseup', handleMouseUp, false)
   window.addEventListener('click', handleClick, false)
-  
-  console.log("getting settings")
+
+  console.log('getting settings')
   safari.self.addEventListener('message', handleMessage, false)
   safari.extension.dispatchMessage('getSettings')
 }
 
 // Get selected text and return to global script
 function handleMessage(msg) {
+  console.log('got message:', msg)
   const name = msg.name
   if (name === 'settingsReceived') {
     settings = msg.message
@@ -39,20 +40,20 @@ function handleMouseUp(e) {
 }
 
 function handleKeypress(e) {
+  console.log('kp')
   // Check if shortcut key is properly configured
-  if (settings.keyValue !== '') {
-    const keyValue = settings.keyValue
-    const keyCode = getEventCode(keyValue.charAt(0))
+  const { keyCode } = settings
+  if (keyCode !== '') {
+    // const applyMeta = settings.useMetaKey ? e.metaKey : true
+    // const applyShift = settings.useShiftKey ? e.shiftKey : true
+    // const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true
+    // const applyAlt = settings.useAltKey ? e.altKey : true
+    // const applyKey = keyCode === e.code
+    const applyKey = keyCode === e.keyCode
+    console.log('kp:', keyCode, e.keyCode, applyKey, e.ctrlKey)
 
-    const applyMeta = settings.useMetaKey ? e.metaKey : true
-    const applyShift = settings.useShiftKey ? e.shiftKey : true
-    const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true
-    const applyAlt = settings.useAltKey ? e.altKey : true
-    const applyKey = keyCode
-      ? keyCode === e.code
-      : keyValue.charCodeAt(0) === e.keyCode
-
-    if (applyMeta && applyShift && applyCtrl && applyAlt && applyKey) {
+    if (e.ctrlKey && applyKey) {
+      console.log('go')
       e.preventDefault()
       getSelectedText()
     }
@@ -75,7 +76,9 @@ function handleClick(e) {
 function getSelectedText() {
   const selectedText = window.getSelection().toString()
   if (selectedText && selectedText !== '\n') {
-    safari.extension.dispatchMessage('finishedGetSelectedText', selectedText)
+    safari.extension.dispatchMessage('finishedGetSelectedText', {
+      selectedText,
+    })
   }
 }
 

@@ -17,10 +17,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     hotKey.register()
     recordView.didChange = { keyCombo in
       guard let keyCombo = keyCombo else { return } // Clear shortcut
-      print("keyCode: \(keyCombo.keyCode)")
+      guard let keyCode = UnicodeScalar(keyCombo.characters) else {return }
+      print("keyCode: \(keyCode.value)")
       print("modifiers: \(keyCombo.modifiers)")
-      let ud = UserDefaults.standard
-      ud.set(keyCombo.keyCode, forKey: "keyCode")
+      let settings = UserDefaults.init(suiteName: "group.io.uechi.Polyglot")!
+      settings.set(keyCode.value, forKey: "keyCode")
+      settings.synchronize()
     }
   }
 
