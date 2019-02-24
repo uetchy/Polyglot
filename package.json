@@ -4,7 +4,8 @@
   "version": "2.5.0",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack -w --mode development"
+    "start": "webpack -w --mode development",
+    "list-safari-plugins": "pluginkit -mAvvv -p com.apple.Safari.extension"
   },
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0"

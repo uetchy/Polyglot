@@ -42,7 +42,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   
   func getSettingsHandler(page: SFSafariPage) {
     NSLog("getSettingsHandler")
-    let ud = UserDefaults.init(suiteName: "group.io.uechi.Polyglot")!
+    guard let ud = UserDefaults.init(suiteName: "group.io.uechi.Polyglot") else { return }
     let keyCode = ud.integer(forKey: "keyCode")
     let settings = [
       "keyCode": keyCode
