@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -630,7 +630,7 @@
                             <menuItem title="Show Sidebar" keyEquivalent="s" id="kIP-vf-haE">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
-                                    <action selector="toggleSourceList:" target="-1" id="iwa-gc-5KM"/>
+                                    <action selector="toggleSidebar:" target="-1" id="iwa-gc-5KM"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
@@ -680,23 +680,21 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="90" y="80"/>
         </menu>
         <window title="Polyglot" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="460" height="232"/>
+            <rect key="contentRect" x="335" y="390" width="449" height="167"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-            <value key="minSize" type="size" width="460" height="360"/>
-            <value key="maxSize" type="size" width="460" height="360"/>
+            <value key="minSize" type="size" width="449" height="167"/>
+            <value key="maxSize" type="size" width="449" height="167"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="460" height="232"/>
+                <rect key="frame" x="0.0" y="0.0" width="449" height="167"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X35-Si-YUo" userLabel="Source Language">
-                        <rect key="frame" x="18" y="147" width="189" height="25"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="184" id="t2k-ti-gcg"/>
-                        </constraints>
+                        <rect key="frame" x="18" y="98" width="180" height="25"/>
                         <popUpButtonCell key="cell" type="push" title="Japanese" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="iUt-YV-KdS" id="PsF-b8-Mh5">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -709,7 +707,7 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-eW-Y47" userLabel="Target Language">
-                        <rect key="frame" x="254" y="147" width="189" height="25"/>
+                        <rect key="frame" x="252" y="98" width="180" height="25"/>
                         <popUpButtonCell key="cell" type="push" title="Japanese" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="SIa-W0-K5e" id="2fe-zg-WH7">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -722,10 +720,10 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="TCa-tD-35P" customClass="RecordView" customModule="KeyHolder">
-                        <rect key="frame" x="20" y="20" width="420" height="96"/>
+                        <rect key="frame" x="20" y="20" width="409" height="47"/>
                     </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gvG-Ap-Bul">
-                        <rect key="frame" x="18" y="179" width="110" height="17"/>
+                        <rect key="frame" x="18" y="130" width="110" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Source Language" id="a0b-WJ-A8b">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -733,15 +731,15 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nf1-Ei-Ofi">
-                        <rect key="frame" x="254" y="179" width="106" height="17"/>
+                        <rect key="frame" x="252" y="130" width="179" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Target Language" id="j3e-Ct-KN8">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Off-34-k11">
-                        <rect key="frame" x="219" y="155" width="23" height="17"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Off-34-k11">
+                        <rect key="frame" x="213" y="103" width="23" height="20"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="👉" id="wqd-tz-n4F">
                             <font key="font" size="13" name=".AppleColorEmojiUI"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -750,25 +748,28 @@
                     </textField>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="LFb-eW-Y47" firstAttribute="firstBaseline" secondItem="Off-34-k11" secondAttribute="firstBaseline" id="09Z-cb-jfU"/>
                     <constraint firstItem="LFb-eW-Y47" firstAttribute="top" secondItem="nf1-Ei-Ofi" secondAttribute="bottom" constant="8" symbolic="YES" id="2BM-M7-Ukl"/>
-                    <constraint firstItem="X35-Si-YUo" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="61" id="5cN-gK-MZw"/>
                     <constraint firstItem="X35-Si-YUo" firstAttribute="leading" secondItem="TCa-tD-35P" secondAttribute="leading" id="BOV-2c-Svz"/>
                     <constraint firstItem="TCa-tD-35P" firstAttribute="top" secondItem="LFb-eW-Y47" secondAttribute="bottom" constant="34" id="CBf-Qz-H8K"/>
-                    <constraint firstItem="X35-Si-YUo" firstAttribute="baseline" secondItem="LFb-eW-Y47" secondAttribute="baseline" id="DSK-c0-Ce6"/>
-                    <constraint firstItem="X35-Si-YUo" firstAttribute="leading" secondItem="gvG-Ap-Bul" secondAttribute="leading" id="GaC-cX-mPm"/>
-                    <constraint firstItem="LFb-eW-Y47" firstAttribute="leading" secondItem="nf1-Ei-Ofi" secondAttribute="leading" id="Hcf-ww-S5F"/>
-                    <constraint firstItem="X35-Si-YUo" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="MRh-bE-YaU"/>
-                    <constraint firstAttribute="trailing" secondItem="LFb-eW-Y47" secondAttribute="trailing" constant="20" symbolic="YES" id="NZZ-95-yio"/>
-                    <constraint firstItem="X35-Si-YUo" firstAttribute="baseline" secondItem="Off-34-k11" secondAttribute="firstBaseline" id="bMG-Ad-DVN"/>
-                    <constraint firstItem="X35-Si-YUo" firstAttribute="top" secondItem="gvG-Ap-Bul" secondAttribute="bottom" constant="8" symbolic="YES" id="cOL-Ni-lut"/>
-                    <constraint firstItem="LFb-eW-Y47" firstAttribute="trailing" secondItem="TCa-tD-35P" secondAttribute="trailing" id="iFH-J2-A6Q"/>
-                    <constraint firstAttribute="bottom" secondItem="TCa-tD-35P" secondAttribute="bottom" constant="20" symbolic="YES" id="m4y-0E-OGh"/>
-                    <constraint firstItem="LFb-eW-Y47" firstAttribute="leading" secondItem="Off-34-k11" secondAttribute="trailing" constant="16" id="mhE-Ri-Ufz"/>
-                    <constraint firstItem="TCa-tD-35P" firstAttribute="top" secondItem="X35-Si-YUo" secondAttribute="bottom" constant="34" id="mvc-xx-uYt"/>
-                    <constraint firstItem="Off-34-k11" firstAttribute="leading" secondItem="X35-Si-YUo" secondAttribute="trailing" constant="17" id="yW9-95-N5v"/>
+                    <constraint firstItem="LFb-eW-Y47" firstAttribute="firstBaseline" secondItem="X35-Si-YUo" secondAttribute="firstBaseline" id="E3e-dY-zgn"/>
+                    <constraint firstItem="nf1-Ei-Ofi" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Off-34-k11" secondAttribute="trailing" constant="20" id="FNn-n4-9lb"/>
+                    <constraint firstItem="LFb-eW-Y47" firstAttribute="trailing" secondItem="TCa-tD-35P" secondAttribute="trailing" id="Hcf-ww-S5F"/>
+                    <constraint firstItem="LFb-eW-Y47" firstAttribute="leading" secondItem="nf1-Ei-Ofi" secondAttribute="leading" id="MOk-W9-EP0"/>
+                    <constraint firstItem="X35-Si-YUo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gvG-Ap-Bul" secondAttribute="trailing" id="Ns0-gV-qyo"/>
+                    <constraint firstItem="gvG-Ap-Bul" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="SaS-pK-8wy"/>
+                    <constraint firstItem="nf1-Ei-Ofi" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="Sb0-qt-s06"/>
+                    <constraint firstItem="X35-Si-YUo" firstAttribute="leading" secondItem="gvG-Ap-Bul" secondAttribute="leading" id="gfa-9K-ku8"/>
+                    <constraint firstItem="X35-Si-YUo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Off-34-k11" secondAttribute="leading" constant="-20" id="hge-2O-QXj"/>
+                    <constraint firstItem="nf1-Ei-Ofi" firstAttribute="trailing" secondItem="TCa-tD-35P" secondAttribute="trailing" id="ioW-n6-3cY"/>
+                    <constraint firstItem="TCa-tD-35P" firstAttribute="trailing" secondItem="EiT-Mj-1SZ" secondAttribute="trailing" constant="-20" id="oAa-VZ-6wZ"/>
+                    <constraint firstAttribute="bottom" secondItem="TCa-tD-35P" secondAttribute="bottom" constant="20" symbolic="YES" id="pu7-tO-1fz"/>
+                    <constraint firstItem="TCa-tD-35P" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="qUj-1N-Plv"/>
+                    <constraint firstItem="Off-34-k11" firstAttribute="centerX" secondItem="TCa-tD-35P" secondAttribute="centerX" id="wYN-MU-Ekc"/>
+                    <constraint firstItem="LFb-eW-Y47" firstAttribute="bottom" secondItem="nf1-Ei-Ofi" secondAttribute="bottom" constant="29" id="yDe-Bb-fdH"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="129" y="83"/>
+            <point key="canvasLocation" x="105.5" y="261.5"/>
         </window>
     </objects>
 </document>
