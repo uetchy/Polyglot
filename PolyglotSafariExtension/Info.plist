@@ -44,7 +44,7 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>content.bundle.js</string>
+				<string>dist/content.js</string>
 			</dict>
 		</array>
 		<key>SFSafariExtensionBundleIdentifiersToUninstall</key>
@@ -58,7 +58,7 @@
 			<key>Identifier</key>
 			<string>translateButton</string>
 			<key>Image</key>
-			<string>ToolbarItemIcon.pdf</string>
+			<string>Assets/ToolbarItemIcon.pdf</string>
 			<key>Label</key>
 			<string>Translate</string>
 		</dict>

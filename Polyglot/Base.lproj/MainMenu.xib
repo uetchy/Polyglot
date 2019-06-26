@@ -16,6 +16,8 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Polyglot" customModuleProvider="target">
             <connections>
                 <outlet property="recordView" destination="TCa-tD-35P" id="hZA-Vt-lms"/>
+                <outlet property="sourceLanguagePopup" destination="X35-Si-YUo" id="6GP-h5-LPd"/>
+                <outlet property="targetLanguagePopup" destination="LFb-eW-Y47" id="CDU-dW-3Sf"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
