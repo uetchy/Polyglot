@@ -1,22 +1,17 @@
 {
   "name": "polyglot",
-  "description": "Polyglot extension",
+  "description": "Polyglot content script",
   "version": "2.5.0",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack -w --mode development",
-    "list-safari-plugins": "pluginkit -mAvvv -p com.apple.Safari.extension"
+    "build": "tsc",
+    "list": "pluginkit -mAvvv -p com.apple.Safari.extension",
+    "start": "tsc -w"
   },
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
-    "babel-loader": "^8.0.4",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "webpack": "^4.29.5",
-    "webpack-command": "^0.4.1"
+    "typescript": "^3.5.2"
   },
   "private": true
 }

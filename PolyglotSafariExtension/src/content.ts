@@ -1,23 +1,30 @@
-import { getEventCode } from './keymap'
+interface Settings {
+  keyCode?: number
+  instantTranslation?: boolean
+}
 
-let settings = {}
+let settings: Settings = {}
 let isPanelOpen = false
 const PANEL_ID = 'polyglot__panel'
 
-// Only initialize in a top-level page
+// Only active in a top-level page
 if (window.top === window) {
   console.log('Polyglot loaded')
-  window.addEventListener('keypress', handleKeypress, false)
+
+  // handle messages from App Extension
+  safari.self.addEventListener('message', handleMessage, false)
+
+  // handle js events in active page
   window.addEventListener('mouseup', handleMouseUp, false)
+  window.addEventListener('keypress', handleKeypress, false)
   window.addEventListener('click', handleClick, false)
 
-  console.log('getting settings')
-  safari.self.addEventListener('message', handleMessage, false)
+  // fetch global settings from App Extension
   safari.extension.dispatchMessage('getSettings')
 }
 
 // Get selected text and return to global script
-function handleMessage(msg) {
+function handleMessage(msg: SafariExtensionMessageEvent) {
   console.log('got message:', msg)
   const name = msg.name
   if (name === 'settingsReceived') {
@@ -31,37 +38,41 @@ function handleMessage(msg) {
   }
 }
 
-function handleMouseUp(e) {
+function handleMouseUp(e: MouseEvent) {
   const panel = document.getElementById(PANEL_ID)
 
-  if (isPanelOpen && !isDescendant(panel, e.target)) {
+  if (panel && isPanelOpen && !isDescendant(panel, <HTMLElement>e.target)) {
     removePanel()
   }
 }
 
-function handleKeypress(e) {
+function handleKeypress(e: KeyboardEvent) {
   console.log('kp')
+
   // Check if shortcut key is properly configured
   const { keyCode } = settings
-  if (keyCode !== '') {
-    // const applyMeta = settings.useMetaKey ? e.metaKey : true
-    // const applyShift = settings.useShiftKey ? e.shiftKey : true
-    // const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true
-    // const applyAlt = settings.useAltKey ? e.altKey : true
-    // const applyKey = keyCode === e.code
-    const applyKey = keyCode === e.keyCode
-    console.log('kp:', keyCode, e.keyCode, applyKey, e.ctrlKey)
+  if (keyCode === undefined) return
 
-    if (e.ctrlKey && applyKey) {
-      console.log('go')
-      e.preventDefault()
-      getSelectedText()
-    }
+  // const applyMeta = settings.useMetaKey ? e.metaKey : true
+  // const applyShift = settings.useShiftKey ? e.shiftKey : true
+  // const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true
+  // const applyAlt = settings.useAltKey ? e.altKey : true
+  // const applyKey = keyCode === e.code
+  const applyKey = keyCode === e.keyCode
+  console.log('kp:', keyCode, e.keyCode, applyKey, e.ctrlKey)
+
+  if (e.ctrlKey && applyKey) {
+    console.log('go')
+    e.preventDefault()
+    getSelectedText()
   }
 }
 
-function handleClick(e) {
-  if (!settings.instantTranslation || e.target.id === PANEL_ID) {
+function handleClick(e: MouseEvent) {
+  if (
+    !settings.instantTranslation ||
+    (<HTMLDivElement>e.target).id === PANEL_ID
+  ) {
     return
   }
   if (document.activeElement) {
@@ -74,7 +85,10 @@ function handleClick(e) {
 }
 
 function getSelectedText() {
-  const selectedText = window.getSelection().toString()
+  const selection = window.getSelection()
+  if (!selection) return undefined
+
+  const selectedText = selection.toString()
   if (selectedText && selectedText !== '\n') {
     safari.extension.dispatchMessage('finishedGetSelectedText', {
       selectedText,
@@ -84,19 +98,21 @@ function getSelectedText() {
 
 function removePanel() {
   const panel = document.getElementById(PANEL_ID)
-  panel.remove()
-  isPanelOpen = false
+  if (panel) {
+    panel.remove()
+    isPanelOpen = false
+  }
 }
 
 // Show panel with given text
-function showPanel(content) {
+function showPanel(content: string): void {
   if (isPanelOpen) {
     removePanel()
   }
+
   const bounds = getSelectionBoundingRect()
-  if (bounds === null) {
-    return false
-  }
+  if (bounds === undefined) return
+
   const el = document.createElement('div')
   el.innerHTML = content
   el.id = PANEL_ID
@@ -106,7 +122,7 @@ function showPanel(content) {
   isPanelOpen = true
 }
 
-function updatePanel(content) {
+function updatePanel(content: string) {
   const el = document.getElementById(PANEL_ID)
   if (el) {
     el.innerHTML = content
@@ -120,9 +136,13 @@ function getSelectionBoundingRect() {
     top: 0,
     right: 0,
     bottom: 0,
+    width: 0,
+    height: 0,
   }
 
   const sel = document.getSelection()
+  if (!sel || sel.rangeCount === 0) return undefined
+
   for (let i = 0; i < sel.rangeCount; ++i) {
     const _rect = sel.getRangeAt(i).getBoundingClientRect()
     if (rect.left < _rect.left) {
@@ -145,10 +165,10 @@ function getSelectionBoundingRect() {
   rect.right += window.pageXOffset
   rect.bottom += window.pageYOffset
 
-  return sel.rangeCount ? rect : null
+  return rect
 }
 
-function isDescendant(parent, child) {
+function isDescendant(parent: HTMLElement, child: HTMLElement) {
   if (parent === child) {
     return true
   }

@@ -10,7 +10,9 @@
 		991C479E2182CA0C0075EFE5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; };
 		991C479F2182CA0C0075EFE5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		991C47A12182CA9D0075EFE5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; };
-		99CA5279221FDB2800A45F6B /* content.bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 99CA5278221FDB2800A45F6B /* content.bundle.js */; };
+		994C4A4022C3205F00BACF66 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C4A3E22C3205F00BACF66 /* Icon.png */; };
+		994C4A4122C3205F00BACF66 /* toolbar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C4A3F22C3205F00BACF66 /* toolbar-icon.png */; };
+		994C4A4322C3212600BACF66 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994C4A4222C3212600BACF66 /* Translator.swift */; };
 		99ED036C2182D21C0040BD34 /* KeyHolder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03692182D2130040BD34 /* KeyHolder.framework */; };
 		99ED036D2182D21C0040BD34 /* KeyHolder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03692182D2130040BD34 /* KeyHolder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		99ED036E2182D21C0040BD34 /* Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03682182D2130040BD34 /* Magnet.framework */; };
@@ -65,7 +67,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		99CA5278221FDB2800A45F6B /* content.bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.bundle.js; sourceTree = "<group>"; };
+		994C4A3E22C3205F00BACF66 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		994C4A3F22C3205F00BACF66 /* toolbar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-icon.png"; sourceTree = "<group>"; };
+		994C4A4222C3212600BACF66 /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
 		99CE36602169BAF800DBB2F7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
 		99ED03682182D2130040BD34 /* Magnet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Magnet.framework; path = Carthage/Build/Mac/Magnet.framework; sourceTree = "<group>"; };
 		99ED03692182D2130040BD34 /* KeyHolder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeyHolder.framework; path = Carthage/Build/Mac/KeyHolder.framework; sourceTree = "<group>"; };
@@ -109,6 +113,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		994C4A3D22C3203400BACF66 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				99ED829E211812AB00505D83 /* ToolbarItemIcon.pdf */,
+				994C4A3E22C3205F00BACF66 /* Icon.png */,
+				994C4A3F22C3205F00BACF66 /* toolbar-icon.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		99ED82712118127C00505D83 = {
 			isa = PBXGroup;
 			children = (
@@ -154,14 +168,14 @@
 		99ED8293211812AB00505D83 /* PolyglotSafariExtension */ = {
 			isa = PBXGroup;
 			children = (
-				99CA5278221FDB2800A45F6B /* content.bundle.js */,
+				994C4A3D22C3203400BACF66 /* Assets */,
 				99ED8294211812AB00505D83 /* SafariExtensionHandler.swift */,
 				99ED8296211812AB00505D83 /* SafariExtensionViewController.swift */,
 				99ED8298211812AB00505D83 /* SafariExtensionViewController.xib */,
 				99ED829B211812AB00505D83 /* Info.plist */,
 				99ED82AA211816D400505D83 /* content.css */,
-				99ED829E211812AB00505D83 /* ToolbarItemIcon.pdf */,
 				99ED82A0211812AB00505D83 /* PolyglotSafariExtension.entitlements */,
+				994C4A4222C3212600BACF66 /* Translator.swift */,
 			);
 			path = PolyglotSafariExtension;
 			sourceTree = "<group>";
@@ -275,10 +289,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				994C4A4122C3205F00BACF66 /* toolbar-icon.png in Resources */,
 				99ED82B2211816D500505D83 /* content.css in Resources */,
 				99ED829F211812AB00505D83 /* ToolbarItemIcon.pdf in Resources */,
+				994C4A4022C3205F00BACF66 /* Icon.png in Resources */,
 				99ED829A211812AB00505D83 /* SafariExtensionViewController.xib in Resources */,
-				99CA5279221FDB2800A45F6B /* content.bundle.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99ED8297211812AB00505D83 /* SafariExtensionViewController.swift in Sources */,
+				994C4A4322C3212600BACF66 /* Translator.swift in Sources */,
 				99ED8295211812AB00505D83 /* SafariExtensionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
