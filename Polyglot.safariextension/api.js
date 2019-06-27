@@ -15,19 +15,21 @@ export async function translate(text, targetLanguage) {
   })
   const endpoint = `http://translate.googleapis.com/translate_a/single${query}`
 
-  try {
-    const response = await fetch(endpoint)
-    if (response.status === 503) {
-      throw new Error(REQUEST_LIMIT_EXCEEDED)
-    }
+  const response = await fetch(endpoint)
 
-    const body = await response.text()
-    const data = JSON.parse(
-      body.replace(/,,/g, ',null,').replace(/,,/g, ',null,')
-    )
-    const translatedText = data[0].map(sentence => sentence[0]).join('<br/>')
-    return translatedText
-  } catch (err) {
-    throw new Error(err)
+  if (response.status === 503) {
+    throw new Error(REQUEST_LIMIT_EXCEEDED)
   }
+
+  const body = await response.text()
+
+  if (body.includes('86640')) {
+    throw new Error(REQUEST_LIMIT_EXCEEDED)
+  }
+
+  const data = JSON.parse(
+    body.replace(/,,/g, ',null,').replace(/,,/g, ',null,')
+  )
+  const translatedText = data[0].map(sentence => sentence[0]).join('<br/>')
+  return translatedText
 }

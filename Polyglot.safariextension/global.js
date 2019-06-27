@@ -71,7 +71,7 @@ async function handleFinishedGetSelectedText(msg) {
     const translatedText = await translate(message, targetLanguage)
     target.page.dispatchMessage('updatePanel', translatedText)
   } catch (err) {
-    target.page.dispatchMessage('updatePanel', err)
+    target.page.dispatchMessage('updatePanel', err.message)
   }
 }
 
