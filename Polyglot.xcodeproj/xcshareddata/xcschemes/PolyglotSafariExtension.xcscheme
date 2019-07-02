@@ -43,13 +43,23 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "99CC9B0E22CB3115002650EF"
+               BuildableName = "PolyglotTests.xctest"
+               BlueprintName = "PolyglotTests"
+               ReferencedContainer = "container:Polyglot.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "99ED828E211812AB00505D83"
-            BuildableName = "PolyglotSafariExtension.appex"
-            BlueprintName = "PolyglotSafariExtension"
+            BlueprintIdentifier = "99ED82792118127C00505D83"
+            BuildableName = "Polyglot.app"
+            BlueprintName = "Polyglot"
             ReferencedContainer = "container:Polyglot.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

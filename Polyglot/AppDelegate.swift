@@ -114,8 +114,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     hotKey.register()
 
     recordView.didChange = keyCombDidChange
-
-    sourceLanguagePopup.didChangeValue = popupSelected
   }
 
   func keyCombDidChange(keyCombo: KeyCombo?) {

@@ -1,0 +1,5 @@
+language: swift
+xcode_project: Polyglot.xcodeproj
+xcode_scheme: PolyglotTests
+xcode_destination: platform=macOS
+install: carthage update --platform macos

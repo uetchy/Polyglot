@@ -13,6 +13,7 @@
 		994C4A4022C3205F00BACF66 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C4A3E22C3205F00BACF66 /* Icon.png */; };
 		994C4A4122C3205F00BACF66 /* toolbar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C4A3F22C3205F00BACF66 /* toolbar-icon.png */; };
 		994C4A4322C3212600BACF66 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994C4A4222C3212600BACF66 /* Translator.swift */; };
+		99CC9B1222CB3115002650EF /* PolyglotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CC9B1122CB3115002650EF /* PolyglotTests.swift */; };
 		99ED036C2182D21C0040BD34 /* KeyHolder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03692182D2130040BD34 /* KeyHolder.framework */; };
 		99ED036D2182D21C0040BD34 /* KeyHolder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03692182D2130040BD34 /* KeyHolder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		99ED036E2182D21C0040BD34 /* Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03682182D2130040BD34 /* Magnet.framework */; };
@@ -30,6 +31,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		99CC9B1422CB3115002650EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 99ED82722118127C00505D83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 99ED82792118127C00505D83;
+			remoteInfo = Polyglot;
+		};
 		99ED82A1211812AB00505D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 99ED82722118127C00505D83 /* Project object */;
@@ -70,6 +78,9 @@
 		994C4A3E22C3205F00BACF66 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		994C4A3F22C3205F00BACF66 /* toolbar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-icon.png"; sourceTree = "<group>"; };
 		994C4A4222C3212600BACF66 /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
+		99CC9B0F22CB3115002650EF /* PolyglotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolyglotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		99CC9B1122CB3115002650EF /* PolyglotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotTests.swift; sourceTree = "<group>"; };
+		99CC9B1322CB3115002650EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99CE36602169BAF800DBB2F7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
 		99ED03682182D2130040BD34 /* Magnet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Magnet.framework; path = Carthage/Build/Mac/Magnet.framework; sourceTree = "<group>"; };
 		99ED03692182D2130040BD34 /* KeyHolder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeyHolder.framework; path = Carthage/Build/Mac/KeyHolder.framework; sourceTree = "<group>"; };
@@ -91,6 +102,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		99CC9B0C22CB3115002650EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99ED82772118127C00505D83 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -123,11 +141,21 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		99CC9B1022CB3115002650EF /* PolyglotTests */ = {
+			isa = PBXGroup;
+			children = (
+				99CC9B1122CB3115002650EF /* PolyglotTests.swift */,
+				99CC9B1322CB3115002650EF /* Info.plist */,
+			);
+			path = PolyglotTests;
+			sourceTree = "<group>";
+		};
 		99ED82712118127C00505D83 = {
 			isa = PBXGroup;
 			children = (
 				99ED827C2118127C00505D83 /* Polyglot */,
 				99ED8293211812AB00505D83 /* PolyglotSafariExtension */,
+				99CC9B1022CB3115002650EF /* PolyglotTests */,
 				99ED8290211812AB00505D83 /* Frameworks */,
 				99ED827B2118127C00505D83 /* Products */,
 			);
@@ -138,6 +166,7 @@
 			children = (
 				99ED827A2118127C00505D83 /* Polyglot.app */,
 				99ED828F211812AB00505D83 /* PolyglotSafariExtension.appex */,
+				99CC9B0F22CB3115002650EF /* PolyglotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,6 +212,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		99CC9B0E22CB3115002650EF /* PolyglotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99CC9B1822CB3115002650EF /* Build configuration list for PBXNativeTarget "PolyglotTests" */;
+			buildPhases = (
+				99CC9B0B22CB3115002650EF /* Sources */,
+				99CC9B0C22CB3115002650EF /* Frameworks */,
+				99CC9B0D22CB3115002650EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				99CC9B1522CB3115002650EF /* PBXTargetDependency */,
+			);
+			name = PolyglotTests;
+			productName = PolyglotTests;
+			productReference = 99CC9B0F22CB3115002650EF /* PolyglotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		99ED82792118127C00505D83 /* Polyglot */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99ED82882118127D00505D83 /* Build configuration list for PBXNativeTarget "Polyglot" */;
@@ -226,10 +273,14 @@
 		99ED82722118127C00505D83 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Yasuaki Uechi";
 				TargetAttributes = {
+					99CC9B0E22CB3115002650EF = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 99ED82792118127C00505D83;
+					};
 					99ED82792118127C00505D83 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1020;
@@ -271,11 +322,19 @@
 			targets = (
 				99ED82792118127C00505D83 /* Polyglot */,
 				99ED828E211812AB00505D83 /* PolyglotSafariExtension */,
+				99CC9B0E22CB3115002650EF /* PolyglotTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		99CC9B0D22CB3115002650EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99ED82782118127C00505D83 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,6 +359,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		99CC9B0B22CB3115002650EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99CC9B1222CB3115002650EF /* PolyglotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99ED82762118127C00505D83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,6 +388,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		99CC9B1522CB3115002650EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 99ED82792118127C00505D83 /* Polyglot */;
+			targetProxy = 99CC9B1422CB3115002650EF /* PBXContainerItemProxy */;
+		};
 		99ED82A2211812AB00505D83 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 99ED828E211812AB00505D83 /* PolyglotSafariExtension */;
@@ -348,6 +420,51 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		99CC9B1622CB3115002650EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 287J96B97G;
+				INFOPLIST_FILE = PolyglotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.uechi.PolyglotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Polyglot.app/Contents/MacOS/Polyglot";
+			};
+			name = Debug;
+		};
+		99CC9B1722CB3115002650EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 287J96B97G;
+				INFOPLIST_FILE = PolyglotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.uechi.PolyglotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Polyglot.app/Contents/MacOS/Polyglot";
+			};
+			name = Release;
+		};
 		99ED82862118127D00505D83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -558,6 +675,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		99CC9B1822CB3115002650EF /* Build configuration list for PBXNativeTarget "PolyglotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99CC9B1622CB3115002650EF /* Debug */,
+				99CC9B1722CB3115002650EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		99ED82752118127C00505D83 /* Build configuration list for PBXProject "Polyglot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
