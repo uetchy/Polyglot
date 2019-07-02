@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode10.2.1
+osx_image: xcode10.2
 xcode_project: Polyglot.xcodeproj
 xcode_scheme: PolyglotTests
 xcode_destination: platform=macOS
