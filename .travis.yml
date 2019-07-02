@@ -1,6 +1,6 @@
 language: swift
 osx_image: xcode10.2
 xcode_project: Polyglot.xcodeproj
-xcode_scheme: PolyglotTests
+xcode_scheme: Polyglot
 xcode_destination: platform=macOS
 install: carthage update --platform macos
