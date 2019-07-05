@@ -5,7 +5,8 @@ xcode_scheme: Polyglot
 xcode_destination: platform=macOS
 install:
   - carthage update --platform macos
+script:
+  - set -o pipefail && xcodebuild -project Polyglot.xcodeproj -scheme Polyglot -destination platform=macOS build test | xcpretty CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 env:
   - CODE_SIGN_IDENTITY=""
   - CODE_SIGNING_REQUIRED=NO
-  - ONLY_ACTIVE_ARCH=NO
