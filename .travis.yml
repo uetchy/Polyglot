@@ -3,4 +3,9 @@ osx_image: xcode10.2
 xcode_project: Polyglot.xcodeproj
 xcode_scheme: Polyglot
 xcode_destination: platform=macOS
-install: carthage update --platform macos
+install:
+  - carthage update --platform macos
+env:
+  - CODE_SIGN_IDENTITY=""
+  - CODE_SIGNING_REQUIRED=NO
+  - ONLY_ACTIVE_ARCH=NO
