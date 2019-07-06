@@ -2,6 +2,14 @@ import Cocoa
 import KeyHolder
 import Magnet
 
+struct SettingsKey {
+  static let KeyCode = "keyCode"
+  static let KeyCodeUnicode = "keyCodeUnicode"
+  static let Modifiers = "modifiers"
+  static let SourceLanguage = "sourceLanguage"
+  static let TargetLanguage = "targetLanguage"
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var window: NSWindow!
@@ -13,13 +21,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   lazy var settings = getSettingsInstance()
     
   func applicationDidFinishLaunching(_: Notification) {
-    // Insert code here to initialize your application
-    setupPopupViews()
-    setupRecordView()
+    setupPopupButtons()
+    setupKeyComboView()
     setupInstantCheckbox()
   }
 
-  func setupPopupViews() {
+  func setupPopupButtons() {
     let languages = Constants.getLanguages().map { $0.value }
     sourceLanguagePopup.addItem(withTitle: "Automatic")
     sourceLanguagePopup.addItems(withTitles: languages)
@@ -30,45 +37,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     targetLanguagePopup.action = #selector(popupSelected(item:))
 
     // Restore settings
-    let sourceLanguage = settings.string(forKey: "sourceLanguage") ?? "auto"
-    let targetLanguage = settings.string(forKey: "targetLanguage") ?? "en"
+    let settings = getSettingsInstance()
+    let sourceLanguage = settings.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
+    let targetLanguage = settings.string(forKey: SettingsKey.TargetLanguage) ?? "en"
     sourceLanguagePopup.setTitle(sourceLanguage == "auto" ? "Automatic" : Constants.LANGUAGES[sourceLanguage]!)
     targetLanguagePopup.setTitle(Constants.LANGUAGES[targetLanguage]!)
   }
 
-  func setupRecordView() {
+  func setupKeyComboView() {
     recordView.tintColor = NSColor(red: 0.164, green: 0.517, blue: 0.823, alpha: 1)
-    let keyCombo = KeyCombo(doubledCocoaModifiers: .command)
-
-    recordView.keyCombo = keyCombo
-    let hotKey = HotKey(identifier: "PolyglotHotkey", keyCombo: keyCombo!, target: self, action: #selector(AppDelegate.hotkeyCalled))
-    hotKey.register()
-
     recordView.didChange = keyCombDidChange
+
+    // Restore settings
+    let settings = getSettingsInstance()
+    let keyCode = settings.integer(forKey: SettingsKey.KeyCode)
+    let modifiers = settings.integer(forKey: SettingsKey.Modifiers)
+    print(keyCode)
+    let keyCombo = KeyCombo(keyCode: keyCode, carbonModifiers: modifiers)
+    recordView.keyCombo = keyCombo
   }
 
-    func setupInstantCheckbox() {
-      // Restore settings
-      let isChecked: NSControl.StateValue = settings.bool(forKey: "instantTranslation") ? .on : .off
-      self.instantTranslation.state = isChecked
-      self.instantTranslation.action = #selector(instantCheckboxChanged)
-    }
+  func setupInstantCheckbox() {
+    // Restore settings
+    let isChecked: NSControl.StateValue = settings.bool(forKey: "instantTranslation") ? .on : .off
+    self.instantTranslation.state = isChecked
+    self.instantTranslation.action = #selector(instantCheckboxChanged)
+  }
 
+  // NOTE: cmd = 256, shift = 512, alt = 2048, ctrl = 4096
   func keyCombDidChange(keyCombo: KeyCombo?) {
-    // NOTE:
-    // cmd   = 256
-    // shift = 512
-    // alt   = 2048
-    // ctrl  = 4096
-    // cmd+shift = 768
-    guard let keyCombo = keyCombo else { return } // Clear shortcut
+    guard let keyCombo = keyCombo else { return }
     guard let keyCode = UnicodeScalar(keyCombo.characters) else { return }
     print("keyCode: \(keyCode.value)")
     print("modifiers: \(keyCombo.modifiers)")
 
     // save keycombo
-    settings.set(keyCode.value, forKey: "keyCode")
-    settings.set(keyCombo.modifiers, forKey: "modifiers")
+    settings.set(keyCode.value, forKey: SettingsKey.KeyCodeUnicode)
+    settings.set(keyCombo.keyCode, forKey: SettingsKey.KeyCode)
+    settings.set(keyCombo.modifiers, forKey: SettingsKey.Modifiers)
     settings.synchronize()
   }
 
@@ -88,8 +94,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let targetLanguage = Constants.getLanguages()[targetIndex].key
 
     // save language option
-    settings.set(sourceLanguage, forKey: "sourceLanguage")
-    settings.set(targetLanguage, forKey: "targetLanguage")
+    settings.set(sourceLanguage, forKey: SettingsKey.SourceLanguage)
+    settings.set(targetLanguage, forKey: SettingsKey.TargetLanguage)
     settings.synchronize()
   }
 
@@ -98,11 +104,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func applicationWillTerminate(_: Notification) {
-    // Insert code here to tear down your application
     HotKeyCenter.shared.unregisterAll()
-  }
-
-  @objc func hotkeyCalled() {
-    print("HotKey called!!!!")
   }
 }

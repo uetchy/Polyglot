@@ -1,9 +1,3 @@
-interface ReceivedSettings {
-  keyCode?: number
-  modifiers?: number
-  instantTranslation?: boolean
-}
-
 interface Settings {
   keyCode: number
   modifiers: Modifiers
@@ -26,24 +20,31 @@ interface BoundingRect {
   height: number
 }
 
-const PANEL_ID = 'polyglot__panel'
+interface ReceivedSettings {
+  keyCode: number
+  modifiers: number
+  instantTranslation: boolean
+}
+
+interface ReceivedTranslation {
+  text: string
+}
 
 enum RequestMessageType {
-  REQUEST_SETTINGS = 'getSettings',
-  TRANSLATE = 'translate',
+  RequestSettings = 'getSettings',
+  Translate = 'translate',
 }
 
 enum ResponseMessageType {
-  SETTINGS_RECEIVED = 'settingsReceived',
-  TRANSLATION_RECEIVED = 'translated',
+  SettingsReceived = 'settingsReceived',
+  TranslationReceived = 'translated',
+  PerformTranslation = 'performTranslation',
 }
 
+const PANEL_ID = 'polyglot__panel'
+
 let isPanelOpen = false
-let settings: Settings = {
-  keyCode: 0,
-  modifiers: { ctrl: false, alt: false, shift: false, cmd: false },
-  instantTranslation: false,
-}
+let settings: Settings
 
 function setup(): void {
   console.debug('Polyglot: loaded')
@@ -57,37 +58,37 @@ function setup(): void {
   window.addEventListener('click', handleClick, false)
 
   // fetch global settings from App Extension
-  safari.extension.dispatchMessage(RequestMessageType.REQUEST_SETTINGS)
+  safari.extension.dispatchMessage(RequestMessageType.RequestSettings)
 }
 
 // Get selected text and return to global script
 function handleMessage(msg: SafariExtensionMessageEvent): void {
   switch (msg.name) {
-    case ResponseMessageType.SETTINGS_RECEIVED:
+    case ResponseMessageType.SettingsReceived:
       settingsHandler(msg.message)
       break
-    case ResponseMessageType.TRANSLATION_RECEIVED:
+    case ResponseMessageType.TranslationReceived:
       translationHandler(msg.message)
+      break
+    case ResponseMessageType.PerformTranslation:
+      performTranslation()
       break
     default:
   }
 }
 
-interface ReceivedTranslation {
-  text: string
-}
-
 function settingsHandler(received: ReceivedSettings): void {
   settings = {
-    keyCode: received.keyCode!,
-    modifiers: divideModifiers(received.modifiers!),
-    instantTranslation: received.instantTranslation!,
+    keyCode: received.keyCode || 0,
+    modifiers: received.modifiers
+      ? divideModifiers(received.modifiers)
+      : { ctrl: false, alt: false, shift: false, cmd: false },
+    instantTranslation: received.instantTranslation || false,
   }
   console.debug(settings)
 }
 
 function translationHandler(message: ReceivedTranslation): void {
-  console.log(message.text)
   showPanel(message.text)
 }
 
@@ -109,15 +110,8 @@ function handleKeypress(keyboardEvent: KeyboardEvent): void {
   const isValidKeyCode = keyCode === keyboardEvent.keyCode
 
   if (isValidModifiers && isValidKeyCode) {
-    console.debug('go')
     keyboardEvent.preventDefault()
-    const selectedText = getSelectedText()
-    console.debug(selectedText)
-    if (selectedText) {
-      safari.extension.dispatchMessage(RequestMessageType.TRANSLATE, {
-        text: selectedText,
-      })
-    }
+    performTranslation()
   }
 }
 
@@ -136,7 +130,17 @@ function handleClick(e: MouseEvent): void {
       return
     }
   }
-  getSelectedText()
+
+  performTranslation()
+}
+
+function performTranslation() {
+  const selectedText = getSelectedText()
+  if (selectedText) {
+    safari.extension.dispatchMessage(RequestMessageType.Translate, {
+      text: selectedText,
+    })
+  }
 }
 
 function divideModifiers(modifiers: number): Modifiers {
