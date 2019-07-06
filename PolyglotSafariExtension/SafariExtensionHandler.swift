@@ -24,8 +24,10 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     guard let ud = UserDefaults(suiteName: "group.io.uechi.Polyglot") else { return }
 
     let keyCode = ud.integer(forKey: "keyCode")
+    let modifiers = ud.integer(forKey: "modifiers")
     let settings = [
       "keyCode": keyCode,
+      "modifiers": modifiers,
     ]
 
     page.dispatchMessageToScript(withName: "settingsReceived", userInfo: settings)
