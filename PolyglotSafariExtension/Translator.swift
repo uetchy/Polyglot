@@ -1,11 +1,3 @@
-//
-//  Translator.swift
-//  PolyglotSafariExtension
-//
-//  Created by Yasuaki Uechi on 2019/06/26.
-//  Copyright © 2019 Yasuaki Uechi. All rights reserved.
-//
-
 import Alamofire
 import Foundation
 

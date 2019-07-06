@@ -31,11 +31,6 @@
 			<key>Text</key>
 			<string>Translate</string>
 		</dict>
-		<key>SFSafariStyleSheet</key>
-		<dict>
-			<key>Style Sheet</key>
-			<string>content.css</string>
-		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.Safari.extension</string>
 		<key>NSExtensionPrincipalClass</key>
@@ -45,6 +40,13 @@
 			<dict>
 				<key>Script</key>
 				<string>content.js</string>
+			</dict>
+		</array>
+		<key>SFSafariStyleSheet</key>
+		<array>
+			<dict>
+				<key>Style Sheet</key>
+				<string>content.css</string>
 			</dict>
 		</array>
 		<key>SFSafariExtensionBundleIdentifiersToUninstall</key>

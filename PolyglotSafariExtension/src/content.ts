@@ -73,17 +73,22 @@ function handleMessage(msg: SafariExtensionMessageEvent): void {
   }
 }
 
-function settingsHandler(message: ReceivedSettings): void {
+interface ReceivedTranslation {
+  text: string
+}
+
+function settingsHandler(received: ReceivedSettings): void {
   settings = {
-    keyCode: message.keyCode!,
-    modifiers: divideModifiers(message.modifiers!),
-    instantTranslation: message.instantTranslation!,
+    keyCode: received.keyCode!,
+    modifiers: divideModifiers(received.modifiers!),
+    instantTranslation: received.instantTranslation!,
   }
   console.debug(settings)
 }
 
-function translationHandler(text: string): void {
-  showPanel(text)
+function translationHandler(message: ReceivedTranslation): void {
+  console.log(message.text)
+  showPanel(message.text)
 }
 
 function handleMouseUp(e: MouseEvent): void {
@@ -95,23 +100,22 @@ function handleMouseUp(e: MouseEvent): void {
   }
 }
 
-function handleKeypress(e: KeyboardEvent): void {
+function handleKeypress(keyboardEvent: KeyboardEvent): void {
   // Check if shortcut key is properly configured
   const { keyCode } = settings
   if (keyCode === undefined) return
 
-  const isValidModifiers = checkModifiers(settings.modifiers, e)
-  const isValidKeyCode = keyCode === e.keyCode
-  console.debug(isValidModifiers, isValidKeyCode)
+  const isValidModifiers = checkModifiers(settings.modifiers, keyboardEvent)
+  const isValidKeyCode = keyCode === keyboardEvent.keyCode
 
   if (isValidModifiers && isValidKeyCode) {
     console.debug('go')
-    e.preventDefault()
+    keyboardEvent.preventDefault()
     const selectedText = getSelectedText()
     console.debug(selectedText)
     if (selectedText) {
       safari.extension.dispatchMessage(RequestMessageType.TRANSLATE, {
-        selectedText,
+        text: selectedText,
       })
     }
   }
@@ -167,14 +171,14 @@ function divideModifiers(modifiers: number): Modifiers {
   return modifierMaps
 }
 
-function checkModifiers(mod: Modifiers, e: KeyboardEvent): boolean {
-  return mod.ctrl
+function checkModifiers(modifiers: Modifiers, e: KeyboardEvent): boolean {
+  return modifiers.ctrl
     ? e.ctrlKey
-    : true && mod.alt
+    : true && modifiers.alt
     ? e.altKey
-    : true && mod.shift
+    : true && modifiers.shift
     ? e.shiftKey
-    : true && mod.cmd
+    : true && modifiers.cmd
     ? e.metaKey
     : true
 }

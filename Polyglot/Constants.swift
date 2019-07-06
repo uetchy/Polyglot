@@ -1,11 +1,3 @@
-//
-//  Const.swift
-//  Polyglot
-//
-//  Created by Yasuaki Uechi on 2019/07/06.
-//  Copyright © 2019 Yasuaki Uechi. All rights reserved.
-//
-
 import Foundation
 
 class Constants {

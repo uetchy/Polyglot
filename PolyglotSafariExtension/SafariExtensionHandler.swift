@@ -1,6 +1,11 @@
 
 import SafariServices
 
+enum RequestType: String {
+  case SEND_SETTINGS = "settingsReceived"
+  case SEND_TRANSLATION = "translated"
+}
+
 class SafariExtensionHandler: SFSafariExtensionHandler {
   // This method will be called when a content script provided by your extension calls safari.extension.dispatchMessage("message").
   override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String: Any]?) {
@@ -11,7 +16,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         self.getSettingsHandler(page: page)
       case "translate":
         NSLog("messageReceived:translate")
-        self.translateHandler(userInfo?["text"] as? String ?? "", targetLanguage: "ja")
+        self.translateHandler(page: page, text: userInfo?["text"] as? String ?? "", targetLanguage: "ja")
       default:
         NSLog("messageReceived:(\(messageName)) from a script injected into (\(String(describing: properties?.url))) with userInfo (\(userInfo ?? [:]))")
       }
@@ -25,24 +30,20 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
     let keyCode = ud.integer(forKey: "keyCode")
     let modifiers = ud.integer(forKey: "modifiers")
-    let sourceLanguage = ud.string(forKey: "sourceLanguage")
-    let targetLanguage = ud.string(forKey: "targetLanguage")
     let settings = [
       "keyCode": keyCode,
       "modifiers": modifiers,
-      "sourceLanguage": sourceLanguage ?? "",
-      "targetLanguage": targetLanguage ?? "",
-    ] as [String: Any]
+    ] as [String: Int]
 
-    page.dispatchMessageToScript(withName: "settingsReceived", userInfo: settings)
+    page.dispatchMessageToScript(withName: RequestType.SEND_SETTINGS.rawValue, userInfo: settings)
   }
 
   // called when translation kicked off
-  func translateHandler(_ text: String, targetLanguage: String) {
+  func translateHandler(page: SFSafariPage, text: String, targetLanguage: String) {
     NSLog("translateHandler")
-
     googleTranslate(text, targetLanguage: targetLanguage) { translatedText in
       NSLog("translated \(translatedText)")
+      page.dispatchMessageToScript(withName: RequestType.SEND_TRANSLATION.rawValue, userInfo: ["text": translatedText])
     }
   }
 
