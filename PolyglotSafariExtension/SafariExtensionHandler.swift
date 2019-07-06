@@ -35,7 +35,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   // returns the settings
   func getSettingsHandler(page: SFSafariPage) {
     print("getSettingsHandler")
-    let settings = getSettingsInstance()
+    let ud = getSettingsInstance()
     let keyCode = ud.integer(forKey: SettingsKey.KeyCodeUnicode)
     let modifiers = ud.integer(forKey: SettingsKey.Modifiers)
     let settings = [
@@ -48,7 +48,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
   // called when translation kicked off
   func translateHandler(page: SFSafariPage, text: String, targetLanguage _: String) {
-    let settings = getSettingsInstance()
+    let ud = getSettingsInstance()
     let sourceLanguage = ud.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
     let targetLanguage = ud.string(forKey: SettingsKey.TargetLanguage) ?? "en"
 
