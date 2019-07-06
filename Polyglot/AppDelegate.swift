@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     targetLanguagePopup.action = #selector(popupSelected(item:))
     let settings = getSettingsInstance()
     sourceLanguagePopup.setTitle(settings.string(forKey: "sourceLanguage") ?? "Automatic")
-    targetLanguagePopup.setTitle(settings.string(forKey: "targetLanguage") ?? "Automatic")
+    targetLanguagePopup.setTitle(settings.string(forKey: "targetLanguage") ?? "English")
   }
 
   func setupRecordView() {
@@ -59,8 +59,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   @objc func popupSelected(item _: NSMenuItem) {
-    let sourceLanguage = sourceLanguagePopup.title
-    let targetLanguage = targetLanguagePopup.title
+    let sourceLanguage = sourceLanguagePopup.titleOfSelectedItem ?? "Automatic"
+    let targetLanguage = targetLanguagePopup.titleOfSelectedItem ?? "English"
 
     // save language option
     let settings = getSettingsInstance()
