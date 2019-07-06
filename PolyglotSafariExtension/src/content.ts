@@ -30,17 +30,18 @@ interface ReceivedTranslation {
   text: string
 }
 
-const PANEL_ID = 'polyglot__panel'
-
 enum RequestMessageType {
-  REQUEST_SETTINGS = 'getSettings',
-  TRANSLATE = 'translate',
+  RequestSettings = 'getSettings',
+  Translate = 'translate',
 }
 
 enum ResponseMessageType {
-  SETTINGS_RECEIVED = 'settingsReceived',
-  TRANSLATION_RECEIVED = 'translated',
+  SettingsReceived = 'settingsReceived',
+  TranslationReceived = 'translated',
+  PerformTranslation = 'performTranslation',
 }
+
+const PANEL_ID = 'polyglot__panel'
 
 let isPanelOpen = false
 let settings: Settings
@@ -57,17 +58,20 @@ function setup(): void {
   window.addEventListener('click', handleClick, false)
 
   // fetch global settings from App Extension
-  safari.extension.dispatchMessage(RequestMessageType.REQUEST_SETTINGS)
+  safari.extension.dispatchMessage(RequestMessageType.RequestSettings)
 }
 
 // Get selected text and return to global script
 function handleMessage(msg: SafariExtensionMessageEvent): void {
   switch (msg.name) {
-    case ResponseMessageType.SETTINGS_RECEIVED:
+    case ResponseMessageType.SettingsReceived:
       settingsHandler(msg.message)
       break
-    case ResponseMessageType.TRANSLATION_RECEIVED:
+    case ResponseMessageType.TranslationReceived:
       translationHandler(msg.message)
+      break
+    case ResponseMessageType.PerformTranslation:
+      performTranslation()
       break
     default:
   }
@@ -107,12 +111,7 @@ function handleKeypress(keyboardEvent: KeyboardEvent): void {
 
   if (isValidModifiers && isValidKeyCode) {
     keyboardEvent.preventDefault()
-    const selectedText = getSelectedText()
-    if (selectedText) {
-      safari.extension.dispatchMessage(RequestMessageType.TRANSLATE, {
-        text: selectedText,
-      })
-    }
+    performTranslation()
   }
 }
 
@@ -131,7 +130,17 @@ function handleClick(e: MouseEvent): void {
       return
     }
   }
-  getSelectedText()
+
+  performTranslation()
+}
+
+function performTranslation() {
+  const selectedText = getSelectedText()
+  if (selectedText) {
+    safari.extension.dispatchMessage(RequestMessageType.Translate, {
+      text: selectedText,
+    })
+  }
 }
 
 function divideModifiers(modifiers: number): Modifiers {

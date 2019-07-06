@@ -4,7 +4,7 @@ import SafariServices
 struct RequestType {
   static let SendSettings = "settingsReceived"
   static let SendTranslation = "translated"
-  static let InvokeTranslation = "invokeTranslation"
+  static let PerformTranslation = "performTranslation"
 }
 
 struct SettingsKey {
@@ -16,15 +16,12 @@ struct SettingsKey {
 }
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
-  // This method will be called when a content script provided by your extension calls safari.extension.dispatchMessage("message").
   override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String: Any]?) {
     page.getPropertiesWithCompletionHandler { properties in
       switch messageName {
       case "getSettings":
-        NSLog("messageReceived:getSettings")
         self.getSettingsHandler(page: page)
       case "translate":
-        NSLog("messageReceived:translate")
         self.translateHandler(page: page, text: userInfo?["text"] as? String ?? "", targetLanguage: "en")
       default:
         NSLog("messageReceived:(\(messageName)) from a script injected into (\(String(describing: properties?.url))) with userInfo (\(userInfo ?? [:]))")
@@ -34,7 +31,6 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
   // returns the settings
   func getSettingsHandler(page: SFSafariPage) {
-    print("getSettingsHandler")
     let ud = getSettingsInstance()
     let keyCode = ud.integer(forKey: SettingsKey.KeyCodeUnicode)
     let modifiers = ud.integer(forKey: SettingsKey.Modifiers)
@@ -62,7 +58,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     print("toolbarItemClicked")
     window.getActiveTab { tab in
       tab?.getActivePage(completionHandler: { page in
-        page?.dispatchMessageToScript(withName: RequestType.InvokeTranslation, userInfo: [:])
+        page?.dispatchMessageToScript(withName: RequestType.PerformTranslation, userInfo: [:])
       })
     }
   }
