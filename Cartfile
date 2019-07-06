@@ -1,4 +1,3 @@
 github "Alamofire/Alamofire" ~> 4.7
 github "Clipy/KeyHolder"
 github "Clipy/Magnet"
-github "realm/realm-cocoa"

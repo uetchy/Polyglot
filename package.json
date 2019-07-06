@@ -4,11 +4,12 @@
   "version": "3.0.0",
   "main": "./PolyglotSafariExtension/dist/content.bundle.js",
   "scripts": {
-    "build": "webpack-cli",
+    "build": "webpack-cli --mode production",
     "inspect": "pluginkit -mAvvv -p com.apple.Safari.extension",
-    "start": "webpack-cli -w"
+    "start": "webpack-cli -w --mode development"
   },
   "dependencies": {
+    "core-js": "3",
     "isomorphic-unfetch": "^3.0.0"
   },
   "devDependencies": {
@@ -16,6 +17,7 @@
     "@babel/preset-env": "^7.5.0",
     "@babel/preset-typescript": "^7.3.3",
     "babel-loader": "^8.0.6",
+    "plist": "^3.0.1",
     "typescript": "^3.5.2",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
