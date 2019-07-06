@@ -1,9 +1,3 @@
-interface ReceivedSettings {
-  keyCode?: number
-  modifiers?: number
-  instantTranslation?: boolean
-}
-
 interface Settings {
   keyCode: number
   modifiers: Modifiers
@@ -26,6 +20,16 @@ interface BoundingRect {
   height: number
 }
 
+interface ReceivedSettings {
+  keyCode: number
+  modifiers: number
+  instantTranslation: boolean
+}
+
+interface ReceivedTranslation {
+  text: string
+}
+
 const PANEL_ID = 'polyglot__panel'
 
 enum RequestMessageType {
@@ -39,11 +43,7 @@ enum ResponseMessageType {
 }
 
 let isPanelOpen = false
-let settings: Settings = {
-  keyCode: 0,
-  modifiers: { ctrl: false, alt: false, shift: false, cmd: false },
-  instantTranslation: false,
-}
+let settings: Settings
 
 function setup(): void {
   console.debug('Polyglot: loaded')
@@ -73,21 +73,18 @@ function handleMessage(msg: SafariExtensionMessageEvent): void {
   }
 }
 
-interface ReceivedTranslation {
-  text: string
-}
-
 function settingsHandler(received: ReceivedSettings): void {
   settings = {
-    keyCode: received.keyCode!,
-    modifiers: divideModifiers(received.modifiers!),
-    instantTranslation: received.instantTranslation!,
+    keyCode: received.keyCode || 0,
+    modifiers: received.modifiers
+      ? divideModifiers(received.modifiers)
+      : { ctrl: false, alt: false, shift: false, cmd: false },
+    instantTranslation: received.instantTranslation || false,
   }
   console.debug(settings)
 }
 
 function translationHandler(message: ReceivedTranslation): void {
-  console.log(message.text)
   showPanel(message.text)
 }
 
@@ -109,10 +106,8 @@ function handleKeypress(keyboardEvent: KeyboardEvent): void {
   const isValidKeyCode = keyCode === keyboardEvent.keyCode
 
   if (isValidModifiers && isValidKeyCode) {
-    console.debug('go')
     keyboardEvent.preventDefault()
     const selectedText = getSelectedText()
-    console.debug(selectedText)
     if (selectedText) {
       safari.extension.dispatchMessage(RequestMessageType.TRANSLATE, {
         text: selectedText,

@@ -25,7 +25,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         self.getSettingsHandler(page: page)
       case "translate":
         NSLog("messageReceived:translate")
-        self.translateHandler(page: page, text: userInfo?["text"] as? String ?? "", targetLanguage: "ja")
+        self.translateHandler(page: page, text: userInfo?["text"] as? String ?? "", targetLanguage: "en")
       default:
         NSLog("messageReceived:(\(messageName)) from a script injected into (\(String(describing: properties?.url))) with userInfo (\(userInfo ?? [:]))")
       }
@@ -35,7 +35,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   // returns the settings
   func getSettingsHandler(page: SFSafariPage) {
     print("getSettingsHandler")
-    guard let ud = UserDefaults(suiteName: "group.io.uechi.Polyglot") else { return }
+    let settings = getSettingsInstance()
     let keyCode = ud.integer(forKey: SettingsKey.KeyCodeUnicode)
     let modifiers = ud.integer(forKey: SettingsKey.Modifiers)
     let settings = [
@@ -48,7 +48,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
   // called when translation kicked off
   func translateHandler(page: SFSafariPage, text: String, targetLanguage _: String) {
-    guard let ud = UserDefaults(suiteName: "group.io.uechi.Polyglot") else { return }
+    let settings = getSettingsInstance()
     let sourceLanguage = ud.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
     let targetLanguage = ud.string(forKey: SettingsKey.TargetLanguage) ?? "en"
 
@@ -77,5 +77,9 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   override func popoverViewController() -> SFSafariExtensionViewController {
     print("popoverViewController")
     return SafariExtensionViewController.shared
+  }
+
+  func getSettingsInstance() -> UserDefaults {
+    return UserDefaults(suiteName: "group.io.uechi.Polyglot")!
   }
 }
