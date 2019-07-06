@@ -1,6 +1,16 @@
 interface Settings {
   keyCode?: number
+  modifiers?: number
+  sourceLanguage?: string
+  targetLanguage?: string
   instantTranslation?: boolean
+}
+
+interface KeyMaps {
+  ctrl: boolean
+  alt: boolean
+  shift: boolean
+  cmd: boolean
 }
 
 let settings: Settings = {}
@@ -9,7 +19,7 @@ const PANEL_ID = 'polyglot__panel'
 
 // Only active in a top-level page
 if (window.top === window) {
-  console.log('Polyglot loaded')
+  console.debug('Polyglot loaded')
 
   // handle messages from App Extension
   safari.self.addEventListener('message', handleMessage, false)
@@ -38,9 +48,46 @@ function handleMessage(msg: SafariExtensionMessageEvent) {
   }
 }
 
+function divideModifiers(modifiers: number): KeyMaps {
+  // cmd   = 256
+  // shift = 512
+  // alt   = 2048
+  // ctrl  = 4096
+  // cmd+shift = 768
+  // cmd+alt   = 2304
+  // cmd+shift+alt = 2816
+
+  const keyMaps = {
+    ctrl: false,
+    alt: false,
+    shift: false,
+    cmd: false,
+  }
+
+  let cur = modifiers
+  while (cur !== 0) {
+    if (cur >= 4096) {
+      keyMaps.ctrl = true
+      cur %= 4096
+    } else if (cur >= 2048) {
+      keyMaps.alt = true
+      cur %= 2048
+    } else if (cur >= 512) {
+      keyMaps.shift = true
+      cur %= 512
+    } else {
+      keyMaps.cmd = true
+      cur %= 256
+    }
+  }
+
+  return keyMaps
+}
+
 function handleMouseUp(e: MouseEvent) {
   const panel = document.getElementById(PANEL_ID)
 
+  // if clicked on outside of panel, remove panel
   if (panel && isPanelOpen && !isDescendant(panel, <HTMLElement>e.target)) {
     removePanel()
   }
@@ -52,6 +99,9 @@ function handleKeypress(e: KeyboardEvent) {
   // Check if shortcut key is properly configured
   const { keyCode } = settings
   if (keyCode === undefined) return
+  console.log(keyCode, e.keyCode)
+
+  console.log(divideModifiers(settings.modifiers!))
 
   // const applyMeta = settings.useMetaKey ? e.metaKey : true
   // const applyShift = settings.useShiftKey ? e.shiftKey : true
