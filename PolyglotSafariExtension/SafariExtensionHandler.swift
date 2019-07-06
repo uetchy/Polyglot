@@ -39,11 +39,13 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   }
 
   // called when translation kicked off
-  func translateHandler(page: SFSafariPage, text: String, targetLanguage: String) {
+  func translateHandler(page: SFSafariPage, text: String, targetLanguage _: String) {
     guard let ud = UserDefaults(suiteName: "group.io.uechi.Polyglot") else { return }
-    let sourceLanguage = ud.string(forKey: "sourceLanguage")!
-    let targetLanguage = ud.string(forKey: "targetLanguage")!
-    googleTranslate(text, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage) { translatedText in
+    let sourceLanguage = ud.string(forKey: "sourceLanguage") ?? "auto"
+    let targetLanguage = ud.string(forKey: "targetLanguage") ?? "en"
+    NSLog(sourceLanguage)
+    NSLog(targetLanguage)
+    googleTranslate(text, sourceLanguage: "en", targetLanguage: "ja") { translatedText in
       page.dispatchMessageToScript(withName: RequestType.SEND_TRANSLATION.rawValue, userInfo: ["text": translatedText])
     }
   }
