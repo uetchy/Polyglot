@@ -23,6 +23,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     targetLanguagePopup.target = self
     sourceLanguagePopup.action = #selector(popupSelected(item:))
     targetLanguagePopup.action = #selector(popupSelected(item:))
+    let settings = getSettingsInstance()
+    sourceLanguagePopup.setTitle(settings.string(forKey: "sourceLanguage") ?? "Automatic")
+    targetLanguagePopup.setTitle(settings.string(forKey: "targetLanguage") ?? "Automatic")
   }
 
   func setupRecordView() {

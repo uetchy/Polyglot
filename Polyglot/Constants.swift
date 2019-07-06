@@ -93,5 +93,6 @@ class Constants {
     "yi": "Yiddish",
     "yo": "Yoruba",
     "zu": "Zulu",
+    "auto": "Automatic",
   ]
 }
