@@ -16,13 +16,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func setPopup() {
-    let sources = [String](Constants.LANGUAGES.values).sorted()
-    var targets = sources
-    if let indexForAutomatic = sources.firstIndex(of: "Automatic") {
-        targets.remove(at: indexForAutomatic)
-    }
-    sourceLanguagePopup.addItems(withTitles: sources)
-    targetLanguagePopup.addItems(withTitles: targets)
+    let languages = [String](Constants.LANGUAGES.values).sorted()
+    sourceLanguagePopup.addItem(withTitle: "Automatic")
+    sourceLanguagePopup.addItems(withTitles: languages)
+    targetLanguagePopup.addItems(withTitles: languages)
     sourceLanguagePopup.target = self
     targetLanguagePopup.target = self
     sourceLanguagePopup.action = #selector(popupSelected(item:))

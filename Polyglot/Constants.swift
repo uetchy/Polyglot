@@ -2,7 +2,6 @@ import Foundation
 
 class Constants {
   static let LANGUAGES = [
-    "auto": "Automatic",
     "af": "Afrikaans",
     "sq": "Albanian",
     "ar": "Arabic",
