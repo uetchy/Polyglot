@@ -8,6 +8,7 @@ struct SettingsKey {
   static let Modifiers = "modifiers"
   static let SourceLanguage = "sourceLanguage"
   static let TargetLanguage = "targetLanguage"
+  static let InstantTranslation = "instantTranslation"
 }
 
 @NSApplicationMain
@@ -59,7 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func setupInstantCheckbox() {
     // Restore settings
-    let isChecked: NSControl.StateValue = settings.bool(forKey: "instantTranslation") ? .on : .off
+    let isChecked: NSControl.StateValue = settings.bool(forKey: SettingsKey.InstantTranslation) ? .on : .off
     self.instantTranslation.state = isChecked
     self.instantTranslation.action = #selector(instantCheckboxChanged)
   }
@@ -81,7 +82,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @objc func instantCheckboxChanged() {
     // save instant checkbox setting
     let isChecked = self.instantTranslation.state == NSControl.StateValue.on ? true : false
-    settings.set(isChecked, forKey: "instantTranslation")
+    settings.set(isChecked, forKey: SettingsKey.InstantTranslation)
     settings.synchronize()
   }
 
