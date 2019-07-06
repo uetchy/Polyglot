@@ -42,6 +42,7 @@ enum ResponseMessageType {
 }
 
 const PANEL_ID = 'polyglot__panel'
+const INDICATOR = `<div class="polyglot__loader">Loading</div>`
 
 let isPanelOpen = false
 let settings: Settings
@@ -135,6 +136,7 @@ function handleClick(e: MouseEvent): void {
 }
 
 function performTranslation() {
+  showPanel(INDICATOR)
   const selectedText = getSelectedText()
   if (selectedText) {
     safari.extension.dispatchMessage(RequestMessageType.Translate, {
@@ -201,8 +203,8 @@ function getSelectedText(): string | undefined {
 function removePanel() {
   const panel = document.getElementById(PANEL_ID)
   if (panel) {
-    panel.remove()
     isPanelOpen = false
+    panel.remove()
   }
 }
 
