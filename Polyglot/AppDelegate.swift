@@ -40,8 +40,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let settings = getSettingsInstance()
     let sourceLanguage = settings.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
     let targetLanguage = settings.string(forKey: SettingsKey.TargetLanguage) ?? "en"
-    sourceLanguagePopup.setTitle(sourceLanguage == "auto" ? "Automatic" : Constants.LANGUAGES[sourceLanguage]!)
-    targetLanguagePopup.setTitle(Constants.LANGUAGES[targetLanguage]!)
+    sourceLanguagePopup.setTitle(sourceLanguage == "auto" ? "Automatic" : Constants.LANGUAGES[sourceLanguage] ?? "Automatic")
+    targetLanguagePopup.setTitle(Constants.LANGUAGES[targetLanguage] ?? "English")
   }
 
   func setupKeyComboView() {
