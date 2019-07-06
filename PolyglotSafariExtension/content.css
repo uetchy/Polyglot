@@ -1,40 +1,64 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: rgba(200, 200, 200, 0.5);
+    --text: #2b2b2b;
+    --border: 1px solid #bdbdbd;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: rgba(0, 0, 0, 0.5);
+    --text: #d7d7db;
+    --border: 1px solid #979797;
+  }
+}
+
 #polyglot__panel {
-  font-size: 11pt !important;
-  color: #000 !important;
-  line-height: 1.6em !important;
-  font-family: sans-serif !important;
-  font-weight: normal !important;
-  text-align: left !important;
   position: absolute !important;
-  padding: 20px !important;
   margin-right: 20px !important;
-  background-color: #efefef !important;
-  border-radius: 6px !important;
-  z-index: 99999 !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+  padding: 20px !important;
   transform: scale(0) !important;
   transform-origin: 0 0 !important;
+  z-index: 99999 !important;
+  line-height: 1.6em !important;
+  text-align: left !important;
+
+  background-color: var(--background) !important;
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 5px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  border: var(--border);
+
+  color: var(--text) !important;
+  font-family: sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: normal !important;
+
   animation: polyglot__envelope 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
     forwards !important;
 }
 
 .polyglot__loader {
-  font-size: 4px !important;
+  --size: 3px;
   position: relative !important;
-  text-indent: -9999em !important;
-  border-top: 4px solid rgba(255, 255, 255, 0.2) !important;
-  border-right: 4px solid rgba(255, 255, 255, 0.2) !important;
-  border-bottom: 4px solid rgba(255, 255, 255, 0.2) !important;
-  border-left: 4px solid #d1d1d1 !important;
   transform: translateZ(0) !important;
+
+  font-size: var(--size) !important;
+  text-indent: -9999em !important;
+  border-top: var(--size) solid rgba(255, 255, 255, 0.2) !important;
+  border-right: var(--size) solid rgba(255, 255, 255, 0.2) !important;
+  border-bottom: var(--size) solid rgba(255, 255, 255, 0.2) !important;
+  border-left: var(--size) solid #d1d1d1 !important;
+
   animation: polyglot__load8 1.1s infinite linear !important;
 }
 
 .polyglot__loader,
 .polyglot__loader:after {
-  border-radius: 50% !important;
   width: 40px !important;
   height: 40px !important;
+  border-radius: 50% !important;
 }
 
 @keyframes polyglot__load8 {
