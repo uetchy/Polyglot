@@ -11,14 +11,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationDidFinishLaunching(_: Notification) {
     // Insert code here to initialize your application
+    setupViews()
+  }
+
+  func setupViews() {
+    let languages = [String](Constants.LANGUAGES.values)
+    sourceLanguagePopup.addItems(withTitles: languages)
+    targetLanguagePopup.addItems(withTitles: languages)
+    
     recordView.tintColor = NSColor(red: 0.164, green: 0.517, blue: 0.823, alpha: 1)
-
     let keyCombo = KeyCombo(doubledCocoaModifiers: .command)
-
+    
     recordView.keyCombo = keyCombo
     let hotKey = HotKey(identifier: "PolyglotHotkey", keyCombo: keyCombo!, target: self, action: #selector(AppDelegate.hotkeyCalled))
     hotKey.register()
-
+    
     recordView.didChange = keyCombDidChange
   }
 

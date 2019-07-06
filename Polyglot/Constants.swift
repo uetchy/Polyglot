@@ -9,7 +9,7 @@
 import Foundation
 
 class Constants {
-  let LANGUAGES = [
+  static let LANGUAGES = [
     "af": "Afrikaans",
     "sq": "Albanian",
     "ar": "Arabic",
