@@ -11,14 +11,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationDidFinishLaunching(_: Notification) {
     // Insert code here to initialize your application
-    setupViews()
+    setPopup()
+    setupRecordView()
   }
 
-  func setupViews() {
+  func setPopup() {
     let languages = [String](Constants.LANGUAGES.values)
     sourceLanguagePopup.addItems(withTitles: languages)
     targetLanguagePopup.addItems(withTitles: languages)
-    
+    sourceLanguagePopup.target = self
+    targetLanguagePopup.target = self
+    sourceLanguagePopup.action = #selector(popupSelected(item:))
+    targetLanguagePopup.action = #selector(popupSelected(item:))
+  }
+
+  func setupRecordView() {
     recordView.tintColor = NSColor(red: 0.164, green: 0.517, blue: 0.823, alpha: 1)
     let keyCombo = KeyCombo(doubledCocoaModifiers: .command)
     
@@ -48,7 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     settings.synchronize()
   }
 
-  func popupSelected(item _: NSMenuItem) {
+  @objc func popupSelected(item _: NSMenuItem) {
     let sourceLanguage = sourceLanguagePopup.title
     let targetLanguage = targetLanguagePopup.title
 
