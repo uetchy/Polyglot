@@ -2,6 +2,14 @@ import Cocoa
 import KeyHolder
 import Magnet
 
+struct SettingsKey {
+  static let KeyCode = "keyCode"
+  static let KeyCodeUnicode = "keyCodeUnicode"
+  static let Modifiers = "modifiers"
+  static let SourceLanguage = "sourceLanguage"
+  static let TargetLanguage = "targetLanguage"
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var window: NSWindow!
@@ -10,12 +18,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var targetLanguagePopup: NSPopUpButton!
 
   func applicationDidFinishLaunching(_: Notification) {
-    // Insert code here to initialize your application
-    setPopup()
-    setupRecordView()
+    setupPopupButtons()
+    setupKeyComboView()
   }
 
-  func setPopup() {
+  func setupPopupButtons() {
     let sources = Constants.getLanguages().map { $0.value }
     let targets = Constants.getLanguages().map { $0.value }
     sourceLanguagePopup.addItem(withTitle: "Automatic")
@@ -28,40 +35,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // Restore settings
     let settings = getSettingsInstance()
-    let sourceLanguage = settings.string(forKey: "sourceLanguage") ?? "auto"
-    let targetLanguage = settings.string(forKey: "targetLanguage") ?? "en"
+    let sourceLanguage = settings.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
+    let targetLanguage = settings.string(forKey: SettingsKey.TargetLanguage) ?? "en"
     NSLog(sourceLanguage)
     sourceLanguagePopup.setTitle(sourceLanguage == "auto" ? "Automatic" : Constants.LANGUAGES[sourceLanguage]!)
     targetLanguagePopup.setTitle(Constants.LANGUAGES[targetLanguage]!)
   }
 
-  func setupRecordView() {
+  func setupKeyComboView() {
     recordView.tintColor = NSColor(red: 0.164, green: 0.517, blue: 0.823, alpha: 1)
-    let keyCombo = KeyCombo(doubledCocoaModifiers: .command)
-
-    recordView.keyCombo = keyCombo
-    let hotKey = HotKey(identifier: "PolyglotHotkey", keyCombo: keyCombo!, target: self, action: #selector(AppDelegate.hotkeyCalled))
-    hotKey.register()
-
     recordView.didChange = keyCombDidChange
+
+    // Restore settings
+    let settings = getSettingsInstance()
+    let keyCode = settings.integer(forKey: SettingsKey.KeyCode)
+    let modifiers = settings.integer(forKey: SettingsKey.Modifiers)
+    print(keyCode)
+    let keyCombo = KeyCombo(keyCode: keyCode, carbonModifiers: modifiers)
+    recordView.keyCombo = keyCombo
   }
 
+  // NOTE: cmd = 256, shift = 512, alt = 2048, ctrl = 4096
   func keyCombDidChange(keyCombo: KeyCombo?) {
-    // NOTE:
-    // cmd   = 256
-    // shift = 512
-    // alt   = 2048
-    // ctrl  = 4096
-    // cmd+shift = 768
-    guard let keyCombo = keyCombo else { return } // Clear shortcut
+    guard let keyCombo = keyCombo else { return }
     guard let keyCode = UnicodeScalar(keyCombo.characters) else { return }
     print("keyCode: \(keyCode.value)")
     print("modifiers: \(keyCombo.modifiers)")
 
     // save keycombo
     let settings = getSettingsInstance()
-    settings.set(keyCode.value, forKey: "keyCode")
-    settings.set(keyCombo.modifiers, forKey: "modifiers")
+    settings.set(keyCode.value, forKey: SettingsKey.KeyCodeUnicode)
+    settings.set(keyCombo.keyCode, forKey: SettingsKey.KeyCode)
+    settings.set(keyCombo.modifiers, forKey: SettingsKey.Modifiers)
     settings.synchronize()
   }
 
@@ -74,8 +79,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // save language option
     let settings = getSettingsInstance()
-    settings.set(sourceLanguage, forKey: "sourceLanguage")
-    settings.set(targetLanguage, forKey: "targetLanguage")
+    settings.set(sourceLanguage, forKey: SettingsKey.SourceLanguage)
+    settings.set(targetLanguage, forKey: SettingsKey.TargetLanguage)
     settings.synchronize()
   }
 
@@ -84,11 +89,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func applicationWillTerminate(_: Notification) {
-    // Insert code here to tear down your application
     HotKeyCenter.shared.unregisterAll()
-  }
-
-  @objc func hotkeyCalled() {
-    print("HotKey called!!!!")
   }
 }
