@@ -28,11 +28,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func setupRecordView() {
     recordView.tintColor = NSColor(red: 0.164, green: 0.517, blue: 0.823, alpha: 1)
     let keyCombo = KeyCombo(doubledCocoaModifiers: .command)
-    
+
     recordView.keyCombo = keyCombo
     let hotKey = HotKey(identifier: "PolyglotHotkey", keyCombo: keyCombo!, target: self, action: #selector(AppDelegate.hotkeyCalled))
     hotKey.register()
-    
+
     recordView.didChange = keyCombDidChange
   }
 

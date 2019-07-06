@@ -1,25 +1,52 @@
-interface Settings {
+interface ReceivedSettings {
   keyCode?: number
   modifiers?: number
-  sourceLanguage?: string
-  targetLanguage?: string
   instantTranslation?: boolean
 }
 
-interface KeyMaps {
+interface Settings {
+  keyCode: number
+  modifiers: Modifiers
+  instantTranslation: boolean
+}
+
+interface Modifiers {
   ctrl: boolean
   alt: boolean
   shift: boolean
   cmd: boolean
 }
 
-let settings: Settings = {}
-let isPanelOpen = false
+interface BoundingRect {
+  left: number
+  top: number
+  right: number
+  bottom: number
+  width: number
+  height: number
+}
+
 const PANEL_ID = 'polyglot__panel'
 
-// Only active in a top-level page
-if (window.top === window) {
-  console.debug('Polyglot loaded')
+enum RequestMessageType {
+  REQUEST_SETTINGS = 'getSettings',
+  TRANSLATE = 'translate',
+}
+
+enum ResponseMessageType {
+  SETTINGS_RECEIVED = 'settingsReceived',
+  TRANSLATION_RECEIVED = 'translated',
+}
+
+let isPanelOpen = false
+let settings: Settings = {
+  keyCode: 0,
+  modifiers: { ctrl: false, alt: false, shift: false, cmd: false },
+  instantTranslation: false,
+}
+
+function setup(): void {
+  console.debug('Polyglot: loaded')
 
   // handle messages from App Extension
   safari.self.addEventListener('message', handleMessage, false)
@@ -30,34 +57,90 @@ if (window.top === window) {
   window.addEventListener('click', handleClick, false)
 
   // fetch global settings from App Extension
-  safari.extension.dispatchMessage('getSettings')
+  safari.extension.dispatchMessage(RequestMessageType.REQUEST_SETTINGS)
 }
 
 // Get selected text and return to global script
-function handleMessage(msg: SafariExtensionMessageEvent) {
-  console.log('got message:', msg)
-  const name = msg.name
-  if (name === 'settingsReceived') {
-    settings = msg.message
-  } else if (name === 'getSelectedText') {
-    getSelectedText()
-  } else if (name === 'showPanel') {
-    showPanel(msg.message)
-  } else if (name === 'updatePanel') {
-    updatePanel(msg.message)
+function handleMessage(msg: SafariExtensionMessageEvent): void {
+  switch (msg.name) {
+    case ResponseMessageType.SETTINGS_RECEIVED:
+      settingsHandler(msg.message)
+      break
+    case ResponseMessageType.TRANSLATION_RECEIVED:
+      translationHandler(msg.message)
+      break
+    default:
   }
 }
 
-function divideModifiers(modifiers: number): KeyMaps {
+function settingsHandler(message: ReceivedSettings): void {
+  settings = {
+    keyCode: message.keyCode!,
+    modifiers: divideModifiers(message.modifiers!),
+    instantTranslation: message.instantTranslation!,
+  }
+  console.debug(settings)
+}
+
+function translationHandler(text: string): void {
+  showPanel(text)
+}
+
+function handleMouseUp(e: MouseEvent): void {
+  const panel = document.getElementById(PANEL_ID)
+
+  // if clicked on outside of panel, remove panel
+  if (panel && isPanelOpen && !isDescendant(panel, <HTMLElement>e.target)) {
+    removePanel()
+  }
+}
+
+function handleKeypress(e: KeyboardEvent): void {
+  // Check if shortcut key is properly configured
+  const { keyCode } = settings
+  if (keyCode === undefined) return
+
+  const isValidModifiers = checkModifiers(settings.modifiers, e)
+  const isValidKeyCode = keyCode === e.keyCode
+  console.debug(isValidModifiers, isValidKeyCode)
+
+  if (isValidModifiers && isValidKeyCode) {
+    console.debug('go')
+    e.preventDefault()
+    const selectedText = getSelectedText()
+    console.debug(selectedText)
+    if (selectedText) {
+      safari.extension.dispatchMessage(RequestMessageType.TRANSLATE, {
+        selectedText,
+      })
+    }
+  }
+}
+
+// handle click event for instant translation
+function handleClick(e: MouseEvent): void {
+  if (
+    !settings.instantTranslation ||
+    (<HTMLDivElement>e.target).id === PANEL_ID
+  ) {
+    return
+  }
+
+  if (document.activeElement) {
+    const activeElement = document.activeElement.tagName.toLowerCase()
+    if (activeElement === 'textarea' || activeElement === 'input') {
+      return
+    }
+  }
+  getSelectedText()
+}
+
+function divideModifiers(modifiers: number): Modifiers {
   // cmd   = 256
   // shift = 512
   // alt   = 2048
   // ctrl  = 4096
-  // cmd+shift = 768
-  // cmd+alt   = 2304
-  // cmd+shift+alt = 2816
-
-  const keyMaps = {
+  const modifierMaps = {
     ctrl: false,
     alt: false,
     shift: false,
@@ -67,82 +150,43 @@ function divideModifiers(modifiers: number): KeyMaps {
   let cur = modifiers
   while (cur !== 0) {
     if (cur >= 4096) {
-      keyMaps.ctrl = true
+      modifierMaps.ctrl = true
       cur %= 4096
     } else if (cur >= 2048) {
-      keyMaps.alt = true
+      modifierMaps.alt = true
       cur %= 2048
     } else if (cur >= 512) {
-      keyMaps.shift = true
+      modifierMaps.shift = true
       cur %= 512
     } else {
-      keyMaps.cmd = true
+      modifierMaps.cmd = true
       cur %= 256
     }
   }
 
-  return keyMaps
+  return modifierMaps
 }
 
-function handleMouseUp(e: MouseEvent) {
-  const panel = document.getElementById(PANEL_ID)
-
-  // if clicked on outside of panel, remove panel
-  if (panel && isPanelOpen && !isDescendant(panel, <HTMLElement>e.target)) {
-    removePanel()
-  }
+function checkModifiers(mod: Modifiers, e: KeyboardEvent): boolean {
+  return mod.ctrl
+    ? e.ctrlKey
+    : true && mod.alt
+    ? e.altKey
+    : true && mod.shift
+    ? e.shiftKey
+    : true && mod.cmd
+    ? e.metaKey
+    : true
 }
 
-function handleKeypress(e: KeyboardEvent) {
-  console.log('kp')
-
-  // Check if shortcut key is properly configured
-  const { keyCode } = settings
-  if (keyCode === undefined) return
-  console.log(keyCode, e.keyCode)
-
-  console.log(divideModifiers(settings.modifiers!))
-
-  // const applyMeta = settings.useMetaKey ? e.metaKey : true
-  // const applyShift = settings.useShiftKey ? e.shiftKey : true
-  // const applyCtrl = settings.useCtrlKey ? e.ctrlKey : true
-  // const applyAlt = settings.useAltKey ? e.altKey : true
-  // const applyKey = keyCode === e.code
-  const applyKey = keyCode === e.keyCode
-  console.log('kp:', keyCode, e.keyCode, applyKey, e.ctrlKey)
-
-  if (e.ctrlKey && applyKey) {
-    console.log('go')
-    e.preventDefault()
-    getSelectedText()
-  }
-}
-
-function handleClick(e: MouseEvent) {
-  if (
-    !settings.instantTranslation ||
-    (<HTMLDivElement>e.target).id === PANEL_ID
-  ) {
-    return
-  }
-  if (document.activeElement) {
-    const activeEl = document.activeElement.tagName.toLowerCase()
-    if (activeEl === 'textarea' || activeEl === 'input') {
-      return
-    }
-  }
-  getSelectedText()
-}
-
-function getSelectedText() {
+function getSelectedText(): string | undefined {
   const selection = window.getSelection()
   if (!selection) return undefined
 
   const selectedText = selection.toString()
+
   if (selectedText && selectedText !== '\n') {
-    safari.extension.dispatchMessage('finishedGetSelectedText', {
-      selectedText,
-    })
+    return selectedText
   }
 }
 
@@ -172,7 +216,7 @@ function showPanel(content: string): void {
   isPanelOpen = true
 }
 
-function updatePanel(content: string) {
+function updatePanel(content: string): void {
   const el = document.getElementById(PANEL_ID)
   if (el) {
     el.innerHTML = content
@@ -180,7 +224,7 @@ function updatePanel(content: string) {
 }
 
 // Return selection coords
-function getSelectionBoundingRect() {
+function getSelectionBoundingRect(): BoundingRect | undefined {
   const rect = {
     left: 0,
     top: 0,
@@ -230,4 +274,9 @@ function isDescendant(parent: HTMLElement, child: HTMLElement) {
     node = node.parentNode
   }
   return false
+}
+
+// Only active in a top-level page
+if (window.top === window) {
+  setup()
 }
