@@ -8,28 +8,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var recordView: RecordView!
   @IBOutlet var sourceLanguagePopup: NSPopUpButton!
   @IBOutlet var targetLanguagePopup: NSPopUpButton!
-  @IBOutlet weak var instantTranslation: NSButton!
+  @IBOutlet var instantTranslation: NSButton!
+
+  lazy var settings = getSettingsInstance()
     
   func applicationDidFinishLaunching(_: Notification) {
     // Insert code here to initialize your application
-    setupPopup()
+    setupPopupViews()
     setupRecordView()
     setupInstantCheckbox()
   }
 
-  func setupPopup() {
-    let sources = Constants.getLanguages().map { $0.value }
-    let targets = Constants.getLanguages().map { $0.value }
+  func setupPopupViews() {
+    let languages = Constants.getLanguages().map { $0.value }
     sourceLanguagePopup.addItem(withTitle: "Automatic")
-    sourceLanguagePopup.addItems(withTitles: sources)
-    targetLanguagePopup.addItems(withTitles: targets)
+    sourceLanguagePopup.addItems(withTitles: languages)
+    targetLanguagePopup.addItems(withTitles: languages)
     sourceLanguagePopup.target = self
     targetLanguagePopup.target = self
     sourceLanguagePopup.action = #selector(popupSelected(item:))
     targetLanguagePopup.action = #selector(popupSelected(item:))
 
     // Restore settings
-    let settings = getSettingsInstance()
     let sourceLanguage = settings.string(forKey: "sourceLanguage") ?? "auto"
     let targetLanguage = settings.string(forKey: "targetLanguage") ?? "en"
     sourceLanguagePopup.setTitle(sourceLanguage == "auto" ? "Automatic" : Constants.LANGUAGES[sourceLanguage]!)
@@ -49,7 +49,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func setupInstantCheckbox() {
       // Restore settings
-      let settings = getSettingsInstance()
       let isChecked: NSControl.StateValue = settings.bool(forKey: "instantTranslation") ? .on : .off
       self.instantTranslation.state = isChecked
       self.instantTranslation.action = #selector(instantCheckboxChanged)
@@ -68,14 +67,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     print("modifiers: \(keyCombo.modifiers)")
 
     // save keycombo
-    let settings = getSettingsInstance()
     settings.set(keyCode.value, forKey: "keyCode")
     settings.set(keyCombo.modifiers, forKey: "modifiers")
     settings.synchronize()
   }
 
   @objc func instantCheckboxChanged() {
-    let settings = getSettingsInstance()
+    // save instant checkbox setting
     let isChecked = self.instantTranslation.state == NSControl.StateValue.on ? true : false
     settings.set(isChecked, forKey: "instantTranslation")
     settings.synchronize()
@@ -90,7 +88,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let targetLanguage = Constants.getLanguages()[targetIndex].key
 
     // save language option
-    let settings = getSettingsInstance()
     settings.set(sourceLanguage, forKey: "sourceLanguage")
     settings.set(targetLanguage, forKey: "targetLanguage")
     settings.synchronize()
