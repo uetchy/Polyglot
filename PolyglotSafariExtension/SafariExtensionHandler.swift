@@ -25,10 +25,14 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
     let keyCode = ud.integer(forKey: "keyCode")
     let modifiers = ud.integer(forKey: "modifiers")
+    let sourceLanguage = ud.string(forKey: "sourceLanguage")
+    let targetLanguage = ud.string(forKey: "targetLanguage")
     let settings = [
       "keyCode": keyCode,
       "modifiers": modifiers,
-    ]
+      "sourceLanguage": sourceLanguage ?? "",
+      "targetLanguage": targetLanguage ?? "",
+    ] as [String: Any]
 
     page.dispatchMessageToScript(withName: "settingsReceived", userInfo: settings)
   }
