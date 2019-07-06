@@ -1,13 +1,13 @@
 import Alamofire
 import Foundation
 
-func googleTranslate(_ text: String, targetLanguage: String, completionHandler: @escaping (String) -> Void) {
+func googleTranslate(_ text: String, sourceLanguage: String?, targetLanguage: String, completionHandler: @escaping (String) -> Void) {
   NSLog("googleTranslate")
 
   let endpoint: String = "https://translate.googleapis.com/translate_a/single"
   let params: Alamofire.Parameters = [
     "client": "gtx",
-    "sl": "auto",
+    "sl": sourceLanguage ?? "auto",
     "tl": targetLanguage,
     "dt": "t",
     "q": text,
@@ -16,8 +16,6 @@ func googleTranslate(_ text: String, targetLanguage: String, completionHandler: 
   Alamofire.request(endpoint, method: .get, parameters: params)
     .validate(statusCode: 200 ..< 300)
     .responseJSON { response in
-      NSLog("Response JSON")
-
       guard let json = response.result.value as? NSArray,
         let textArray = json[0] as? NSArray else {
         return
