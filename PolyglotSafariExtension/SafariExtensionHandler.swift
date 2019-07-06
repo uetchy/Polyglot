@@ -16,6 +16,8 @@ struct SettingsKey {
 }
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
+  var ud = UserDefaults(suiteName: "58XDWHK3JX.io.uechi.Polyglot")!
+  
   override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String: Any]?) {
     page.getPropertiesWithCompletionHandler { properties in
       switch messageName {
@@ -31,7 +33,6 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
   // returns the settings
   func getSettingsHandler(page: SFSafariPage) {
-    let ud = getSettingsInstance()
     let keyCode = ud.integer(forKey: SettingsKey.KeyCodeUnicode)
     let modifiers = ud.integer(forKey: SettingsKey.Modifiers)
     let settings = [
@@ -44,7 +45,6 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
   // called when translation kicked off
   func translateHandler(page: SFSafariPage, text: String, targetLanguage _: String) {
-    let ud = getSettingsInstance()
     let sourceLanguage = ud.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
     let targetLanguage = ud.string(forKey: SettingsKey.TargetLanguage) ?? "en"
 
@@ -73,9 +73,5 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   override func popoverViewController() -> SFSafariExtensionViewController {
     print("popoverViewController")
     return SafariExtensionViewController.shared
-  }
-
-  func getSettingsInstance() -> UserDefaults {
-    return UserDefaults(suiteName: "group.io.uechi.Polyglot")!
   }
 }

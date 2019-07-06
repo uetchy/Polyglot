@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var targetLanguagePopup: NSPopUpButton!
   @IBOutlet var instantTranslation: NSButton!
 
-  lazy var settings = getSettingsInstance()
+  var settings = UserDefaults(suiteName: "58XDWHK3JX.io.uechi.Polyglot")!
     
   func applicationDidFinishLaunching(_: Notification) {
     setupPopupButtons()
@@ -38,7 +38,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     targetLanguagePopup.action = #selector(popupSelected(item:))
 
     // Restore settings
-    let settings = getSettingsInstance()
     let sourceLanguage = settings.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
     let targetLanguage = settings.string(forKey: SettingsKey.TargetLanguage) ?? "en"
     sourceLanguagePopup.setTitle(sourceLanguage == "auto" ? "Automatic" : Constants.LANGUAGES[sourceLanguage] ?? "Automatic")
@@ -50,7 +49,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     recordView.didChange = keyCombDidChange
 
     // Restore settings
-    let settings = getSettingsInstance()
     let keyCode = settings.integer(forKey: SettingsKey.KeyCode)
     let modifiers = settings.integer(forKey: SettingsKey.Modifiers)
     print(keyCode)
