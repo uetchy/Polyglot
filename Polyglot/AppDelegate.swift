@@ -12,11 +12,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
   func applicationDidFinishLaunching(_: Notification) {
     // Insert code here to initialize your application
-    setPopup()
+    setupPopup()
     setupRecordView()
+    setupInstantCheckbox()
   }
 
-  func setPopup() {
+  func setupPopup() {
     let sources = Constants.getLanguages().map { $0.value }
     let targets = Constants.getLanguages().map { $0.value }
     sourceLanguagePopup.addItem(withTitle: "Automatic")
@@ -31,7 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let settings = getSettingsInstance()
     let sourceLanguage = settings.string(forKey: "sourceLanguage") ?? "auto"
     let targetLanguage = settings.string(forKey: "targetLanguage") ?? "en"
-    NSLog(sourceLanguage)
     sourceLanguagePopup.setTitle(sourceLanguage == "auto" ? "Automatic" : Constants.LANGUAGES[sourceLanguage]!)
     targetLanguagePopup.setTitle(Constants.LANGUAGES[targetLanguage]!)
   }
@@ -46,6 +46,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     recordView.didChange = keyCombDidChange
   }
+
+    func setupInstantCheckbox() {
+      // Restore settings
+      let settings = getSettingsInstance()
+      let isChecked: NSControl.StateValue = settings.bool(forKey: "instantTranslation") ? .on : .off
+      self.instantTranslation.state = isChecked
+      self.instantTranslation.action = #selector(instantCheckboxChanged)
+    }
 
   func keyCombDidChange(keyCombo: KeyCombo?) {
     // NOTE:
@@ -66,6 +74,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     settings.synchronize()
   }
 
+  @objc func instantCheckboxChanged() {
+    let settings = getSettingsInstance()
+    let isChecked = self.instantTranslation.state == NSControl.StateValue.on ? true : false
+    settings.set(isChecked, forKey: "instantTranslation")
+    settings.synchronize()
+  }
+
+    
   @objc func popupSelected(item _: NSMenuItem) {
     let sourceIndex = sourceLanguagePopup.indexOfSelectedItem
     let targetIndex = targetLanguagePopup.indexOfSelectedItem
