@@ -8,7 +8,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var recordView: RecordView!
   @IBOutlet var sourceLanguagePopup: NSPopUpButton!
   @IBOutlet var targetLanguagePopup: NSPopUpButton!
-
+  @IBOutlet weak var instantTranslation: NSButton!
+    
   func applicationDidFinishLaunching(_: Notification) {
     // Insert code here to initialize your application
     setPopup()
