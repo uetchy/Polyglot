@@ -2,23 +2,21 @@ const { resolve } = require('path')
 const extensionPath = resolve(__dirname, 'PolyglotSafariExtension')
 
 module.exports = {
-  context: extensionPath,
-  entry: {
-    content: ['../ContentScript/content.js'],
-  },
+  mode: 'development',
+  entry: './PolyglotSafariExtension/src/content.ts',
   output: {
-    path: extensionPath,
-    filename: '[name].bundle.js',
+    filename: 'content.bundle.js',
+    path: resolve(extensionPath, 'dist'),
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.ts$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: ['@babel/preset-env', '@babel/preset-typescript'],
           },
         },
       },

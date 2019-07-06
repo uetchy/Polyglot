@@ -39,7 +39,7 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>content.js</string>
+				<string>content.bundle.js</string>
 			</dict>
 		</array>
 		<key>SFSafariStyleSheet</key>
