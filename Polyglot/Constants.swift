@@ -1,6 +1,10 @@
 import Foundation
 
 class Constants {
+  static func getLanguages() -> [(key: String, value: String)] {
+    return LANGUAGES.sorted(by: { $0.0 < $1.0 })
+  }
+
   static let LANGUAGES = [
     "af": "Afrikaans",
     "sq": "Albanian",

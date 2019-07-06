@@ -16,10 +16,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func setPopup() {
-    let languages = [String](Constants.LANGUAGES.values).sorted()
-    sourceLanguagePopup.addItem(withTitle: "Automatic")
-    sourceLanguagePopup.addItems(withTitles: languages)
-    targetLanguagePopup.addItems(withTitles: languages)
+    let sources = Constants.getLanguages().map { $0.value }
+    let targets = Constants.getLanguages().map { $0.value }
+    sourceLanguagePopup.addItems(withTitles: sources)
+    targetLanguagePopup.addItems(withTitles: targets)
     sourceLanguagePopup.target = self
     targetLanguagePopup.target = self
     sourceLanguagePopup.action = #selector(popupSelected(item:))
@@ -60,8 +60,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   @objc func popupSelected(item _: NSMenuItem) {
-    let sourceLanguage = sourceLanguagePopup.titleOfSelectedItem ?? "Automatic"
-    let targetLanguage = targetLanguagePopup.titleOfSelectedItem ?? "English"
+    let sourceIndex = sourceLanguagePopup.indexOfSelectedItem
+    let targetIndex = targetLanguagePopup.indexOfSelectedItem
+
+    let sourceLanguage = sourceIndex == 0 ? "auto" : Constants.getLanguages()[sourceIndex + 1].key
+    let targetLanguage = Constants.getLanguages()[targetIndex].key
 
     // save language option
     let settings = getSettingsInstance()
