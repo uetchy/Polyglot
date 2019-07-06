@@ -18,15 +18,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func setPopup() {
     let sources = Constants.getLanguages().map { $0.value }
     let targets = Constants.getLanguages().map { $0.value }
+    sourceLanguagePopup.addItem(withTitle: "Automatic")
     sourceLanguagePopup.addItems(withTitles: sources)
     targetLanguagePopup.addItems(withTitles: targets)
     sourceLanguagePopup.target = self
     targetLanguagePopup.target = self
     sourceLanguagePopup.action = #selector(popupSelected(item:))
     targetLanguagePopup.action = #selector(popupSelected(item:))
+
+    // Restore settings
     let settings = getSettingsInstance()
-    sourceLanguagePopup.setTitle(settings.string(forKey: "sourceLanguage") ?? "Automatic")
-    targetLanguagePopup.setTitle(settings.string(forKey: "targetLanguage") ?? "English")
+    let sourceLanguage = settings.string(forKey: "sourceLanguage") ?? "auto"
+    let targetLanguage = settings.string(forKey: "targetLanguage") ?? "en"
+    NSLog(sourceLanguage)
+    sourceLanguagePopup.setTitle(sourceLanguage == "auto" ? "Automatic" : Constants.LANGUAGES[sourceLanguage]!)
+    targetLanguagePopup.setTitle(Constants.LANGUAGES[targetLanguage]!)
   }
 
   func setupRecordView() {
@@ -63,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let sourceIndex = sourceLanguagePopup.indexOfSelectedItem
     let targetIndex = targetLanguagePopup.indexOfSelectedItem
 
-    let sourceLanguage = sourceIndex == 0 ? "auto" : Constants.getLanguages()[sourceIndex + 1].key
+    let sourceLanguage = sourceIndex == 0 ? "auto" : Constants.getLanguages()[sourceIndex - 1].key
     let targetLanguage = Constants.getLanguages()[targetIndex].key
 
     // save language option
