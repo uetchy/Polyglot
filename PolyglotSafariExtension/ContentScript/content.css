@@ -2,7 +2,7 @@
   :root {
     --background: rgba(200, 200, 200, 0.5);
     --text: #2b2b2b;
-    --border: 1px solid #bdbdbd;
+    --border: 1px solid rgba(200, 200, 200, 0.7);
   }
 }
 
@@ -10,7 +10,7 @@
   :root {
     --background: rgba(0, 0, 0, 0.5);
     --text: #d7d7db;
-    --border: 1px solid #979797;
+    --border: 1px solid rgba(0, 0, 0, 0.7);
   }
 }
 
