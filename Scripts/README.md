@@ -6,7 +6,7 @@
 yarn build # production build
 
 export TARGET_VERSION=<version> # specify next version
-./scripts/update-version.js # update corresponding files
+./Scripts/update-version.js # update corresponding files
 yarn # update lockfile
 fixpack # format package.json
 git commit -am "release: v${TARGET_VERSION}"
