@@ -21,7 +21,7 @@ interface BoundingRect {
 }
 
 interface ReceivedSettings {
-  keyCode: number
+  keyCodeUnicode: number
   modifiers: number
   instantTranslation: boolean
 }
@@ -80,7 +80,7 @@ function handleMessage(msg: SafariExtensionMessageEvent): void {
 
 function settingsHandler(received: ReceivedSettings): void {
   settings = {
-    keyCode: received.keyCode || 0,
+    keyCode: received.keyCodeUnicode || 0,
     modifiers: received.modifiers
       ? divideModifiers(received.modifiers)
       : { ctrl: false, alt: false, shift: false, cmd: false },
@@ -91,15 +91,6 @@ function settingsHandler(received: ReceivedSettings): void {
 
 function translationHandler(message: ReceivedTranslation): void {
   showPanel(message.text)
-}
-
-function handleMouseUp(e: MouseEvent): void {
-  const panel = document.getElementById(PANEL_ID)
-
-  // if clicked on outside of panel, remove panel
-  if (panel && isPanelOpen && !isDescendant(panel, <HTMLElement>e.target)) {
-    removePanel()
-  }
 }
 
 function handleKeypress(keyboardEvent: KeyboardEvent): void {
@@ -113,6 +104,15 @@ function handleKeypress(keyboardEvent: KeyboardEvent): void {
   if (isValidModifiers && isValidKeyCode) {
     keyboardEvent.preventDefault()
     performTranslation()
+  }
+}
+
+function handleMouseUp(e: MouseEvent): void {
+  const panel = document.getElementById(PANEL_ID)
+
+  // if clicked on outside of panel, remove panel
+  if (panel && isPanelOpen && !isDescendant(panel, <HTMLElement>e.target)) {
+    removePanel()
   }
 }
 
@@ -136,20 +136,20 @@ function handleClick(e: MouseEvent): void {
 }
 
 function performTranslation() {
-  showPanel(INDICATOR)
   const selectedText = getSelectedText()
   if (selectedText) {
+    showPanel(INDICATOR)
     safari.extension.dispatchMessage(RequestMessageType.Translate, {
       text: selectedText,
     })
   }
 }
 
+// cmd   = 256
+// shift = 512
+// alt   = 2048
+// ctrl  = 4096
 function divideModifiers(modifiers: number): Modifiers {
-  // cmd   = 256
-  // shift = 512
-  // alt   = 2048
-  // ctrl  = 4096
   const modifierMaps = {
     ctrl: false,
     alt: false,
@@ -201,9 +201,9 @@ function getSelectedText(): string | undefined {
 }
 
 function removePanel() {
+  isPanelOpen = false
   const panel = document.getElementById(PANEL_ID)
   if (panel) {
-    isPanelOpen = false
     panel.remove()
   }
 }

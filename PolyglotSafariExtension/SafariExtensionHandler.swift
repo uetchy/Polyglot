@@ -13,6 +13,7 @@ struct SettingsKey {
   static let Modifiers = "modifiers"
   static let SourceLanguage = "sourceLanguage"
   static let TargetLanguage = "targetLanguage"
+  static let InstantTranslation = "instantTranslation"
 }
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
@@ -33,12 +34,14 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
   // returns the settings
   func getSettingsHandler(page: SFSafariPage) {
-    let keyCode = ud.integer(forKey: SettingsKey.KeyCodeUnicode)
+    let keyCodeUnicode = ud.integer(forKey: SettingsKey.KeyCodeUnicode)
     let modifiers = ud.integer(forKey: SettingsKey.Modifiers)
+    let instantTranslation = ud.bool(forKey: SettingsKey.InstantTranslation)
     let settings = [
-      "keyCode": keyCode,
-      "modifiers": modifiers,
-    ] as [String: Int]
+      SettingsKey.KeyCodeUnicode: keyCodeUnicode,
+      SettingsKey.Modifiers: modifiers,
+      SettingsKey.InstantTranslation: instantTranslation,
+    ] as [String: Any]
 
     page.dispatchMessageToScript(withName: RequestType.SendSettings, userInfo: settings)
   }
