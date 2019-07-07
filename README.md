@@ -1,6 +1,6 @@
 ![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/github-header.png?raw=true)
 
-[![Build Status](https://travis-ci.com/uetchy/Polyglot.svg?branch=master)](https://travis-ci.com/uetchy/Polyglot)[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/polyglot)
+[![Build Status](https://travis-ci.com/uetchy/Polyglot.svg?branch=master)](https://travis-ci.com/uetchy/Polyglot) [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/polyglot)
 
 Polyglot is a Safari extension that translates selected text into your native
 language using Google Translate.
