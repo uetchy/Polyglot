@@ -11,6 +11,10 @@ struct SettingsKey {
   static let InstantTranslation = "instantTranslation"
 }
 
+let DEFAULT_SOURCE = ("auto", "Auto Detect")
+let DEFAULT_TARGET = ("en", "English")
+let GROUP_ID = "58XDWHK3JX.io.uechi.Polyglot"
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var window: NSWindow!
@@ -19,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var targetLanguagePopup: NSPopUpButton!
   @IBOutlet var instantTranslation: NSButton!
 
-  var settings = UserDefaults(suiteName: "58XDWHK3JX.io.uechi.Polyglot")!
+  var settings = UserDefaults(suiteName: GROUP_ID)!
 
   func applicationDidFinishLaunching(_: Notification) {
     setupPopupButtons()
@@ -28,20 +32,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func setupPopupButtons() {
-    let languages = Constants.getLanguages().map { $0.value }
-    sourceLanguagePopup.addItem(withTitle: "Automatic")
-    sourceLanguagePopup.addItems(withTitles: languages)
-    targetLanguagePopup.addItems(withTitles: languages)
+    let sourceLanguages = Constants.getSourceLabels()
+    let targetLanguages = Constants.getTargetLabels()
+    sourceLanguagePopup.addItems(withTitles: sourceLanguages)
+    targetLanguagePopup.addItems(withTitles: targetLanguages)
+
     sourceLanguagePopup.target = self
     targetLanguagePopup.target = self
-    sourceLanguagePopup.action = #selector(popupSelected(item:))
-    targetLanguagePopup.action = #selector(popupSelected(item:))
+    sourceLanguagePopup.action = #selector(sourcePopupSelected(item:))
+    targetLanguagePopup.action = #selector(targetPopupSelected(item:))
 
     // Restore settings
-    let sourceLanguage = settings.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
-    let targetLanguage = settings.string(forKey: SettingsKey.TargetLanguage) ?? "en"
-    sourceLanguagePopup.setTitle(sourceLanguage == "auto" ? "Automatic" : Constants.LANGUAGES[sourceLanguage] ?? "Automatic")
-    targetLanguagePopup.setTitle(Constants.LANGUAGES[targetLanguage] ?? "English")
+    let sourceLanguage = settings.string(forKey: SettingsKey.SourceLanguage) ?? DEFAULT_SOURCE.0
+    let targetLanguage = settings.string(forKey: SettingsKey.TargetLanguage) ?? DEFAULT_TARGET.0
+    sourceLanguagePopup.setTitle(Constants.findSourceLabel(sourceLanguage) ?? DEFAULT_SOURCE.1)
+    targetLanguagePopup.setTitle(Constants.findTargetLabel(targetLanguage) ?? DEFAULT_TARGET.1)
   }
 
   func setupKeyComboView() {
@@ -51,7 +56,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Restore settings
     let keyCode = settings.integer(forKey: SettingsKey.KeyCode)
     let modifiers = settings.integer(forKey: SettingsKey.Modifiers)
-    print(keyCode)
     let keyCombo = KeyCombo(keyCode: keyCode, carbonModifiers: modifiers)
     recordView.keyCombo = keyCombo
   }
@@ -67,8 +71,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func keyCombDidChange(keyCombo: KeyCombo?) {
     guard let keyCombo = keyCombo else { return }
     guard let keyCode = UnicodeScalar(keyCombo.characters) else { return }
-    print("keyCode: \(keyCode.value)")
-    print("modifiers: \(keyCombo.modifiers)")
 
     // save keycombo
     settings.set(keyCode.value, forKey: SettingsKey.KeyCodeUnicode)
@@ -84,21 +86,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     settings.synchronize()
   }
 
-  @objc func popupSelected(item _: NSMenuItem) {
-    let sourceIndex = sourceLanguagePopup.indexOfSelectedItem
-    let targetIndex = targetLanguagePopup.indexOfSelectedItem
-
-    let sourceLanguage = sourceIndex == 0 ? "auto" : Constants.getLanguages()[sourceIndex - 1].key
-    let targetLanguage = Constants.getLanguages()[targetIndex].key
+  @objc func sourcePopupSelected(item _: NSMenuItem) {
+    let index = sourceLanguagePopup.indexOfSelectedItem
+    let sourceLanguage = Constants.findSourceKey(index)
 
     // save language option
     settings.set(sourceLanguage, forKey: SettingsKey.SourceLanguage)
-    settings.set(targetLanguage, forKey: SettingsKey.TargetLanguage)
     settings.synchronize()
   }
 
-  func getSettingsInstance() -> UserDefaults {
-    return UserDefaults(suiteName: "group.io.uechi.Polyglot")!
+  @objc func targetPopupSelected(item _: NSMenuItem) {
+    let index = targetLanguagePopup.indexOfSelectedItem
+    let targetLanguage = Constants.findTargetKey(index)
+
+    // save language option
+    settings.set(targetLanguage, forKey: SettingsKey.TargetLanguage)
+    settings.synchronize()
   }
 
   func applicationWillTerminate(_: Notification) {

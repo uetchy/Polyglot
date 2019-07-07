@@ -1,10 +1,15 @@
 
 import SafariServices
 
-struct RequestType {
+struct MessageType {
   static let SendSettings = "settingsReceived"
   static let SendTranslation = "translated"
   static let PerformTranslation = "performTranslation"
+}
+
+struct ResponseType {
+  static let RequestSettings = "getSettings"
+  static let Translate = "translate"
 }
 
 struct SettingsKey {
@@ -16,15 +21,17 @@ struct SettingsKey {
   static let InstantTranslation = "instantTranslation"
 }
 
+let GROUP_ID = "58XDWHK3JX.io.uechi.Polyglot"
+
 class SafariExtensionHandler: SFSafariExtensionHandler {
-  var ud = UserDefaults(suiteName: "58XDWHK3JX.io.uechi.Polyglot")!
+  var ud = UserDefaults(suiteName: GROUP_ID)!
 
   override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String: Any]?) {
     page.getPropertiesWithCompletionHandler { properties in
       switch messageName {
-      case "getSettings":
+      case ResponseType.RequestSettings:
         self.getSettingsHandler(page: page)
-      case "translate":
+      case ResponseType.Translate:
         self.translateHandler(page: page, text: userInfo?["text"] as? String ?? "", targetLanguage: "en")
       default:
         NSLog("messageReceived:(\(messageName)) from a script injected into (\(String(describing: properties?.url))) with userInfo (\(userInfo ?? [:]))")
@@ -43,7 +50,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       SettingsKey.InstantTranslation: instantTranslation,
     ] as [String: Any]
 
-    page.dispatchMessageToScript(withName: RequestType.SendSettings, userInfo: settings)
+    page.dispatchMessageToScript(withName: MessageType.SendSettings, userInfo: settings)
   }
 
   // called when translation kicked off
@@ -52,7 +59,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     let targetLanguage = ud.string(forKey: SettingsKey.TargetLanguage) ?? "en"
 
     googleTranslate(text, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage) { translatedText in
-      page.dispatchMessageToScript(withName: RequestType.SendTranslation, userInfo: ["text": translatedText])
+      page.dispatchMessageToScript(withName: MessageType.SendTranslation, userInfo: ["text": translatedText])
     }
   }
 
@@ -61,7 +68,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     print("toolbarItemClicked")
     window.getActiveTab { tab in
       tab?.getActivePage(completionHandler: { page in
-        page?.dispatchMessageToScript(withName: RequestType.PerformTranslation, userInfo: [:])
+        page?.dispatchMessageToScript(withName: MessageType.PerformTranslation, userInfo: [:])
       })
     }
   }
