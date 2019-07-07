@@ -7,11 +7,12 @@
     "build": "yarn build:script && yarn build:app",
     "build:app": "xcodebuild clean build archive -scheme Polyglot -archivePath ./Artifacts/Polyglot.xcarchive",
     "build:script": "webpack-cli --mode production",
+    "clean": "rm -rf Artifacts",
     "export": "xcodebuild -exportArchive -exportOptionsPlist ./exportOptions.plist -archivePath ./Artifacts/Polyglot.xcarchive -exportPath ./Artifacts/Exported",
     "format": "swiftformat . --swiftversion 4",
     "inspect": "pluginkit -mAvvv -p com.apple.Safari.extension",
     "package": "create-dmg Artifacts/Exported/Polyglot.app Artifacts",
-    "ship": "yarn build && yarn export && yarn package",
+    "ship": "yarn clean && yarn build && yarn export && yarn package",
     "start": "webpack-cli -w --mode development"
   },
   "dependencies": {
