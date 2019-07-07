@@ -2,10 +2,15 @@
   "name": "polyglot",
   "description": "Polyglot content script",
   "version": "3.0.0",
-  "main": "./PolyglotSafariExtension/dist/content.bundle.js",
+  "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
   "scripts": {
-    "build": "webpack-cli --mode production",
+    "build": "yarn build:script && yarn build:app",
+    "build:app": "xcodebuild clean build archive -scheme Polyglot -archivePath ./Artifacts/Polyglot.xcarchive",
+    "build:script": "webpack-cli --mode production",
+    "export": "xcodebuild -exportArchive -exportOptionsPlist ./exportOptions.plist -archivePath ./Artifacts/Polyglot.xcarchive -exportPath ./Artifacts/Exported",
+    "format": "swiftformat . --swiftversion 4",
     "inspect": "pluginkit -mAvvv -p com.apple.Safari.extension",
+    "ship": "yarn build && yarn export",
     "start": "webpack-cli -w --mode development"
   },
   "dependencies": {
@@ -17,10 +22,16 @@
     "@babel/preset-env": "^7.5.0",
     "@babel/preset-typescript": "^7.3.3",
     "babel-loader": "^8.0.6",
+    "husky": "^3.0.0",
     "plist": "^3.0.1",
     "typescript": "^3.5.2",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format"
+    }
   },
   "private": true
 }
