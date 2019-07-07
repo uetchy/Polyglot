@@ -2,5 +2,7 @@ language: swift
 osx_image: xcode10.2
 install:
   - carthage update --platform macos
+  - yarn install
 script:
+  - yarn build:script
   - set -o pipefail && xcodebuild clean build -scheme Polyglot CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty
