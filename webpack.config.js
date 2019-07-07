@@ -2,7 +2,6 @@ const { resolve } = require('path')
 const extensionPath = resolve(__dirname, 'PolyglotSafariExtension')
 
 module.exports = {
-  mode: 'development',
   entry: './PolyglotSafariExtension/Sources/content.ts',
   output: {
     filename: 'content.bundle.js',
