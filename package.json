@@ -1,7 +1,7 @@
 {
   "name": "polyglot",
   "description": "Polyglot content script",
-  "version": "3.0.0",
+  "version": "3.0",
   "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
   "scripts": {
     "build": "yarn build:script && yarn build:app",

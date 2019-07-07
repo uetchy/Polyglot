@@ -15,4 +15,8 @@ git push
 git push --tags
 ```
 
-then open up Safari Extension Builder and export an extension to a package file (`.safariextz`) and attach it to the release in GitHub.
+## ship
+
+```bash
+yarn ship # will generate Polyglot.app to `Artifacts/Exported/`
+```
