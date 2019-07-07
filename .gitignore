@@ -1,6 +1,5 @@
 /Artifacts
 *.bundle.js
-*.dmg
 
 # Created by https://www.gitignore.io/api/visualstudiocode,node,xcode,swift
 # Edit at https://www.gitignore.io/?templates=visualstudiocode,node,xcode,swift

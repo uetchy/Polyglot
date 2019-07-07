@@ -10,7 +10,7 @@
     "export": "xcodebuild -exportArchive -exportOptionsPlist ./exportOptions.plist -archivePath ./Artifacts/Polyglot.xcarchive -exportPath ./Artifacts/Exported",
     "format": "swiftformat . --swiftversion 4",
     "inspect": "pluginkit -mAvvv -p com.apple.Safari.extension",
-    "package": "create-dmg Artifacts/Exported/Polyglot.app",
+    "package": "create-dmg Artifacts/Exported/Polyglot.app Artifacts",
     "ship": "yarn build && yarn export && yarn package",
     "start": "webpack-cli -w --mode development"
   },
