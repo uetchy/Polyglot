@@ -1,7 +1,6 @@
-![](http://uechi-public.s3.amazonaws.com/github/Polyglot/header.png)
+![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/github-header.png?raw=true)
 
-[![Build Status](https://travis-ci.com/uetchy/Polyglot.svg?branch=master)](https://travis-ci.com/uetchy/Polyglot)
-[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/polyglot)
+[![Build Status](https://travis-ci.com/uetchy/Polyglot.svg?branch=master)](https://travis-ci.com/uetchy/Polyglot)[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/polyglot)
 
 Polyglot is a Safari extension that translates selected text into your native
 language using Google Translate.
@@ -18,7 +17,15 @@ language to one you prefer and reconfigure keyboard shortcuts as you wish.
 - or, Select word or sentence and right-click then click **Translate**.
 - or, Select word or sentence and click **Translate** button on tool bar.
 
-![](http://uechi-public.s3.amazonaws.com/github/Polyglot/screencast1.gif)
+![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/introduction.gif?raw=true)
+
+## Dark mode support
+
+![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/dark-mode.gif?raw=true)
+
+## Instant translation
+
+![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/instant-translation.gif?raw=true)
 
 # Troubleshooting
 
