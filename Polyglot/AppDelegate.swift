@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var instantTranslation: NSButton!
 
   var settings = UserDefaults(suiteName: "58XDWHK3JX.io.uechi.Polyglot")!
-    
+
   func applicationDidFinishLaunching(_: Notification) {
     setupPopupButtons()
     setupKeyComboView()
@@ -59,8 +59,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func setupInstantCheckbox() {
     // Restore settings
     let isChecked: NSControl.StateValue = settings.bool(forKey: SettingsKey.InstantTranslation) ? .on : .off
-    self.instantTranslation.state = isChecked
-    self.instantTranslation.action = #selector(instantCheckboxChanged)
+    instantTranslation.state = isChecked
+    instantTranslation.action = #selector(instantCheckboxChanged)
   }
 
   // NOTE: cmd = 256, shift = 512, alt = 2048, ctrl = 4096
@@ -79,12 +79,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   @objc func instantCheckboxChanged() {
     // save instant checkbox setting
-    let isChecked = self.instantTranslation.state == NSControl.StateValue.on ? true : false
+    let isChecked = instantTranslation.state == NSControl.StateValue.on ? true : false
     settings.set(isChecked, forKey: SettingsKey.InstantTranslation)
     settings.synchronize()
   }
 
-    
   @objc func popupSelected(item _: NSMenuItem) {
     let sourceIndex = sourceLanguagePopup.indexOfSelectedItem
     let targetIndex = targetLanguagePopup.indexOfSelectedItem

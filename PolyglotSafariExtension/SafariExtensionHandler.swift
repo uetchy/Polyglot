@@ -17,7 +17,7 @@ struct SettingsKey {
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
   var ud = UserDefaults(suiteName: "58XDWHK3JX.io.uechi.Polyglot")!
-  
+
   override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String: Any]?) {
     page.getPropertiesWithCompletionHandler { properties in
       switch messageName {
