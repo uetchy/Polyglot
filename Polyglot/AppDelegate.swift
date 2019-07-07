@@ -18,7 +18,16 @@ let GROUP_ID = "58XDWHK3JX.io.uechi.Polyglot"
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var window: NSWindow!
-  @IBOutlet var recordView: RecordView!
+  @IBOutlet var recordView: RecordView! {
+    didSet {
+      if #available(OSX 10.14, *) {
+        recordView.tintColor = .controlAccentColor
+        recordView.backgroundColor = .controlBackgroundColor
+        recordView.borderColor = .controlShadowColor
+      }
+    }
+  }
+
   @IBOutlet var sourceLanguagePopup: NSPopUpButton!
   @IBOutlet var targetLanguagePopup: NSPopUpButton!
   @IBOutlet var instantTranslation: NSButton!
