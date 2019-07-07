@@ -104,7 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     settings.synchronize()
   }
 
-  func applicationWillTerminate(_: Notification) {
-    HotKeyCenter.shared.unregisterAll()
+  func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
+    return true
   }
 }
