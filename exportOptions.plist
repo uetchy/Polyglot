@@ -5,6 +5,6 @@
     <key>destination</key>
     <string>export</string>
     <key>method</key>
-    <string>development</string>
+    <string>developer-id</string>
 </dict>
 </plist>
