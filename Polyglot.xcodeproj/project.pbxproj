@@ -10,6 +10,7 @@
 		991C479E2182CA0C0075EFE5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; };
 		991C479F2182CA0C0075EFE5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		991C47A12182CA9D0075EFE5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; };
+		994124CB22D20FD6007830D4 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 994124CA22D20FD6007830D4 /* icon.icns */; };
 		994C4A4122C3205F00BACF66 /* toolbar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C4A3F22C3205F00BACF66 /* toolbar-icon.png */; };
 		994C4A4322C3212600BACF66 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994C4A4222C3212600BACF66 /* Translator.swift */; };
 		99CC9B1222CB3115002650EF /* PolyglotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CC9B1122CB3115002650EF /* PolyglotTests.swift */; };
@@ -76,6 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		994124CA22D20FD6007830D4 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		994C4A3F22C3205F00BACF66 /* toolbar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-icon.png"; sourceTree = "<group>"; };
 		994C4A4222C3212600BACF66 /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
 		99CC9B0F22CB3115002650EF /* PolyglotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolyglotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +192,7 @@
 				99ED82812118127D00505D83 /* MainMenu.xib */,
 				99ED82842118127D00505D83 /* Info.plist */,
 				99ED82852118127D00505D83 /* Polyglot.entitlements */,
+				994124CA22D20FD6007830D4 /* icon.icns */,
 			);
 			path = Polyglot;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 			files = (
 				99ED82802118127D00505D83 /* Assets.xcassets in Resources */,
 				99ED82832118127D00505D83 /* MainMenu.xib in Resources */,
+				994124CB22D20FD6007830D4 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,8 @@
     "export": "xcodebuild -exportArchive -exportOptionsPlist ./exportOptions.plist -archivePath ./Artifacts/Polyglot.xcarchive -exportPath ./Artifacts/Exported",
     "format": "swiftformat . --swiftversion 4",
     "inspect": "pluginkit -mAvvv -p com.apple.Safari.extension",
-    "ship": "yarn build && yarn export",
+    "package": "create-dmg Artifacts/Exported/Polyglot.app",
+    "ship": "yarn build && yarn export && yarn package",
     "start": "webpack-cli -w --mode development"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "create-dmg": "^4.0.2",
     "husky": "^3.0.0",
     "lint-staged": "^9.1.0",
     "plist": "^3.0.1",
