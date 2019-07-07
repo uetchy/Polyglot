@@ -90,7 +90,7 @@ function settingsHandler(received: ReceivedSettings): void {
 }
 
 function translationHandler(message: ReceivedTranslation): void {
-  showPanel(message.text)
+  showPanel(message.text.replace(/\n/g, '<br/>'))
 }
 
 function handleKeypress(keyboardEvent: KeyboardEvent): void {

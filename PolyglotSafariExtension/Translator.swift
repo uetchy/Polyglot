@@ -2,34 +2,40 @@ import Alamofire
 import Foundation
 
 func googleTranslate(_ text: String, sourceLanguage: String?, targetLanguage: String, completionHandler: @escaping (String) -> Void) {
-  NSLog("googleTranslate")
-
   let endpoint: String = "https://translate.googleapis.com/translate_a/single"
   let params: Alamofire.Parameters = [
     "client": "gtx",
     "sl": sourceLanguage ?? "auto",
     "tl": targetLanguage,
     "dt": "t",
+    "dj": 1,
+    "ie": "UTF-8",
+    "oe": "UTF-8",
     "q": text,
   ]
 
   Alamofire.request(endpoint, method: .get, parameters: params)
     .validate(statusCode: 200 ..< 300)
     .responseJSON { response in
-      guard let json = response.result.value as? NSArray,
-        let textArray = json[0] as? NSArray else {
+      if response.result.error != nil {
+        NSLog(response.result.error?.localizedDescription ?? "")
         return
       }
 
-      let sentenceArray = textArray.compactMap { (item) -> String in
-        guard let item = item as? NSArray,
-          let text = item[0] as? String else {
-          return ""
-        }
-        return text
+      guard let json = response.result.value as? NSDictionary,
+        let sentences = json["sentences"] as? NSArray else {
+        return
       }
 
-      let sentence = sentenceArray.joined(separator: "\n")
+      let sentenceArray = sentences.compactMap { (item) -> String? in
+        guard let item = item as? NSDictionary,
+          let text = item["trans"] as? String else {
+          return nil
+        }
+        return text
+      }.compactMap { $0 }
+
+      let sentence = sentenceArray.joined(separator: "")
 
       completionHandler(sentence)
     }
