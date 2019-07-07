@@ -39,14 +39,14 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>content.bundle.js</string>
+				<string>ContentScript/content.bundle.js</string>
 			</dict>
 		</array>
 		<key>SFSafariStyleSheet</key>
 		<array>
 			<dict>
 				<key>Style Sheet</key>
-				<string>content.css</string>
+				<string>ContentScript/content.css</string>
 			</dict>
 		</array>
 		<key>SFSafariExtensionBundleIdentifiersToUninstall</key>

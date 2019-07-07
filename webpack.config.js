@@ -3,10 +3,10 @@ const extensionPath = resolve(__dirname, 'PolyglotSafariExtension')
 
 module.exports = {
   mode: 'development',
-  entry: './PolyglotSafariExtension/src/content.ts',
+  entry: './PolyglotSafariExtension/Sources/content.ts',
   output: {
     filename: 'content.bundle.js',
-    path: resolve(extensionPath, 'dist'),
+    path: resolve(extensionPath, 'ContentScript'),
   },
   module: {
     rules: [
