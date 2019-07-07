@@ -2,6 +2,7 @@ language: swift
 osx_image: xcode10.2
 install:
   - carthage update --platform macos
+  - brew install yarn
   - yarn install
 script:
   - yarn build:script
