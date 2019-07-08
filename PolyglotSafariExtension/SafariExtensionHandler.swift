@@ -79,6 +79,10 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     validationHandler(true, "")
   }
 
+  override func contextMenuItemSelected(withCommand _: String, in page: SFSafariPage, userInfo _: [String: Any]? = nil) {
+    page.dispatchMessageToScript(withName: MessageType.PerformTranslation, userInfo: [:])
+  }
+
   // called when popover shown
   override func popoverViewController() -> SFSafariExtensionViewController {
     print("popoverViewController")
