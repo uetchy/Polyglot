@@ -97,9 +97,18 @@ function handleKeypress(keyboardEvent: KeyboardEvent): void {
   // Check if shortcut key is properly configured
   const { keyCode } = settings
   if (keyCode === undefined) return
+  const kbdKeyCode = keyboardEvent.key.toUpperCase().charCodeAt(0)
 
   const isValidModifiers = checkModifiers(settings.modifiers, keyboardEvent)
-  const isValidKeyCode = keyCode === keyboardEvent.keyCode
+  const isValidKeyCode = keyCode === kbdKeyCode
+
+  console.debug(
+    keyCode,
+    'keyCode: ' + kbdKeyCode,
+    'key: ' + keyboardEvent.key,
+    isValidKeyCode,
+    isValidModifiers
+  )
 
   if (isValidModifiers && isValidKeyCode) {
     keyboardEvent.preventDefault()
