@@ -40,5 +40,5 @@ fs.writeFileSync(extInfoPath, plist.build(extInfo))
 const packagePath = path.resolve(__dirname, '../package.json')
 console.log(`rewriting '${packagePath}'`)
 const package = require(packagePath)
-package.version = shortVersion
+package.version = bundleVersion
 fs.writeFileSync(packagePath, JSON.stringify(package, null, 2))

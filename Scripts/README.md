@@ -3,8 +3,8 @@
 ## Update version
 
 ```bash
-export VERSION=3.0.0
-export BUILD=2
+export VERSION=3.0
+export BUILD=1
 Scripts/update-version.js # update corresponding files
 yarn # update lockfile
 fixpack # format package.json
