@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-env": "^7.5.2",
     "@babel/preset-typescript": "^7.3.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -32,8 +32,8 @@
     "husky": "^3.0.0",
     "lint-staged": "^9.1.0",
     "plist": "^3.0.1",
-    "typescript": "^3.5.2",
-    "webpack": "^4.35.2",
+    "typescript": "^3.5.3",
+    "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5"
   },
   "husky": {
