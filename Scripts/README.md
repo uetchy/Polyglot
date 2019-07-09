@@ -1,21 +1,26 @@
 # scripts
 
-## update-version
+## Update version
 
 ```bash
-yarn build # production build
-
-export TARGET_VERSION=<version> # specify next version
-./Scripts/update-version.js # update corresponding files
+export VERSION=3.0.0
+export BUILD=2
+Scripts/update-version.js # update corresponding files
 yarn # update lockfile
 fixpack # format package.json
-git commit -am "release: v${TARGET_VERSION}"
-git tag v${TARGET_VERSION} -a -m "release: v${TARGET_VERSION}"
+git commit -am "release: v${VERSION}"
+git tag v${VERSION} -a -m "release: v${VERSION}"
 git push
 git push --tags
 ```
 
-## ship
+## Ship to Mac App Store
+
+```bash
+yarn ship:mas # will build Polyglot.app and upload to MAS
+```
+
+## Build app for pre-release
 
 ```bash
 yarn ship # will generate Polyglot.app to `Artifacts/Exported/`
