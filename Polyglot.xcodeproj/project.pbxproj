@@ -17,6 +17,7 @@
 		99CEF4F722D09A8900B7DF34 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CEF4F622D09A8900B7DF34 /* Constants.swift */; };
 		99CEF50222D1A08800B7DF34 /* content.css in Resources */ = {isa = PBXBuildFile; fileRef = 99CEF50022D1A08800B7DF34 /* content.css */; };
 		99CEF50322D1A08800B7DF34 /* content.bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 99CEF50122D1A08800B7DF34 /* content.bundle.js */; };
+		99D51DA922D4BBF3004EC939 /* content.ts in Resources */ = {isa = PBXBuildFile; fileRef = 99D51DA822D4BBF3004EC939 /* content.ts */; };
 		99ED036C2182D21C0040BD34 /* KeyHolder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03692182D2130040BD34 /* KeyHolder.framework */; };
 		99ED036D2182D21C0040BD34 /* KeyHolder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03692182D2130040BD34 /* KeyHolder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		99ED036E2182D21C0040BD34 /* Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03682182D2130040BD34 /* Magnet.framework */; };
@@ -87,6 +88,7 @@
 		99CEF4F622D09A8900B7DF34 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		99CEF50022D1A08800B7DF34 /* content.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = content.css; sourceTree = "<group>"; };
 		99CEF50122D1A08800B7DF34 /* content.bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.bundle.js; sourceTree = "<group>"; };
+		99D51DA822D4BBF3004EC939 /* content.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = content.ts; sourceTree = "<group>"; };
 		99ED03682182D2130040BD34 /* Magnet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Magnet.framework; path = Carthage/Build/Mac/Magnet.framework; sourceTree = "<group>"; };
 		99ED03692182D2130040BD34 /* KeyHolder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeyHolder.framework; path = Carthage/Build/Mac/KeyHolder.framework; sourceTree = "<group>"; };
 		99ED827A2118127C00505D83 /* Polyglot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Polyglot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,10 +158,18 @@
 		99CEF4FF22D1A08800B7DF34 /* ContentScript */ = {
 			isa = PBXGroup;
 			children = (
-				99CEF50022D1A08800B7DF34 /* content.css */,
 				99CEF50122D1A08800B7DF34 /* content.bundle.js */,
+				99CEF50022D1A08800B7DF34 /* content.css */,
 			);
 			path = ContentScript;
+			sourceTree = "<group>";
+		};
+		99D51DA722D4BBF3004EC939 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				99D51DA822D4BBF3004EC939 /* content.ts */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		99ED82712118127C00505D83 = {
@@ -211,8 +221,9 @@
 		99ED8293211812AB00505D83 /* PolyglotSafariExtension */ = {
 			isa = PBXGroup;
 			children = (
-				99CEF4FF22D1A08800B7DF34 /* ContentScript */,
 				994C4A3D22C3203400BACF66 /* Assets */,
+				99CEF4FF22D1A08800B7DF34 /* ContentScript */,
+				99D51DA722D4BBF3004EC939 /* Sources */,
 				99ED8294211812AB00505D83 /* SafariExtensionHandler.swift */,
 				994C4A4222C3212600BACF66 /* Translator.swift */,
 				99ED8296211812AB00505D83 /* SafariExtensionViewController.swift */,
@@ -373,6 +384,7 @@
 				99ED829F211812AB00505D83 /* ToolbarItemIcon.pdf in Resources */,
 				99CEF50322D1A08800B7DF34 /* content.bundle.js in Resources */,
 				99CEF50222D1A08800B7DF34 /* content.css in Resources */,
+				99D51DA922D4BBF3004EC939 /* content.ts in Resources */,
 				99ED829A211812AB00505D83 /* SafariExtensionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

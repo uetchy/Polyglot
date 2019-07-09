@@ -133,7 +133,7 @@ function translationHandler(message: ReceivedTranslation): void {
   const result = Mustache.render(
     `
   <div class="polyglot__translation">
-    {{{ translation }}}
+    {{{translation}}}
   </div>
   <div class="polyglot__synonyms">
     {{#synonyms}}
