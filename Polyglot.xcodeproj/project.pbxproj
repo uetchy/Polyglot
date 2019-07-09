@@ -188,10 +188,10 @@
 			children = (
 				99ED827D2118127C00505D83 /* AppDelegate.swift */,
 				99CEF4F622D09A8900B7DF34 /* Constants.swift */,
-				99ED827F2118127D00505D83 /* Assets.xcassets */,
 				99ED82812118127D00505D83 /* MainMenu.xib */,
 				99ED82842118127D00505D83 /* Info.plist */,
 				99ED82852118127D00505D83 /* Polyglot.entitlements */,
+				99ED827F2118127D00505D83 /* Assets.xcassets */,
 				994124CA22D20FD6007830D4 /* icon.icns */,
 			);
 			path = Polyglot;
@@ -215,10 +215,10 @@
 				994C4A3D22C3203400BACF66 /* Assets */,
 				99ED8294211812AB00505D83 /* SafariExtensionHandler.swift */,
 				99ED8296211812AB00505D83 /* SafariExtensionViewController.swift */,
+				994C4A4222C3212600BACF66 /* Translator.swift */,
 				99ED8298211812AB00505D83 /* SafariExtensionViewController.xib */,
 				99ED829B211812AB00505D83 /* Info.plist */,
 				99ED82A0211812AB00505D83 /* PolyglotSafariExtension.entitlements */,
-				994C4A4222C3212600BACF66 /* Translator.swift */,
 			);
 			path = PolyglotSafariExtension;
 			sourceTree = "<group>";

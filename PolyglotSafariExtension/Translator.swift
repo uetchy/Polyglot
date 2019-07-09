@@ -1,16 +1,15 @@
 import Alamofire
 import Foundation
 
-func googleTranslate(_ text: String, sourceLanguage: String?, targetLanguage: String, completionHandler: @escaping (String) -> Void) {
-  let endpoint: String = "https://translate.googleapis.com/translate_a/single"
+func googleTranslate(_ text: String, sourceLanguage: String?, targetLanguage: String, completionHandler: @escaping (NSDictionary) -> Void) {
+  let endpoint: String = "https://translate.googleapis.com/translate_a/single?dt=t&dt=ss"
   let params: Alamofire.Parameters = [
     "client": "gtx",
-    "sl": sourceLanguage ?? "auto",
-    "tl": targetLanguage,
-    "dt": "t",
     "dj": 1,
     "ie": "UTF-8",
     "oe": "UTF-8",
+    "sl": sourceLanguage ?? "auto",
+    "tl": targetLanguage,
     "q": text,
   ]
 
@@ -27,16 +26,29 @@ func googleTranslate(_ text: String, sourceLanguage: String?, targetLanguage: St
         return
       }
 
-      let sentenceArray = sentences.compactMap { (item) -> String? in
+      let result: NSMutableDictionary = [:]
+
+      // Translation
+      result["translation"] = sentences.compactMap { (item) -> String? in
         guard let item = item as? NSDictionary,
           let text = item["trans"] as? String else {
           return nil
         }
         return text
-      }.compactMap { $0 }
+      }.compactMap { $0 }.joined(separator: "")
 
-      let sentence = sentenceArray.joined(separator: "")
+      // Dictionary
+      if let dict = json["dict"] as? NSArray {
+        print(dict)
+        result["dictionary"] = dict
+      }
 
-      completionHandler(sentence)
+      // Dictionary
+      if let synsets = json["synsets"] as? NSArray {
+        print(synsets)
+        result["synonyms"] = synsets
+      }
+
+      completionHandler(result as NSDictionary)
     }
 }

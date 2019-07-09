@@ -1,3 +1,5 @@
+import Mustache from 'mustache'
+
 interface Settings {
   keyCode: number
   modifiers: Modifiers
@@ -26,8 +28,35 @@ interface ReceivedSettings {
   instantTranslation: boolean
 }
 
+interface DictionaryEntry {
+  score: number
+  word: string
+  reverse_translation: string[]
+}
+
+interface DictionaryItem {
+  base_form: string
+  entry: DictionaryEntry[]
+  pos: 'noun' | 'verb'
+  pos_enum: number
+  terms: string[]
+}
+
+interface SynonymEntry {
+  definition_id: string
+  synonym: string[]
+}
+
+interface Synonym {
+  base_form: string
+  pos: string
+  entry: SynonymEntry[]
+}
+
 interface ReceivedTranslation {
-  text: string
+  translation: string
+  dictionary: DictionaryItem[]
+  synonyms: Synonym[]
 }
 
 enum RequestMessageType {
@@ -90,7 +119,38 @@ function settingsHandler(received: ReceivedSettings): void {
 }
 
 function translationHandler(message: ReceivedTranslation): void {
-  showPanel(message.text.replace(/\n/g, '<br/>'))
+  console.log(message)
+  const view = {
+    translation: message.translation.replace(/\n/g, '<br/>'),
+    synonyms: message.synonyms
+      ? message.synonyms.map((synonym) => ({
+          pos: synonym.pos,
+          entries: Array.from(
+            new Set(synonym.entry.map((entry) => entry.synonym[0]))
+          ),
+        }))
+      : null,
+  }
+  const result = Mustache.render(
+    `
+  <div class="polyglot__translation">
+    {{ translation }}
+  </div>
+  <div class="polyglot__synonyms">
+    {{#synonyms}}
+    <div class="polyglot__synonym">
+      <div class="polyglot__synonym--pos">{{pos}}</div>
+      <div class="polyglot__synonym__entries">
+        {{#entries}}
+        <div class="polyglot__synonym__entries--entry">{{.}}</div>
+        {{/entries}}
+      </div>
+    </div>
+    {{/synonyms}}
+  </div>`,
+    view
+  )
+  showPanel(result)
 }
 
 function handleKeypress(keyboardEvent: KeyboardEvent): void {

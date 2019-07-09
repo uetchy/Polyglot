@@ -58,14 +58,17 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     let sourceLanguage = ud.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
     let targetLanguage = ud.string(forKey: SettingsKey.TargetLanguage) ?? "en"
 
-    googleTranslate(text, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage) { translatedText in
-      page.dispatchMessageToScript(withName: MessageType.SendTranslation, userInfo: ["text": translatedText])
+    googleTranslate(text, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage) { translationResult in
+      page.dispatchMessageToScript(withName: MessageType.SendTranslation, userInfo: [
+        "translation": translationResult["translation"] ?? "",
+        "dictionary": translationResult["dictionary"] ?? [],
+        "synonyms": translationResult["synonyms"] ?? [],
+      ])
     }
   }
 
   // This method will be called when your toolbar item is clicked.
   override func toolbarItemClicked(in window: SFSafariWindow) {
-    print("toolbarItemClicked")
     window.getActiveTab { tab in
       tab?.getActivePage(completionHandler: { page in
         page?.dispatchMessageToScript(withName: MessageType.PerformTranslation, userInfo: [:])

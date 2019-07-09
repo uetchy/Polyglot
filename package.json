@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "core-js": "3",
-    "isomorphic-unfetch": "^3.0.0"
+    "isomorphic-unfetch": "^3.0.0",
+    "mustache": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",

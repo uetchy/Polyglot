@@ -1,8 +1,7 @@
 @media (prefers-color-scheme: light) {
   :root {
-    --background: rgba(200, 200, 200, 0.5);
+    --background: rgba(200, 200, 200, 0.7);
     --text: #2b2b2b;
-    --border: 1px solid rgba(100, 100, 100, 0.5);
   }
 }
 
@@ -10,7 +9,6 @@
   :root {
     --background: rgba(0, 0, 0, 0.5);
     --text: #d7d7db;
-    --border: 1px solid rgba(20, 20, 20, 0.5);
   }
 }
 
@@ -25,18 +23,41 @@
   text-align: left !important;
 
   background-color: var(--background) !important;
-  -webkit-backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px) !important;
   border-radius: 5px !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
-  border: var(--border);
 
   color: var(--text) !important;
   font-family: sans-serif !important;
-  font-size: 1rem !important;
+  font-size: 14px !important;
   font-weight: normal !important;
 
   animation: polyglot__envelope 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
     forwards !important;
+}
+
+.polyglot__synonyms {
+}
+
+.polyglot__synonym {
+  margin-top: 10px !important;
+}
+
+.polyglot__synonym--pos {
+  font-size: 11px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+}
+
+.polyglot__synonym__entries {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+}
+
+.polyglot__synonym__entries--entry {
+  padding-right: 12px !important;
+  font-size: 10px !important;
 }
 
 .polyglot__loader {
