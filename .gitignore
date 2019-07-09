@@ -1,0 +1,6 @@
+/Artifacts
+/Carthage
+/node_modules
+/PolyglotSafariExtension
+/Polyglot.xcodeproj
+*.log
