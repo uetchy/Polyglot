@@ -119,7 +119,6 @@ function settingsHandler(received: ReceivedSettings): void {
 }
 
 function translationHandler(message: ReceivedTranslation): void {
-  console.log(message)
   const view = {
     translation: message.translation.replace(/\n/g, '<br/>'),
     synonyms: message.synonyms
@@ -134,7 +133,7 @@ function translationHandler(message: ReceivedTranslation): void {
   const result = Mustache.render(
     `
   <div class="polyglot__translation">
-    {{ translation }}
+    {{{ translation }}}
   </div>
   <div class="polyglot__synonyms">
     {{#synonyms}}
