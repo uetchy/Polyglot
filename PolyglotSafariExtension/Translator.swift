@@ -1,14 +1,14 @@
 import Alamofire
 import Foundation
 
-func googleTranslate(_ text: String, sourceLanguage: String?, targetLanguage: String, completionHandler: @escaping (NSDictionary) -> Void) {
+func googleTranslate(_ text: String, sourceLanguage: String, targetLanguage: String, completionHandler: @escaping (NSDictionary) -> Void) {
   let endpoint: String = "https://translate.googleapis.com/translate_a/single?dt=t&dt=ss"
   let params: Alamofire.Parameters = [
     "client": "gtx",
     "dj": 1,
     "ie": "UTF-8",
     "oe": "UTF-8",
-    "sl": sourceLanguage ?? "auto",
+    "sl": sourceLanguage,
     "tl": targetLanguage,
     "q": text,
   ]
@@ -43,7 +43,7 @@ func googleTranslate(_ text: String, sourceLanguage: String?, targetLanguage: St
         result["dictionary"] = dict
       }
 
-      // Dictionary
+      // Synonyms
       if let synsets = json["synsets"] as? NSArray {
         print(synsets)
         result["synonyms"] = synsets
