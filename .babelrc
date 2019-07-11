@@ -3,8 +3,17 @@
     [
       "@babel/env",
       {
-        "useBuiltIns": "usage"
+        "useBuiltIns": "usage",
+        "corejs": 3
       }
-    ]
-  ]
+    ],
+    "@babel/typescript"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        ["transform-remove-console", { "exclude": ["error", "warn"] }]
+      ]
+    }
+  }
 }

@@ -1,35 +1,51 @@
 {
   "name": "polyglot",
-  "description": "translate selected text into your native language",
-  "version": "2.6.0",
-  "main": "Polyglot.safariextension/injected.js",
+  "description": "Polyglot content script",
+  "version": "3.0.1",
+  "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack -w --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "yarn build:script && yarn build:app",
+    "build:app": "xcodebuild clean build archive -scheme Polyglot -archivePath ./Artifacts/Polyglot.xcarchive",
+    "build:script": "webpack-cli --mode production",
+    "clean": "rm -rf Artifacts && xcodebuild clean",
+    "export": "xcodebuild -exportArchive -exportOptionsPlist ./exportOptions.plist -archivePath ./Artifacts/Polyglot.xcarchive -exportPath ./Artifacts/Exported",
+    "export:mas": "xcodebuild -exportArchive -exportOptionsPlist ./exportOptionsMAS.plist -archivePath ./Artifacts/Polyglot.xcarchive",
+    "format": "swiftformat . --swiftversion 4",
+    "inspect": "pluginkit -mAvvv -p com.apple.Safari.extension",
+    "package": "create-dmg Artifacts/Exported/Polyglot.app Artifacts",
+    "ship": "yarn clean && yarn build && yarn export && yarn package",
+    "ship:mas": "yarn clean && yarn build && yarn export:mas",
+    "start": "webpack-cli -w --mode development"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5"
+    "core-js": "3",
+    "isomorphic-unfetch": "^3.0.0",
+    "mustache": "^3.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-loader": "^8.0.5",
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.2",
+    "@babel/preset-typescript": "^7.3.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "create-dmg": "^4.0.2",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.1.0",
     "plist": "^3.0.1",
-    "webpack": "^4.16.4",
-    "webpack-command": "^0.4.1"
+    "typescript": "^3.5.3",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5"
   },
-  "bugs": {
-    "url": "https://github.com/uetchy/Polyglot/issues"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
-  "homepage": "https://github.com/uetchy/Polyglot",
-  "keywords": [
-    "Polyglot"
-  ],
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/uetchy/Polyglot.git"
-  }
+  "lint-staged": {
+    "*.swift": [
+      "swiftformat --swiftversion 4",
+      "git add"
+    ]
+  },
+  "private": true
 }

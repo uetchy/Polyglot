@@ -1,0 +1,106 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: rgba(200, 200, 200, 0.7);
+    --text: #2b2b2b;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: rgba(0, 0, 0, 0.5);
+    --text: #d7d7db;
+  }
+}
+
+:root {
+  --font-family: -apple-system, sans-serif;
+}
+
+#polyglot__panel {
+  position: absolute !important;
+  margin-right: 20px !important;
+  padding: 20px !important;
+  transform: scale(0) !important;
+  transform-origin: 0 0 !important;
+  z-index: 99999 !important;
+  animation: polyglot__envelope 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    forwards !important;
+
+  background-color: var(--background) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 5px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+
+  text-align: left !important;
+  line-height: 1.6em !important;
+  color: var(--text) !important;
+  font-family: var(--font-family) !important;
+}
+
+.polyglot__translation {
+  font-size: 15px !important;
+  font-weight: normal !important;
+}
+
+.polyglot__synonym {
+  margin-top: 10px !important;
+}
+
+.polyglot__synonym--pos {
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+}
+
+.polyglot__synonym__entries {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+}
+
+.polyglot__synonym__entries--entry {
+  padding-right: 12px !important;
+
+  font-size: 10px !important;
+  font-weight: normal !important;
+}
+
+.polyglot__loader {
+  --size: 3px;
+  position: relative !important;
+  transform: translateZ(0) !important;
+
+  font-size: var(--size) !important;
+  text-indent: -9999em !important;
+  border-top: var(--size) solid rgba(255, 255, 255, 0.2) !important;
+  border-right: var(--size) solid rgba(255, 255, 255, 0.2) !important;
+  border-bottom: var(--size) solid rgba(255, 255, 255, 0.2) !important;
+  border-left: var(--size) solid var(--text) !important;
+
+  animation: polyglot__load8 1.1s infinite linear !important;
+}
+
+.polyglot__loader,
+.polyglot__loader:after {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+}
+
+@keyframes polyglot__load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes polyglot__envelope {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

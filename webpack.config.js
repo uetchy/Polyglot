@@ -1,25 +1,18 @@
 const { resolve } = require('path')
-
-const extensionPath = resolve(__dirname, 'Polyglot.safariextension')
+const extensionPath = resolve(__dirname, 'PolyglotSafariExtension')
 
 module.exports = {
-  context: extensionPath,
-  entry: {
-    global: ['./global.js'],
-    injected: ['./injected.js'],
-  },
+  entry: './PolyglotSafariExtension/Sources/content.ts',
   output: {
-    path: extensionPath,
-    filename: '[name].entry.js',
+    filename: 'content.bundle.js',
+    path: resolve(extensionPath, 'ContentScript'),
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-        },
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
       },
     ],
   },
