@@ -1,17 +1,16 @@
 ![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/github-header.png?raw=true)
 
-[![Build Status](https://travis-ci.com/uetchy/Polyglot.svg?branch=master)](https://travis-ci.com/uetchy/Polyglot) [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/polyglot)
+[![Build Status](https://travis-ci.com/uetchy/Polyglot.svg?branch=master)](https://travis-ci.com/uetchy/Polyglot) [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/polyglot) [![Get the app](https://img.shields.io/badge/download-Mac%20App%20Store-informational.svg)](https://apps.apple.com/jp/app/polyglot/id1471801525?l=en&mt=12)
 
-Polyglot is a Safari extension that translates selected text into your native
-language using Google Translate.
+> Polyglot is a Safari extension that translates selected text into your native language.
 
-[Download latest version](https://github.com/uetchy/Polyglot/releases/latest)
-then move `Polyglot.app` into `Applications` folder.
+[Get the app on Mac App Store](https://apps.apple.com/jp/app/polyglot/id1471801525?l=en&mt=12)
+then open `Polyglot.app` in `Applications` to configure keyboard shortcut and everything.
 
 # Usage
 
 Open up `Polyglot.app` and change the target
-language to one you prefer and reconfigure keyboard shortcuts as you wish.
+language to one you prefer and configure keyboard shortcuts as you wish.
 
 - Select word or sentence and just type the configured key combination.
 - or, Select word or sentence and right-click then click **Translate**.
