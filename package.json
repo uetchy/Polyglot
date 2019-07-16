@@ -13,6 +13,7 @@
     "format": "swiftformat . --swiftversion 4",
     "inspect": "pluginkit -mAvvv -p com.apple.Safari.extension",
     "package": "create-dmg Artifacts/Exported/Polyglot.app Artifacts",
+    "postinstall": "carthage bootstrap --platform macos",
     "ship": "yarn clean && yarn build && yarn export && yarn package",
     "ship:mas": "yarn clean && yarn build && yarn export:mas",
     "start": "webpack-cli -w --mode development"
