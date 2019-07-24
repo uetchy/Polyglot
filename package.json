@@ -6,7 +6,7 @@
   "scripts": {
     "build": "yarn build:script && yarn build:app",
     "build:app": "xcodebuild clean build archive -scheme Polyglot -archivePath ./Artifacts/Polyglot.xcarchive",
-    "build:script": "webpack-cli --mode production",
+    "build:script": "NODE_ENV=production webpack-cli --mode production",
     "clean": "rm -rf Artifacts && xcodebuild clean",
     "export": "xcodebuild -exportArchive -exportOptionsPlist ./exportOptions.plist -archivePath ./Artifacts/Polyglot.xcarchive -exportPath ./Artifacts/Exported",
     "export:mas": "xcodebuild -exportArchive -exportOptionsPlist ./exportOptionsMAS.plist -archivePath ./Artifacts/Polyglot.xcarchive",
