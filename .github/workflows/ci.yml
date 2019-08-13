@@ -6,7 +6,6 @@ jobs:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@master
-      - run: HOMEBREW_NO_INSTALL_CLEANUP=1 brew install yarn
       - run: carthage update --platform macos --cache-builds
       - run: yarn install
       - run: yarn build:script
