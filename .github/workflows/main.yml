@@ -1,8 +1,8 @@
-name: Polyglot Test
+name: Polyglot
 on: [push]
 jobs:
   build:
-    name: Build
+    name: Test Build
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@master
