@@ -6,6 +6,7 @@ jobs:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@master
+      - uses: actions/setup-node@master
       - run: carthage update --platform macos --cache-builds
       - run: yarn install
       - run: yarn build:script
