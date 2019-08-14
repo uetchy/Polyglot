@@ -1,0 +1,13 @@
+name: Polyglot Test
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+      - run: carthage update --platform macos --cache-builds
+      - run: yarn install
+      - run: yarn build:script
+      - run: set -o pipefail && xcodebuild clean build -scheme Polyglot CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty
