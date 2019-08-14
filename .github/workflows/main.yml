@@ -1,4 +1,4 @@
-name: Polyglot
+name: Polyglot Test
 on: [push]
 jobs:
   build:
