@@ -6,10 +6,10 @@ Install dependencies and run `yarn start` to watch TypeScript files.
 
 ```bash
 yarn install # => Install deps
-yarn start   # => Start webpack to watch .ts files
+yarn start   # => Start webpack to watch and transpile TypeScript files
 ```
 
-then open up `Preference > Extentions` in Safari and make sure `Polyglot` is enabled in the extention panel.
+then open `Polyglot.xcodeproj` in Xcode and run `Polyglot` target to test the extension in Safari.
 
 ## Build
 
