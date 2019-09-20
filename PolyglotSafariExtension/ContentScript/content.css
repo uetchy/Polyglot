@@ -14,27 +14,33 @@
 
 :root {
   --font-family: -apple-system, sans-serif;
+  --border-radius: 5px;
 }
 
 #polyglot__panel {
   position: absolute !important;
   margin-right: 20px !important;
-  padding: 20px !important;
   transform: scale(0) !important;
   transform-origin: 0 0 !important;
   z-index: 99999 !important;
-  animation: polyglot__envelope 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
-    forwards !important;
 
-  background-color: var(--background) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border-radius: 5px !important;
+  border-radius: var(--border-radius) !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
 
   text-align: left !important;
   line-height: 1.6em !important;
   color: var(--text) !important;
   font-family: var(--font-family) !important;
+
+  animation: polyglot__envelope 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    forwards !important;
+}
+
+.polyglot__inner {
+  padding: 20px !important;
+  border-radius: var(--border-radius) !important;
+  background-color: var(--background) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
 }
 
 .polyglot__translation {
@@ -48,7 +54,7 @@
 
 .polyglot__synonym--pos {
   text-transform: uppercase !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
   font-weight: bold !important;
 }
 
@@ -61,7 +67,7 @@
 .polyglot__synonym__entries--entry {
   padding-right: 12px !important;
 
-  font-size: 10px !important;
+  font-size: 12px !important;
   font-weight: normal !important;
 }
 
