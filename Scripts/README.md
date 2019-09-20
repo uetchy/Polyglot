@@ -12,7 +12,6 @@ git add .
 git commit -am "release: v${VERSION}"
 git tag v${VERSION} -a -m "release: v${VERSION}"
 git push
-git push --tags
 ```
 
 ## Ship to Mac App Store
