@@ -16,7 +16,7 @@
     "postinstall": "carthage bootstrap --platform macos",
     "ship": "yarn clean && yarn build && yarn export && yarn package",
     "ship:mas": "yarn clean && yarn build && yarn export:mas",
-    "start": "webpack-cli -w --mode development"
+    "start": "NODE_ENV=development webpack-cli -w --mode development"
   },
   "dependencies": {
     "core-js": "~3",
