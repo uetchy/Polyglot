@@ -9,7 +9,7 @@
 1. Install `Polyglot.app` [from the Mac App Store](https://apps.apple.com/jp/app/polyglot/id1471801525?l=en&mt=12)
 2. Open the `Polyglot.app` in `Applications`
 3. Optiomal: configure Polyglot settings
-4. Open `Safari > Extensions`
+4. Open `Safari > Preferences > Extensions`
 5. Activate `Polyglot` Extension
 6. Extension is now available
 
