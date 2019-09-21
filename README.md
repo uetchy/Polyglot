@@ -13,7 +13,7 @@
 5. Activate `Polyglot` Extension
 6. Extension is now available
 
-Note: any pages that were already open before the extension was activated may need to be reloaded before the extension will work on them.
+Note: any pages that were already open before the extension was activated may need to be reloaded for the extension to work on them.
 
 # Usage
 
