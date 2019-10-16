@@ -1,5 +1,5 @@
 ![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/github-header.png?raw=true)
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 
 [![Actions Status](https://github.com/uetchy/Polyglot/workflows/Polyglot/badge.svg)](https://github.com/uetchy/Polyglot/actions)
 
@@ -71,6 +71,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://nixiesquid.com"><img src="https://avatars2.githubusercontent.com/u/21212032?v=4" width="100px;" alt="NixieSquid"/><br /><sub><b>NixieSquid</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=nixiesquid" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/callinem"><img src="https://avatars0.githubusercontent.com/u/45560785?v=4" width="100px;" alt="Sergey Sorokin"/><br /><sub><b>Sergey Sorokin</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=callinem" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/imserhii"><img src="https://avatars2.githubusercontent.com/u/4532683?v=4" width="100px;" alt="Serhii Dmytruk"/><br /><sub><b>Serhii Dmytruk</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=imserhii" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/devemio"><img src="https://avatars1.githubusercontent.com/u/5787193?v=4" width="100px;" alt="Sergey Sorokin"/><br /><sub><b>Sergey Sorokin</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=devemio" title="Code">💻</a></td>
   </tr>
 </table>
 
