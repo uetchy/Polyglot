@@ -1,7 +1,6 @@
 ![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/github-header.png?raw=true)
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 
-[![Actions Status](https://github.com/uetchy/Polyglot/workflows/Polyglot/badge.svg)](https://github.com/uetchy/Polyglot/actions)
+[![Actions Status](https://github.com/uetchy/Polyglot/workflows/Polyglot/badge.svg)](https://github.com/uetchy/Polyglot/actions) [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 
 > Polyglot is a Safari extension that translates selected text into your native language.
 
@@ -67,11 +66,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://uechi.io"><img src="https://avatars0.githubusercontent.com/u/431808?v=4" width="100px;" alt="Yasuaki Uechi"/><br /><sub><b>Yasuaki Uechi</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=uetchy" title="Code">💻</a> <a href="https://github.com/uetchy/Polyglot/commits?author=uetchy" title="Documentation">📖</a> <a href="#design-uetchy" title="Design">🎨</a></td>
-    <td align="center"><a href="http://www.gingerbeardman.com"><img src="https://avatars2.githubusercontent.com/u/49612?v=4" width="100px;" alt="Matt Sephton"/><br /><sub><b>Matt Sephton</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=gingerbeardman" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://nixiesquid.com"><img src="https://avatars2.githubusercontent.com/u/21212032?v=4" width="100px;" alt="NixieSquid"/><br /><sub><b>NixieSquid</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=nixiesquid" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/callinem"><img src="https://avatars0.githubusercontent.com/u/45560785?v=4" width="100px;" alt="Sergey Sorokin"/><br /><sub><b>Sergey Sorokin</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=callinem" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/imserhii"><img src="https://avatars2.githubusercontent.com/u/4532683?v=4" width="100px;" alt="Serhii Dmytruk"/><br /><sub><b>Serhii Dmytruk</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=imserhii" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/devemio"><img src="https://avatars1.githubusercontent.com/u/5787193?v=4" width="100px;" alt="Sergey Sorokin"/><br /><sub><b>Sergey Sorokin</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=devemio" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/imserhii"><img src="https://avatars2.githubusercontent.com/u/4532683?v=4" width="100px;" alt="Serhii Dmytruk"/><br /><sub><b>Serhii Dmytruk</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=imserhii" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.gingerbeardman.com"><img src="https://avatars2.githubusercontent.com/u/49612?v=4" width="100px;" alt="Matt Sephton"/><br /><sub><b>Matt Sephton</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=gingerbeardman" title="Documentation">📖</a> <a href="#question-gingerbeardman" title="Answering Questions">💬</a></td>
+    <td align="center"><a href="https://nixiesquid.com"><img src="https://avatars2.githubusercontent.com/u/21212032?v=4" width="100px;" alt="NixieSquid"/><br /><sub><b>NixieSquid</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=nixiesquid" title="Code">💻</a></td>
   </tr>
 </table>
 

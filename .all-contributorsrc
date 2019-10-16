@@ -22,28 +22,10 @@
       ]
     },
     {
-      "login": "gingerbeardman",
-      "name": "Matt Sephton",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/49612?v=4",
-      "profile": "http://www.gingerbeardman.com",
-      "contributions": [
-        "doc"
-      ]
-    },
-    {
-      "login": "nixiesquid",
-      "name": "NixieSquid",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/21212032?v=4",
-      "profile": "https://nixiesquid.com",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "callinem",
+      "login": "devemio",
       "name": "Sergey Sorokin",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/45560785?v=4",
-      "profile": "https://github.com/callinem",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5787193?v=4",
+      "profile": "https://github.com/devemio",
       "contributions": [
         "code"
       ]
@@ -58,10 +40,20 @@
       ]
     },
     {
-      "login": "devemio",
-      "name": "Sergey Sorokin",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/5787193?v=4",
-      "profile": "https://github.com/devemio",
+      "login": "gingerbeardman",
+      "name": "Matt Sephton",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/49612?v=4",
+      "profile": "http://www.gingerbeardman.com",
+      "contributions": [
+        "doc",
+        "question"
+      ]
+    },
+    {
+      "login": "nixiesquid",
+      "name": "NixieSquid",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/21212032?v=4",
+      "profile": "https://nixiesquid.com",
       "contributions": [
         "code"
       ]
