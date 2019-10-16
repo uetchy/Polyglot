@@ -1,0 +1,24 @@
+{
+  "projectName": "Polyglot",
+  "projectOwner": "uetchy",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "uetchy",
+      "name": "Yasuaki Uechi",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/431808?v=4",
+      "profile": "https://uechi.io",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
