@@ -18,6 +18,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "gingerbeardman",
+      "name": "Matt Sephton",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/49612?v=4",
+      "profile": "http://www.gingerbeardman.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7

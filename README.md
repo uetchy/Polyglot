@@ -1,5 +1,5 @@
 ![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/github-header.png?raw=true)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 
 [![Actions Status](https://github.com/uetchy/Polyglot/workflows/Polyglot/badge.svg)](https://github.com/uetchy/Polyglot/actions)
 
@@ -52,9 +52,6 @@ See [Contribution Guide](https://github.com/uetchy/Polyglot/blob/master/CONTRIBU
 
 # Contributors
 
-list of awesome contributors.
-
-- Yasuaki Uechi
 - Sergey Sorokin
 - Serhii Dmytruk
 - Matt Sephton
@@ -70,6 +67,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://uechi.io"><img src="https://avatars0.githubusercontent.com/u/431808?v=4" width="100px;" alt="Yasuaki Uechi"/><br /><sub><b>Yasuaki Uechi</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=uetchy" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.gingerbeardman.com"><img src="https://avatars2.githubusercontent.com/u/49612?v=4" width="100px;" alt="Matt Sephton"/><br /><sub><b>Matt Sephton</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=gingerbeardman" title="Documentation">📖</a></td>
   </tr>
 </table>
 
