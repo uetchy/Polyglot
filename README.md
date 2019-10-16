@@ -4,7 +4,7 @@
 
 > Polyglot is a Safari extension that translates selected text into your native language.
 
-# Setup
+## Setup
 
 1. Install `Polyglot.app` [from the Mac App Store](https://apps.apple.com/jp/app/polyglot/id1471801525?l=en&mt=12)
 2. Open the `Polyglot.app` in `Applications`
@@ -15,7 +15,7 @@
 
 Note: any pages that were already open before the extension was activated may need to be reloaded for the extension to work on them.
 
-# Usage
+## Usage
 
 Open up `Polyglot.app` and change the target
 language to one you prefer and configure keyboard shortcuts as you wish.
@@ -26,35 +26,28 @@ language to one you prefer and configure keyboard shortcuts as you wish.
 
 ![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/introduction.gif?raw=true)
 
-## Dark mode support
+### Dark mode support
 
 ![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/dark-mode.gif?raw=true)
 
-## Instant translation
+### Instant translation
 
 ![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/instant-translation.gif?raw=true)
 
-# Troubleshooting
+## Troubleshooting
 
-#### It seems a new settings have not been applied.
+### It seems a new settings have not been applied.
 
 Refresh web pages or restart Safari and try it again. If you continue to face
 same problem, please open an issue on GitHub.
 
-#### My key combination didn't work
+### My key combination didn't work
 
 Some key combinations are preblematic. Try another one.
 
-# Development
+## Development
 
 See [Contribution Guide](https://github.com/uetchy/Polyglot/blob/master/CONTRIBUTING.md) for the detailed development guide.
-
-# Contributors
-
-- Sergey Sorokin
-- Serhii Dmytruk
-- Matt Sephton
-- nixiesquid
 
 ## Contributors ✨
 
