@@ -29,6 +29,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "nixiesquid",
+      "name": "NixieSquid",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/21212032?v=4",
+      "profile": "https://nixiesquid.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
