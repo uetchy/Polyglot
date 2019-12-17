@@ -3,6 +3,7 @@
   "description": "Polyglot content script",
   "version": "3.1.0",
   "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
+  "license": "Apache-2.0",
   "scripts": {
     "build": "yarn build:script && yarn build:app",
     "build:app": "xcodebuild clean build archive -scheme Polyglot -archivePath ./Artifacts/Polyglot.xcarchive",
