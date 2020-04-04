@@ -2,8 +2,6 @@
   "name": "polyglot",
   "description": "Polyglot content script",
   "version": "3.1.0",
-  "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
-  "license": "Apache-2.0",
   "scripts": {
     "build": "yarn build:script && yarn build:app",
     "build:app": "xcodebuild clean build archive -scheme Polyglot -archivePath ./Artifacts/Polyglot.xcarchive",
@@ -20,35 +18,37 @@
     "start": "NODE_ENV=development webpack-cli -w --mode development"
   },
   "dependencies": {
-    "core-js": "~3.5.0",
+    "core-js": "~3.6.4",
     "isomorphic-unfetch": "^3.0.0",
-    "mustache": "^3.0.1"
+    "mustache": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.5",
-    "@babel/preset-env": "^7.7.6",
-    "@babel/preset-typescript": "^7.7.4",
-    "@types/mustache": "^0.8.32",
-    "babel-loader": "^8.0.6",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/mustache": "^4.0.1",
+    "babel-loader": "^8.1.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "create-dmg": "^4.2.0",
-    "husky": "^3.1.0",
-    "lint-staged": "^9.5.0",
+    "create-dmg": "^5.0.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.1",
     "plist": "^3.0.1",
-    "typescript": "^3.7.3",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
+  "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
   "lint-staged": {
     "*.swift": [
       "swiftformat --swiftversion 4",
       "git add"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "license": "Apache-2.0",
   "private": true
 }
