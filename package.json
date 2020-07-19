@@ -18,24 +18,24 @@
     "start": "NODE_ENV=development webpack-cli -w --mode development"
   },
   "dependencies": {
-    "core-js": "~3.6.4",
+    "core-js": "~3.6.5",
     "isomorphic-unfetch": "^3.0.0",
     "mustache": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/preset-typescript": "^7.9.0",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
     "@types/mustache": "^4.0.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "create-dmg": "^5.0.0",
-    "husky": "^4.2.3",
-    "lint-staged": "^10.1.1",
+    "create-dmg": "^5.3.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "plist": "^3.0.1",
-    "typescript": "^3.8.3",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "typescript": "^3.9.7",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
   "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
   "lint-staged": {
