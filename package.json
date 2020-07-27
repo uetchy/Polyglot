@@ -1,12 +1,12 @@
 {
   "name": "polyglot",
-  "description": "Polyglot content script",
+  "description": "A Safari extension that translates selected text into your native language.",
   "version": "3.1.0",
   "scripts": {
     "build": "yarn build:script && yarn build:app",
     "build:app": "xcodebuild clean build archive -scheme Polyglot -archivePath ./Artifacts/Polyglot.xcarchive",
     "build:script": "NODE_ENV=production webpack-cli --mode production",
-    "clean": "rm -rf Artifacts && xcodebuild clean",
+    "clean": "shx rm -rf Artifacts && xcodebuild clean",
     "export": "xcodebuild -exportArchive -exportOptionsPlist ./exportOptions.plist -archivePath ./Artifacts/Polyglot.xcarchive -exportPath ./Artifacts/Exported",
     "export:mas": "xcodebuild -exportArchive -exportOptionsPlist ./exportOptionsMAS.plist -archivePath ./Artifacts/Polyglot.xcarchive",
     "format": "swiftformat . --swiftversion 4",
@@ -33,6 +33,7 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "plist": "^3.0.1",
+    "shx": "^0.3.2",
     "typescript": "^3.9.7",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"

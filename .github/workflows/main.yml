@@ -3,7 +3,7 @@ on: [push]
 jobs:
   build:
     name: Test Build
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
