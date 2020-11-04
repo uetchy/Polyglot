@@ -5,16 +5,16 @@
 Install dependencies and run `yarn start` to watch TypeScript files.
 
 ```bash
-yarn install # => Install deps
+make bootstrap
 yarn start   # => Start webpack to watch and transpile TypeScript files
 ```
 
 then open `Polyglot.xcodeproj` in Xcode and run `Polyglot` target to test the extension in Safari.
 
-## Build
+## Build a distributable package
 
 ```bash
-yarn build # => just build ts / swift
+make
 ```
 
 ## Before commit
@@ -27,6 +27,5 @@ yarn format # => format code with SwiftFormat
 ## Release (Maintainers only)
 
 ```bash
-yarn ship
 yarn ship:mas # for Mac App Store
 ```
