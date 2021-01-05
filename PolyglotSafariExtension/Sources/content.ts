@@ -60,6 +60,11 @@ interface ReceivedTranslation {
   id: string;
 }
 
+interface UpstreamError {
+  error: string;
+  id: string;
+}
+
 enum RequestMessageType {
   RequestSettings = "getSettings",
   Translate = "translate",
@@ -68,6 +73,7 @@ enum RequestMessageType {
 enum ResponseMessageType {
   SettingsReceived = "settingsReceived",
   TranslationReceived = "translated",
+  ErrorOccured = "error",
   PerformTranslation = "performTranslation",
 }
 
@@ -102,6 +108,9 @@ function handleMessage(msg: SafariExtensionMessageEvent): void {
     case ResponseMessageType.TranslationReceived:
       translationHandler(msg.message);
       break;
+    case ResponseMessageType.ErrorOccured:
+      translationErrorHandler(msg.message);
+      break;
     case ResponseMessageType.PerformTranslation:
       performTranslation(); // TODO: support iframe
       break;
@@ -118,6 +127,23 @@ function settingsHandler(received: ReceivedSettings): void {
     instantTranslation: received.instantTranslation || false,
   };
   console.debug(settings);
+}
+
+function translationErrorHandler(message: UpstreamError) {
+  if (message.id !== window.location.href) return;
+  const args = {
+    error: message.error,
+  };
+  const result = Mustache.render(
+    `
+  <div class="polyglot__inner">
+  <div class="polyglot__translation">
+    {{{error}}}
+  </div>
+  </div>`,
+    args
+  );
+  showPanel(result);
 }
 
 function translationHandler(message: ReceivedTranslation): void {

@@ -4,6 +4,7 @@ import SafariServices
 struct MessageType {
   static let SendSettings = "settingsReceived"
   static let SendTranslation = "translated"
+  static let SendError = "error"
   static let PerformTranslation = "performTranslation"
 }
 
@@ -58,14 +59,19 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     let sourceLanguage = ud.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
     let targetLanguage = ud.string(forKey: SettingsKey.TargetLanguage) ?? "en"
 
-    googleTranslate(text, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage) { translationResult in
+    googleTranslate(text, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage, completionHandler: { translationResult in
       page.dispatchMessageToScript(withName: MessageType.SendTranslation, userInfo: [
         "translation": translationResult["translation"] ?? "",
         "dictionary": translationResult["dictionary"] ?? [],
         "synonyms": translationResult["synonyms"] ?? [],
         "id": id,
       ])
-    }
+    }, errorHandler: { errorMessage in
+      page.dispatchMessageToScript(withName: MessageType.SendError, userInfo: [
+        "error": errorMessage,
+        "id": id,
+      ])
+    })
   }
 
   // This method will be called when your toolbar item is clicked.

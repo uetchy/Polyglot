@@ -1,7 +1,7 @@
 import Alamofire
 import Foundation
 
-func googleTranslate(_ text: String, sourceLanguage: String, targetLanguage: String, completionHandler: @escaping (NSDictionary) -> Void) {
+func googleTranslate(_ text: String, sourceLanguage: String, targetLanguage: String, completionHandler: @escaping (NSDictionary) -> Void, errorHandler: @escaping (String) -> Void) {
   let endpoint: String = "https://translate.googleapis.com/translate_a/single?dt=t&dt=ss"
   let params: Alamofire.Parameters = [
     "client": "gtx",
@@ -17,13 +17,18 @@ func googleTranslate(_ text: String, sourceLanguage: String, targetLanguage: Str
     .validate(statusCode: 200 ..< 300)
     .responseJSON { response in
       if response.result.error != nil {
-        NSLog(response.result.error?.localizedDescription ?? "")
-        return
+        let errorMessage = response.result.error?.localizedDescription ?? ""
+        NSLog(errorMessage)
+        if let statusCode = response.response?.statusCode, statusCode == 429 {
+          return errorHandler("The API rate limit has been exceeded. Please try again later.")
+        }
+        return errorHandler(errorMessage)
       }
 
       guard let json = response.result.value as? NSDictionary,
-        let sentences = json["sentences"] as? NSArray else {
-        return
+            let sentences = json["sentences"] as? NSArray
+      else {
+        return errorHandler("Illegal JSON response")
       }
 
       let result: NSMutableDictionary = [:]
@@ -31,7 +36,8 @@ func googleTranslate(_ text: String, sourceLanguage: String, targetLanguage: Str
       // Translation
       result["translation"] = sentences.compactMap { (item) -> String? in
         guard let item = item as? NSDictionary,
-          let text = item["trans"] as? String else {
+              let text = item["trans"] as? String
+        else {
           return nil
         }
         return text
