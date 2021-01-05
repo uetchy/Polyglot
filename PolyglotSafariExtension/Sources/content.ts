@@ -1,4 +1,4 @@
-import Mustache from 'mustache';
+import Mustache from "mustache";
 
 interface Settings {
   keyCode: number;
@@ -37,7 +37,7 @@ interface DictionaryEntry {
 interface DictionaryItem {
   base_form: string;
   entry: DictionaryEntry[];
-  pos: 'noun' | 'verb';
+  pos: "noun" | "verb";
   pos_enum: number;
   terms: string[];
 }
@@ -57,35 +57,36 @@ interface ReceivedTranslation {
   translation: string;
   dictionary: DictionaryItem[];
   synonyms: Synonym[];
+  id: string;
 }
 
 enum RequestMessageType {
-  RequestSettings = 'getSettings',
-  Translate = 'translate',
+  RequestSettings = "getSettings",
+  Translate = "translate",
 }
 
 enum ResponseMessageType {
-  SettingsReceived = 'settingsReceived',
-  TranslationReceived = 'translated',
-  PerformTranslation = 'performTranslation',
+  SettingsReceived = "settingsReceived",
+  TranslationReceived = "translated",
+  PerformTranslation = "performTranslation",
 }
 
-const PANEL_ID = 'polyglot__panel';
+const PANEL_ID = "polyglot__panel";
 const INDICATOR = `<div class="polyglot__inner"><div class="polyglot__loader">Loading</div></div>`;
 
 let isPanelOpen = false;
 let settings: Settings;
 
 function setup(): void {
-  console.debug('Polyglot: loaded');
+  console.debug("Polyglot: loaded", window.location.href);
 
   // handle messages from App Extension
-  safari.self.addEventListener('message', handleMessage, false);
+  safari.self.addEventListener("message", handleMessage, false);
 
   // handle js events in active page
-  window.addEventListener('mouseup', handleMouseUp, false);
-  window.addEventListener('keypress', handleKeypress, false);
-  window.addEventListener('click', handleClick, false);
+  window.addEventListener("mouseup", handleMouseUp, false);
+  window.addEventListener("keypress", handleKeypress, false);
+  window.addEventListener("click", handleClick, false);
 
   // fetch global settings from App Extension
   safari.extension.dispatchMessage(RequestMessageType.RequestSettings);
@@ -95,15 +96,14 @@ function setup(): void {
 function handleMessage(msg: SafariExtensionMessageEvent): void {
   switch (msg.name) {
     case ResponseMessageType.SettingsReceived:
-      console.debug(msg.message);
-
+      console.debug("ResponseMessageType.SettingsReceived", msg.message);
       settingsHandler(msg.message);
       break;
     case ResponseMessageType.TranslationReceived:
       translationHandler(msg.message);
       break;
     case ResponseMessageType.PerformTranslation:
-      performTranslation();
+      performTranslation(); // TODO: support iframe
       break;
     default:
   }
@@ -114,20 +114,22 @@ function settingsHandler(received: ReceivedSettings): void {
     keyCode: received.keyCodeUnicode || 0,
     modifiers: received.modifiers
       ? divideModifiers(received.modifiers)
-      : {ctrl: false, alt: false, shift: false, cmd: false},
+      : { ctrl: false, alt: false, shift: false, cmd: false },
     instantTranslation: received.instantTranslation || false,
   };
   console.debug(settings);
 }
 
 function translationHandler(message: ReceivedTranslation): void {
-  const view = {
-    translation: message.translation.replace(/\n/g, '<br/>'),
+  if (message.id !== window.location.href) return;
+
+  const args = {
+    translation: message.translation.replace(/\n/g, "<br/>"),
     synonyms: message.synonyms
       ? message.synonyms.map((synonym) => ({
           pos: synonym.pos,
           entries: Array.from(
-            new Set(synonym.entry.map((entry) => entry.synonym[0])),
+            new Set(synonym.entry.map((entry) => entry.synonym[0]))
           ),
         }))
       : null,
@@ -151,14 +153,14 @@ function translationHandler(message: ReceivedTranslation): void {
     {{/synonyms}}
   </div>
   </div>`,
-    view,
+    args
   );
   showPanel(result);
 }
 
 function handleKeypress(keyboardEvent: KeyboardEvent): void {
   // Check if shortcut key is properly configured
-  const {keyCode} = settings;
+  const { keyCode } = settings;
   if (keyCode === undefined) return;
   const kbdKeyCode = keyboardEvent.key.toUpperCase().charCodeAt(0);
 
@@ -167,10 +169,10 @@ function handleKeypress(keyboardEvent: KeyboardEvent): void {
 
   console.debug(
     keyCode,
-    'keyCode: ' + kbdKeyCode,
-    'key: ' + keyboardEvent.key,
+    "keyCode: " + kbdKeyCode,
+    "key: " + keyboardEvent.key,
     isValidKeyCode,
-    isValidModifiers,
+    isValidModifiers
   );
 
   if (isValidModifiers && isValidKeyCode) {
@@ -199,7 +201,7 @@ function handleClick(e: MouseEvent): void {
 
   if (document.activeElement) {
     const activeElement = document.activeElement.tagName.toLowerCase();
-    if (activeElement === 'textarea' || activeElement === 'input') {
+    if (activeElement === "textarea" || activeElement === "input") {
       return;
     }
   }
@@ -213,6 +215,7 @@ function performTranslation() {
     showPanel(INDICATOR);
     safari.extension.dispatchMessage(RequestMessageType.Translate, {
       text: selectedText,
+      id: window.location.href,
     });
   }
 }
@@ -267,7 +270,7 @@ function getSelectedText(): string | undefined {
 
   const selectedText = selection.toString();
 
-  if (selectedText && selectedText !== '\n') {
+  if (selectedText && selectedText !== "\n") {
     return selectedText;
   }
 }
@@ -282,27 +285,18 @@ function removePanel() {
 
 // Show panel with given text
 function showPanel(content: string): void {
-  if (isPanelOpen) {
-    removePanel();
-  }
+  if (isPanelOpen) removePanel();
 
   const bounds = getSelectionBoundingRect();
   if (bounds === undefined) return;
 
-  const el = document.createElement('div');
+  const el = document.createElement("div");
   el.innerHTML = content;
   el.id = PANEL_ID;
-  el.style.left = bounds.left + 'px';
-  el.style.top = bounds.bottom + 'px';
+  el.style.left = bounds.left + "px";
+  el.style.top = bounds.bottom + "px";
   document.body.insertBefore(el, document.body.firstChild);
   isPanelOpen = true;
-}
-
-function updatePanel(content: string): void {
-  const el = document.getElementById(PANEL_ID);
-  if (el) {
-    el.innerHTML = content;
-  }
 }
 
 // Return selection coords
@@ -316,7 +310,7 @@ function getSelectionBoundingRect(): BoundingRect | undefined {
     height: 0,
   };
 
-  const sel = document.getSelection();
+  const sel = window.getSelection();
   if (!sel || sel.rangeCount === 0) return undefined;
 
   for (let i = 0; i < sel.rangeCount; ++i) {
@@ -358,7 +352,4 @@ function isDescendant(parent: HTMLElement, child: HTMLElement) {
   return false;
 }
 
-// Only active in a top-level page
-if (window.top === window) {
-  setup();
-}
+setup();

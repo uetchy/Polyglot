@@ -7,12 +7,12 @@ struct MessageType {
   static let PerformTranslation = "performTranslation"
 }
 
-struct ResponseType {
+enum ResponseType {
   static let RequestSettings = "getSettings"
   static let Translate = "translate"
 }
 
-struct SettingsKey {
+enum SettingsKey {
   static let KeyCode = "keyCode"
   static let KeyCodeUnicode = "keyCodeUnicode"
   static let Modifiers = "modifiers"
@@ -32,7 +32,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       case ResponseType.RequestSettings:
         self.getSettingsHandler(page: page)
       case ResponseType.Translate:
-        self.translateHandler(page: page, text: userInfo?["text"] as? String ?? "", targetLanguage: "en")
+        self.translateHandler(page: page, text: userInfo?["text"] as? String ?? "", id: userInfo?["id"] as? String ?? "")
       default:
         NSLog("messageReceived:(\(messageName)) from a script injected into (\(String(describing: properties?.url))) with userInfo (\(userInfo ?? [:]))")
       }
@@ -54,7 +54,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   }
 
   // called when translation kicked off
-  func translateHandler(page: SFSafariPage, text: String, targetLanguage _: String) {
+  func translateHandler(page: SFSafariPage, text: String, id: String) {
     let sourceLanguage = ud.string(forKey: SettingsKey.SourceLanguage) ?? "auto"
     let targetLanguage = ud.string(forKey: SettingsKey.TargetLanguage) ?? "en"
 
@@ -63,6 +63,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         "translation": translationResult["translation"] ?? "",
         "dictionary": translationResult["dictionary"] ?? [],
         "synonyms": translationResult["synonyms"] ?? [],
+        "id": id,
       ])
     }
   }
