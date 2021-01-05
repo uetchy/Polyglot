@@ -27,7 +27,7 @@ yarn format # => format code with SwiftFormat
 ## Release (Maintainers only)
 
 ```bash
-VERSION=3.2.0 node Scripts/update-version.js
+VERSION=3.2 BUILD=0 node Scripts/update-version.js
 git add .
 git commit -m 'chore: release v3.2.0'
 yarn ship:mas # for Mac App Store
