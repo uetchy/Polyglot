@@ -1,23 +1,20 @@
 @media (prefers-color-scheme: light) {
-  :root {
+  #polyglot__panel {
     --background: rgba(200, 200, 200, 0.7);
     --text: #2b2b2b;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  #polyglot__panel {
     --background: rgba(0, 0, 0, 0.5);
     --text: #d7d7db;
   }
 }
 
-:root {
+#polyglot__panel {
   --font-family: -apple-system, sans-serif;
   --border-radius: 5px;
-}
-
-#polyglot__panel {
   position: absolute !important;
   margin-right: 20px !important;
   transform: scale(0) !important;
@@ -41,6 +38,7 @@
   border-radius: var(--border-radius) !important;
   background-color: var(--background) !important;
   -webkit-backdrop-filter: blur(20px) !important;
+  backdrop-filter: blur(20px) !important;
 }
 
 .polyglot__translation {
