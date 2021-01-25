@@ -65,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Restore settings
     let keyCode = settings.integer(forKey: SettingsKey.KeyCode)
     let modifiers = settings.integer(forKey: SettingsKey.Modifiers)
-    let keyCombo = KeyCombo(keyCode: keyCode, carbonModifiers: modifiers)
+    let keyCombo = KeyCombo(QWERTYKeyCode: keyCode, carbonModifiers: modifiers)
     recordView.keyCombo = keyCombo
   }
 
@@ -83,7 +83,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // save keycombo
     settings.set(keyCode.value, forKey: SettingsKey.KeyCodeUnicode)
-    settings.set(keyCombo.keyCode, forKey: SettingsKey.KeyCode)
+    settings.set(keyCombo.QWERTYKeyCode, forKey: SettingsKey.KeyCode)
     settings.set(keyCombo.modifiers, forKey: SettingsKey.Modifiers)
     settings.synchronize()
   }

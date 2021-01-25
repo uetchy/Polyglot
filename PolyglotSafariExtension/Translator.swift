@@ -13,48 +13,59 @@ func googleTranslate(_ text: String, sourceLanguage: String, targetLanguage: Str
     "q": text,
   ]
 
-  Alamofire.request(endpoint, method: .get, parameters: params)
+  AF.request(endpoint, parameters: params)
     .validate(statusCode: 200 ..< 300)
     .responseJSON { response in
-      if response.result.error != nil {
-        let errorMessage = response.result.error?.localizedDescription ?? ""
+      switch response.result {
+      case let .success(result):
+        guard let json = result as? NSDictionary,
+              let sentences = json["sentences"] as? NSArray
+        else {
+          return errorHandler("Illegal JSON response")
+        }
+
+        let result: NSMutableDictionary = [:]
+
+        // Translation
+        result["translation"] = sentences.compactMap { (item) -> String? in
+          guard let item = item as? NSDictionary,
+                let text = item["trans"] as? String
+          else {
+            return nil
+          }
+          return text
+        }.compactMap { $0 }.joined(separator: "")
+
+        // Transliteration
+        result["transliteration"] = sentences.compactMap { (item) -> String? in
+          guard let item = item as? NSDictionary,
+                let text = item["translit"] as? String
+          else {
+            return nil
+          }
+          return text
+        }.compactMap { $0 }.joined(separator: "")
+
+        // Dictionary
+        if let dict = json["dict"] as? NSArray {
+          print(dict)
+          result["dictionary"] = dict
+        }
+
+        // Synonyms
+        if let synsets = json["synsets"] as? NSArray {
+          print(synsets)
+          result["synonyms"] = synsets
+        }
+
+        completionHandler(result as NSDictionary)
+      case let .failure(error):
+        let errorMessage = error.localizedDescription
         NSLog(errorMessage)
         if let statusCode = response.response?.statusCode, statusCode == 429 {
           return errorHandler("The API rate limit has been exceeded. Please try again later.")
         }
         return errorHandler(errorMessage)
       }
-
-      guard let json = response.result.value as? NSDictionary,
-            let sentences = json["sentences"] as? NSArray
-      else {
-        return errorHandler("Illegal JSON response")
-      }
-
-      let result: NSMutableDictionary = [:]
-
-      // Translation
-      result["translation"] = sentences.compactMap { (item) -> String? in
-        guard let item = item as? NSDictionary,
-              let text = item["trans"] as? String
-        else {
-          return nil
-        }
-        return text
-      }.compactMap { $0 }.joined(separator: "")
-
-      // Dictionary
-      if let dict = json["dict"] as? NSArray {
-        print(dict)
-        result["dictionary"] = dict
-      }
-
-      // Synonyms
-      if let synsets = json["synsets"] as? NSArray {
-        print(synsets)
-        result["synonyms"] = synsets
-      }
-
-      completionHandler(result as NSDictionary)
     }
 }

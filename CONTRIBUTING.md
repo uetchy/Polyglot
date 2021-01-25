@@ -5,11 +5,11 @@
 Install dependencies and run `yarn start` to watch TypeScript files.
 
 ```bash
-make bootstrap
-yarn start   # => Start webpack to watch and transpile TypeScript files
+yarn install
+yarn start   # => Start webpack to watch and transpile TypeScript files (PolyglotSafariExtensinos/Sources/content.ts)
 ```
 
-then open `Polyglot.xcodeproj` in Xcode and run `Polyglot` target to test the extension in Safari.
+then open `Polyglot.xcodeproj` in Xcode and run `Polyglot` target to start testing the extension in Safari.
 
 ## Build a distributable package
 

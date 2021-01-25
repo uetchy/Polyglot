@@ -3,13 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		991C479E2182CA0C0075EFE5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; };
-		991C479F2182CA0C0075EFE5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		991C47A12182CA9D0075EFE5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CE36602169BAF800DBB2F7 /* Alamofire.framework */; };
 		994124CB22D20FD6007830D4 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 994124CA22D20FD6007830D4 /* icon.icns */; };
 		994C4A4122C3205F00BACF66 /* toolbar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C4A3F22C3205F00BACF66 /* toolbar-icon.png */; };
 		994C4A4322C3212600BACF66 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994C4A4222C3212600BACF66 /* Translator.swift */; };
@@ -18,10 +15,6 @@
 		99CEF50222D1A08800B7DF34 /* content.css in Resources */ = {isa = PBXBuildFile; fileRef = 99CEF50022D1A08800B7DF34 /* content.css */; };
 		99CEF50322D1A08800B7DF34 /* content.bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 99CEF50122D1A08800B7DF34 /* content.bundle.js */; };
 		99D51DA922D4BBF3004EC939 /* content.ts in Resources */ = {isa = PBXBuildFile; fileRef = 99D51DA822D4BBF3004EC939 /* content.ts */; };
-		99ED036C2182D21C0040BD34 /* KeyHolder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03692182D2130040BD34 /* KeyHolder.framework */; };
-		99ED036D2182D21C0040BD34 /* KeyHolder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03692182D2130040BD34 /* KeyHolder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		99ED036E2182D21C0040BD34 /* Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03682182D2130040BD34 /* Magnet.framework */; };
-		99ED036F2182D21C0040BD34 /* Magnet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED03682182D2130040BD34 /* Magnet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		99ED827E2118127C00505D83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED827D2118127C00505D83 /* AppDelegate.swift */; };
 		99ED82802118127D00505D83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99ED827F2118127D00505D83 /* Assets.xcassets */; };
 		99ED82832118127D00505D83 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED82812118127D00505D83 /* MainMenu.xib */; };
@@ -31,6 +24,9 @@
 		99ED829A211812AB00505D83 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED8298211812AB00505D83 /* SafariExtensionViewController.xib */; };
 		99ED829F211812AB00505D83 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 99ED829E211812AB00505D83 /* ToolbarItemIcon.pdf */; };
 		99ED82A3211812AB00505D83 /* PolyglotSafariExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 99ED828F211812AB00505D83 /* PolyglotSafariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		99F1986D25BE6C7F0019BCF9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 99F1986C25BE6C7F0019BCF9 /* Alamofire */; };
+		99F1987325BE6CBD0019BCF9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 99F1987225BE6CBD0019BCF9 /* Alamofire */; };
+		99F1987825BE6F430019BCF9 /* KeyHolder in Frameworks */ = {isa = PBXBuildFile; productRef = 99F1987725BE6F430019BCF9 /* KeyHolder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,19 +47,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		991C47A02182CA0C0075EFE5 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				99ED036D2182D21C0040BD34 /* KeyHolder.framework in Embed Frameworks */,
-				99ED036F2182D21C0040BD34 /* Magnet.framework in Embed Frameworks */,
-				991C479F2182CA0C0075EFE5 /* Alamofire.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		99ED82A7211812AB00505D83 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,9 +102,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99ED036C2182D21C0040BD34 /* KeyHolder.framework in Frameworks */,
-				99ED036E2182D21C0040BD34 /* Magnet.framework in Frameworks */,
-				991C479E2182CA0C0075EFE5 /* Alamofire.framework in Frameworks */,
+				99F1987825BE6F430019BCF9 /* KeyHolder in Frameworks */,
+				99F1986D25BE6C7F0019BCF9 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +111,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99F1987325BE6CBD0019BCF9 /* Alamofire in Frameworks */,
 				99ED8292211812AB00505D83 /* Cocoa.framework in Frameworks */,
-				991C47A12182CA9D0075EFE5 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +245,6 @@
 				99ED82772118127C00505D83 /* Frameworks */,
 				99ED82782118127C00505D83 /* Resources */,
 				99ED82A7211812AB00505D83 /* Embed App Extensions */,
-				991C47A02182CA0C0075EFE5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -271,6 +252,10 @@
 				99ED82A2211812AB00505D83 /* PBXTargetDependency */,
 			);
 			name = Polyglot;
+			packageProductDependencies = (
+				99F1986C25BE6C7F0019BCF9 /* Alamofire */,
+				99F1987725BE6F430019BCF9 /* KeyHolder */,
+			);
 			productName = Polyglot;
 			productReference = 99ED827A2118127C00505D83 /* Polyglot.app */;
 			productType = "com.apple.product-type.application";
@@ -288,6 +273,9 @@
 			dependencies = (
 			);
 			name = PolyglotSafariExtension;
+			packageProductDependencies = (
+				99F1987225BE6CBD0019BCF9 /* Alamofire */,
+			);
 			productName = PolyglotSafariExtension;
 			productReference = 99ED828F211812AB00505D83 /* PolyglotSafariExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -347,6 +335,10 @@
 				Base,
 			);
 			mainGroup = 99ED82712118127C00505D83;
+			packageReferences = (
+				99F1986B25BE6C7F0019BCF9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				99F1987625BE6F430019BCF9 /* XCRemoteSwiftPackageReference "KeyHolder" */,
+			);
 			productRefGroup = 99ED827B2118127C00505D83 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -551,7 +543,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -606,7 +598,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -625,10 +617,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 58XDWHK3JX;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Polyglot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -651,10 +640,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 58XDWHK3JX;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Polyglot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -674,10 +660,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58XDWHK3JX;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PolyglotSafariExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -699,10 +682,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58XDWHK3JX;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PolyglotSafariExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -756,6 +736,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		99F1986B25BE6C7F0019BCF9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+		99F1987625BE6F430019BCF9 /* XCRemoteSwiftPackageReference "KeyHolder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Clipy/KeyHolder";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		99F1986C25BE6C7F0019BCF9 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 99F1986B25BE6C7F0019BCF9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		99F1987225BE6CBD0019BCF9 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 99F1986B25BE6C7F0019BCF9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		99F1987725BE6F430019BCF9 /* KeyHolder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 99F1987625BE6F430019BCF9 /* XCRemoteSwiftPackageReference "KeyHolder" */;
+			productName = KeyHolder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 99ED82722118127C00505D83 /* Project object */;
 }
