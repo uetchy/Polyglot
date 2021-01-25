@@ -44,10 +44,14 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   func getSettingsHandler(page: SFSafariPage) {
     let keyCodeUnicode = ud.integer(forKey: SettingsKey.KeyCodeUnicode)
     let modifiers = ud.integer(forKey: SettingsKey.Modifiers)
+    let sourceLanguage = ud.string(forKey: SettingsKey.SourceLanguage)
+    let targetLanguage = ud.string(forKey: SettingsKey.TargetLanguage)
     let instantTranslation = ud.bool(forKey: SettingsKey.InstantTranslation)
     let settings = [
       SettingsKey.KeyCodeUnicode: keyCodeUnicode,
       SettingsKey.Modifiers: modifiers,
+      SettingsKey.SourceLanguage: sourceLanguage ?? "auto",
+      SettingsKey.TargetLanguage: targetLanguage ?? "en",
       SettingsKey.InstantTranslation: instantTranslation,
     ] as [String: Any]
 
@@ -61,6 +65,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
     googleTranslate(text, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage, completionHandler: { translationResult in
       page.dispatchMessageToScript(withName: MessageType.SendTranslation, userInfo: [
+        "sourceLanguage": translationResult["sourceLanguage"] ?? "",
         "translation": translationResult["translation"] ?? "",
         "transliteration": translationResult["transliteration"] ?? "",
         "sourceTransliteration": translationResult["sourceTransliteration"] ?? "",

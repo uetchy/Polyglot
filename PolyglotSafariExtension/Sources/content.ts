@@ -1,16 +1,28 @@
 import Mustache from "mustache";
-
-interface Settings {
-  keyCode: number;
-  modifiers: Modifiers;
-  instantTranslation: boolean;
-}
+import franc from "franc";
+import to1 from "iso-639-3/to-1";
 
 interface Modifiers {
   ctrl: boolean;
   alt: boolean;
   shift: boolean;
   cmd: boolean;
+}
+
+interface Settings {
+  keyCode: number;
+  modifiers: Modifiers;
+  sourceLanguage: string;
+  targetLanguage: string;
+  instantTranslation: boolean;
+}
+
+interface ReceivedSettings {
+  keyCodeUnicode: number;
+  modifiers: number;
+  sourceLanguage: string;
+  targetLanguage: string;
+  instantTranslation: boolean;
 }
 
 interface BoundingRect {
@@ -20,12 +32,6 @@ interface BoundingRect {
   bottom: number;
   width: number;
   height: number;
-}
-
-interface ReceivedSettings {
-  keyCodeUnicode: number;
-  modifiers: number;
-  instantTranslation: boolean;
 }
 
 interface DictionaryEntry {
@@ -54,6 +60,7 @@ interface Synonym {
 }
 
 interface ReceivedTranslation {
+  sourceLanguage: string;
   translation: string;
   transliteration: string;
   sourceTransliteration: string;
@@ -126,6 +133,8 @@ function settingsHandler(received: ReceivedSettings): void {
     modifiers: received.modifiers
       ? divideModifiers(received.modifiers)
       : { ctrl: false, alt: false, shift: false, cmd: false },
+    sourceLanguage: received.sourceLanguage,
+    targetLanguage: received.targetLanguage,
     instantTranslation: received.instantTranslation || false,
   };
   console.debug(settings);
@@ -152,6 +161,7 @@ function translationHandler(message: ReceivedTranslation): void {
   if (message.id !== window.location.href) return;
 
   const args = {
+    sourceLanguage: message.sourceLanguage || null,
     translation: message.translation.replace(/\n/g, "<br/>"),
     transliteration: message.transliteration.replace(/\n/g, "<br/>"),
     sourceTransliteration: message.sourceTransliteration.replace(
@@ -171,8 +181,8 @@ function translationHandler(message: ReceivedTranslation): void {
     `
   <div class="polyglot__inner">
     <div class="polyglot__section">
-    {{{translation}}}
-  </div>
+      {{{translation}}}
+    </div>
 
     {{#sourceTransliteration}}
     <div class="polyglot__section">
@@ -251,13 +261,25 @@ function handleClick(e: MouseEvent): void {
 
 function performTranslation() {
   const selectedText = getSelectedText();
-  if (selectedText) {
-    showPanel(INDICATOR);
-    safari.extension.dispatchMessage(RequestMessageType.Translate, {
-      text: selectedText,
-      id: window.location.href,
-    });
-  }
+  if (!selectedText) return;
+
+  const language = to1[franc(selectedText, { minLength: 2 })];
+  console.log("detected language", language);
+
+  // prevent translation if all of conditions are met
+  // - instant translation is enabled
+  // - detected language is equal to target language
+  const prevent =
+    settings.instantTranslation &&
+    language !== undefined &&
+    language === settings.targetLanguage;
+  if (prevent) return;
+
+  showPanel(INDICATOR);
+  safari.extension.dispatchMessage(RequestMessageType.Translate, {
+    text: selectedText,
+    id: window.location.href,
+  });
 }
 
 // cmd   = 256

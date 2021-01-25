@@ -26,6 +26,11 @@ func googleTranslate(_ text: String, sourceLanguage: String, targetLanguage: Str
 
         let result: NSMutableDictionary = [:]
 
+        // Source language
+        if let srcLang = json["src"] as? String {
+          result["sourceLanguage"] = srcLang
+        }
+
         // Translation
         result["translation"] = sentences.compactMap { (item) -> String? in
           guard let item = item as? NSDictionary,
