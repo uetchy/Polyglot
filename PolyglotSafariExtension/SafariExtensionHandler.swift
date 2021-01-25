@@ -62,6 +62,8 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     googleTranslate(text, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage, completionHandler: { translationResult in
       page.dispatchMessageToScript(withName: MessageType.SendTranslation, userInfo: [
         "translation": translationResult["translation"] ?? "",
+        "transliteration": translationResult["transliteration"] ?? "",
+        "sourceTransliteration": translationResult["sourceTransliteration"] ?? "",
         "dictionary": translationResult["dictionary"] ?? [],
         "synonyms": translationResult["synonyms"] ?? [],
         "id": id,

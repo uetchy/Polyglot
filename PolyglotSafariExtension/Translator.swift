@@ -2,7 +2,7 @@ import Alamofire
 import Foundation
 
 func googleTranslate(_ text: String, sourceLanguage: String, targetLanguage: String, completionHandler: @escaping (NSDictionary) -> Void, errorHandler: @escaping (String) -> Void) {
-  let endpoint: String = "https://translate.googleapis.com/translate_a/single?dt=t&dt=ss"
+  let endpoint: String = "https://translate.googleapis.com/translate_a/single?dt=t&dt=ss&dt=rm"
   let params: Alamofire.Parameters = [
     "client": "gtx",
     "dj": 1,
@@ -40,6 +40,16 @@ func googleTranslate(_ text: String, sourceLanguage: String, targetLanguage: Str
         result["transliteration"] = sentences.compactMap { (item) -> String? in
           guard let item = item as? NSDictionary,
                 let text = item["translit"] as? String
+          else {
+            return nil
+          }
+          return text
+        }.compactMap { $0 }.joined(separator: "")
+
+        // Source Transliteration
+        result["sourceTransliteration"] = sentences.compactMap { (item) -> String? in
+          guard let item = item as? NSDictionary,
+                let text = item["src_translit"] as? String
           else {
             return nil
           }

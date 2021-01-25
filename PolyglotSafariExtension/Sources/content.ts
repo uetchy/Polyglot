@@ -55,6 +55,8 @@ interface Synonym {
 
 interface ReceivedTranslation {
   translation: string;
+  transliteration: string;
+  sourceTransliteration: string;
   dictionary: DictionaryItem[];
   synonyms: Synonym[];
   id: string;
@@ -137,7 +139,7 @@ function translationErrorHandler(message: UpstreamError) {
   const result = Mustache.render(
     `
   <div class="polyglot__inner">
-  <div class="polyglot__translation">
+  <div class="polyglot__section">
     {{{error}}}
   </div>
   </div>`,
@@ -151,6 +153,11 @@ function translationHandler(message: ReceivedTranslation): void {
 
   const args = {
     translation: message.translation.replace(/\n/g, "<br/>"),
+    transliteration: message.transliteration.replace(/\n/g, "<br/>"),
+    sourceTransliteration: message.sourceTransliteration.replace(
+      /\n/g,
+      "<br/>"
+    ),
     synonyms: message.synonyms
       ? message.synonyms.map((synonym) => ({
           pos: synonym.pos,
@@ -163,24 +170,31 @@ function translationHandler(message: ReceivedTranslation): void {
   const result = Mustache.render(
     `
   <div class="polyglot__inner">
-  <div class="polyglot__translation">
+    <div class="polyglot__section">
     {{{translation}}}
   </div>
-  <div class="polyglot__synonyms">
+
+    {{#sourceTransliteration}}
+    <div class="polyglot__section">
+      <div class="polyglot__section--title">Transliteration</div>
+      {{{sourceTransliteration}}}
+    </div>
+    {{/sourceTransliteration}}
+
     {{#synonyms}}
-    <div class="polyglot__synonym">
-      <div class="polyglot__synonym--pos">{{pos}}</div>
-      <div class="polyglot__synonym__entries">
+    <div class="polyglot__section">
+      <div class="polyglot__section--title">{{pos}}</div>
+      <div class="polyglot__synonyms">
         {{#entries}}
-        <div class="polyglot__synonym__entries--entry">{{.}}</div>
+        <div class="polyglot__synonyms--entry">{{.}}</div>
         {{/entries}}
       </div>
     </div>
     {{/synonyms}}
-  </div>
   </div>`,
     args
   );
+
   showPanel(result);
 }
 

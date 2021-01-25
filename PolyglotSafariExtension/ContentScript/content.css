@@ -41,28 +41,28 @@
   backdrop-filter: blur(20px) !important;
 }
 
-.polyglot__translation {
+.polyglot__section {
   font-size: 15px !important;
   font-weight: normal !important;
 }
 
-.polyglot__synonym {
+.polyglot__section:not(:first-child) {
   margin-top: 10px !important;
 }
 
-.polyglot__synonym--pos {
+.polyglot__section--title {
   text-transform: uppercase !important;
   font-size: 12px !important;
   font-weight: bold !important;
 }
 
-.polyglot__synonym__entries {
+.polyglot__synonyms {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: wrap !important;
 }
 
-.polyglot__synonym__entries--entry {
+.polyglot__synonyms--entry {
   padding-right: 12px !important;
 
   font-size: 12px !important;
