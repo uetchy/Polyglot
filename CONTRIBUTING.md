@@ -6,10 +6,15 @@ Install dependencies and run `yarn start` to watch TypeScript files.
 
 ```bash
 yarn install
-yarn start   # => Start webpack to watch and transpile TypeScript files (PolyglotSafariExtensinos/Sources/content.ts)
 ```
 
-then open `Polyglot.xcodeproj` in Xcode and run `Polyglot` target to start testing the extension in Safari.
+## Development flow
+
+1. `yarn start` to fire up webpack watching and transpiling TypeScript files inside `PolyglotSafariExtensinos/Sources`.
+1. Open up `Polyglot.xcodeproj` in Xcode.
+1. Build and launch `Polyglot` target.
+1. In the Safari settings, ensure that Polyglot extension is enabled.
+1. Everytime you change `.ts` and `.swift` files, you will need to re-build the app (step 3) to reflect these changes.
 
 ## Build a distributable package
 
