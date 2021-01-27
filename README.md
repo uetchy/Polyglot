@@ -1,7 +1,6 @@
 ![](https://github.com/uetchy/Polyglot/blob/gh-pages/assets/github-header.png?raw=true)
 
 [![Actions Status](https://github.com/uetchy/Polyglot/workflows/Polyglot/badge.svg)](https://github.com/uetchy/Polyglot/actions)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/37151e4e7e0c445d9b9d06e347a9b6af)](https://www.codacy.com/manual/uetchy/Polyglot?utm_source=github.com&utm_medium=referral&utm_content=uetchy/Polyglot&utm_campaign=Badge_Grade)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/uetchy/Polyglot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/uetchy/Polyglot/alerts/)
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 [![AppStore](https://badge.now.sh/appstore/rating/us/id1471801525)](https://apps.apple.com/app/polyglot/id1471801525)
