@@ -1,9 +1,9 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
+title: ""
 labels: bug
-assignees: ''
+assignees: ""
 ---
 
 **Describe the bug**
@@ -25,7 +25,9 @@ If applicable, add screenshots to help explain your problem.
 
 **Version (please complete the following information):**
 
-- Version [e.g. 22]
+- Safari [e.g. 14.2]
+- Polyglot [e.g. 3.2]
+- macOS [e.g. 11.1]
 
 **Additional context**
 Add any other context about the problem here.

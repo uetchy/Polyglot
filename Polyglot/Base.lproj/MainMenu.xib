@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -689,7 +689,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="449" height="179"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
             <value key="minSize" type="size" width="449" height="179"/>
             <value key="maxSize" type="size" width="449" height="179"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
@@ -697,7 +697,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X35-Si-YUo" userLabel="Source Language">
-                        <rect key="frame" x="18" y="110" width="180" height="25"/>
+                        <rect key="frame" x="17" y="111" width="182" height="25"/>
                         <popUpButtonCell key="cell" type="push" title="Japanese" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="iUt-YV-KdS" id="PsF-b8-Mh5">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -710,7 +710,7 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-eW-Y47" userLabel="Target Language">
-                        <rect key="frame" x="252" y="110" width="180" height="25"/>
+                        <rect key="frame" x="251" y="110" width="182" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Japanese" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="SIa-W0-K5e" id="2fe-zg-WH7">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -723,14 +723,14 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="TCa-tD-35P" customClass="RecordView" customModule="KeyHolder">
-                        <rect key="frame" x="20" y="49" width="409" height="47"/>
+                        <rect key="frame" x="20" y="50" width="409" height="47"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="409" id="lB5-bD-Sli"/>
                             <constraint firstAttribute="height" constant="47" id="wEY-VB-Ucr"/>
                         </constraints>
                     </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gvG-Ap-Bul">
-                        <rect key="frame" x="18" y="142" width="110" height="17"/>
+                        <rect key="frame" x="18" y="143" width="110" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Source Language" id="a0b-WJ-A8b">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -738,7 +738,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nf1-Ei-Ofi">
-                        <rect key="frame" x="252" y="142" width="179" height="17"/>
+                        <rect key="frame" x="252" y="143" width="179" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Target Language" id="j3e-Ct-KN8">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -746,22 +746,22 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Off-34-k11">
-                        <rect key="frame" x="213" y="115" width="23" height="20"/>
+                        <rect key="frame" x="213" y="118" width="23" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="👉" id="wqd-tz-n4F">
-                            <font key="font" size="13" name=".AppleColorEmojiUI"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="snC-Hi-0g2">
-                        <rect key="frame" x="18" y="18" width="197" height="18"/>
+                        <rect key="frame" x="18" y="18" width="195" height="18"/>
                         <buttonCell key="cell" type="check" title="Instant Translation" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8Cm-uX-mAy">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w2V-8L-csi">
-                        <rect key="frame" x="211" y="17" width="220" height="17"/>
+                        <rect key="frame" x="211" y="19" width="220" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Settings will be saved automatically" id="EDE-5d-s8y">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
