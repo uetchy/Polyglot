@@ -1,5 +1,7 @@
 /Artifacts
 *.bundle.js
+*.bundle.js.map
+*.bundle.js.LICENSE.txt
 
 # Created by https://www.gitignore.io/api/visualstudiocode,node,xcode,swift
 # Edit at https://www.gitignore.io/?templates=visualstudiocode,node,xcode,swift

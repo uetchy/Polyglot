@@ -4,34 +4,31 @@
   "version": "3.2.0",
   "scripts": {
     "build": "NODE_ENV=production webpack-cli --mode production",
-    "format": "swiftformat . --swiftversion 4",
+    "clean": "shx rm -rf PolyglotSafariExtension/ContentScript/*.js{,.map,.LICENSE.txt}",
     "dmg": "create-dmg Artifacts/Exported/Polyglot.app Artifacts",
+    "format": "swiftformat . --swiftversion 4",
     "start": "NODE_ENV=development webpack-cli -w --mode development"
   },
   "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
   "dependencies": {
-    "core-js": "~3.8.2",
     "franc": "^5.0.0",
     "iso-639-3": "^2.2.0",
     "isomorphic-unfetch": "^3.1.0",
     "mustache": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-typescript": "^7.12.7",
     "@types/franc": "^5.0.0",
-    "@types/mustache": "^4.1.0",
-    "babel-loader": "^8.2.2",
-    "babel-plugin-transform-remove-console": "^6.9.4",
+    "@types/mustache": "^4.1.1",
     "create-dmg": "^5.3.0",
-    "husky": "^4.3.6",
+    "husky": "^4.3.8",
     "lint-staged": "^10.5.3",
     "plist": "^3.0.1",
     "shx": "^0.3.3",
+    "terser-webpack-plugin": "^5.1.1",
+    "ts-loader": "^8.0.14",
     "typescript": "^4.1.3",
-    "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.1"
+    "webpack": "^5.18.0",
+    "webpack-cli": "^4.4.0"
   },
   "husky": {
     "hooks": {

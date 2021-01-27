@@ -10,6 +10,7 @@ shipMAS: clean build exportArchiveMAS
 
 clean:
 	rm -rf Artifacts
+	yarn clean
 	xcodebuild clean
 
 build:
