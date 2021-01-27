@@ -1,7 +1,7 @@
 {
   "name": "polyglot",
   "description": "A Safari extension that translates selected text into your native language.",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "scripts": {
     "build": "NODE_ENV=production webpack-cli --mode production",
     "clean": "shx rm -rf PolyglotSafariExtension/ContentScript/*.js{,.map,.LICENSE.txt}",
