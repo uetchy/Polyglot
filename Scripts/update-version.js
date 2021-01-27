@@ -3,7 +3,6 @@
 const path = require("path");
 const fs = require("fs");
 const assert = require("assert");
-const { execSync } = require("child_process");
 const plist = require("plist");
 
 const shortVersion = process.env.VERSION;

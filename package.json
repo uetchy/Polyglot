@@ -37,8 +37,7 @@
   },
   "lint-staged": {
     "*.swift": [
-      "swiftformat --swiftversion 4",
-      "git add"
+      "swiftformat --swiftversion 4"
     ]
   },
   "license": "Apache-2.0",
