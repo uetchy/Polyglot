@@ -20,6 +20,7 @@ enum SettingsKey {
   static let SourceLanguage = "sourceLanguage"
   static let TargetLanguage = "targetLanguage"
   static let InstantTranslation = "instantTranslation"
+  static let ConfirmInstantTranslation = "confirmInstantTranslation"
 }
 
 let GROUP_ID = "58XDWHK3JX.io.uechi.Polyglot"
@@ -47,12 +48,14 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     let sourceLanguage = ud.string(forKey: SettingsKey.SourceLanguage)
     let targetLanguage = ud.string(forKey: SettingsKey.TargetLanguage)
     let instantTranslation = ud.bool(forKey: SettingsKey.InstantTranslation)
+    let confirmInstantTranslation = ud.bool(forKey: SettingsKey.ConfirmInstantTranslation)
     let settings = [
       SettingsKey.KeyCodeUnicode: keyCodeUnicode,
       SettingsKey.Modifiers: modifiers,
       SettingsKey.SourceLanguage: sourceLanguage ?? "auto",
       SettingsKey.TargetLanguage: targetLanguage ?? "en",
       SettingsKey.InstantTranslation: instantTranslation,
+      SettingsKey.ConfirmInstantTranslation: confirmInstantTranslation,
     ] as [String: Any]
 
     page.dispatchMessageToScript(withName: MessageType.SendSettings, userInfo: settings)

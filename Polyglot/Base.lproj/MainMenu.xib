@@ -15,6 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Polyglot" customModuleProvider="target">
             <connections>
+                <outlet property="confirmInstantTranslation" destination="Seb-BD-Ysi" id="Wxb-Io-GQc"/>
                 <outlet property="instantTranslation" destination="snC-Hi-0g2" id="3Bm-mC-rMK"/>
                 <outlet property="recordView" destination="TCa-tD-35P" id="hZA-Vt-lms"/>
                 <outlet property="sourceLanguagePopup" destination="X35-Si-YUo" id="6GP-h5-LPd"/>
@@ -688,12 +689,12 @@
         <window title="Polyglot" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="449" height="179"/>
+            <rect key="contentRect" x="335" y="390" width="449" height="195"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
-            <value key="minSize" type="size" width="449" height="179"/>
-            <value key="maxSize" type="size" width="449" height="179"/>
+            <value key="minSize" type="size" width="449" height="195"/>
+            <value key="maxSize" type="size" width="449" height="195"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="449" height="179"/>
+                <rect key="frame" x="0.0" y="0.0" width="449" height="195"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X35-Si-YUo" userLabel="Source Language">
@@ -768,6 +769,14 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Seb-BD-Ysi">
+                        <rect key="frame" x="18" y="12" width="227" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Show Icon to Confirm Translation" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Orz-oG-XbX">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="LFb-eW-Y47" firstAttribute="firstBaseline" secondItem="Off-34-k11" secondAttribute="firstBaseline" id="09Z-cb-jfU"/>

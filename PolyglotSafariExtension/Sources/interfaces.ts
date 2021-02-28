@@ -6,6 +6,7 @@ export interface Settings {
   sourceLanguage: string;
   targetLanguage: string;
   instantTranslation: boolean;
+  confirmInstantTranslation: boolean;
 }
 export interface ReceivedSettings {
   keyCodeUnicode: number;
@@ -13,6 +14,7 @@ export interface ReceivedSettings {
   sourceLanguage: string;
   targetLanguage: string;
   instantTranslation: boolean;
+  confirmInstantTranslation: boolean;
 }
 interface DictionaryEntry {
   score: number;

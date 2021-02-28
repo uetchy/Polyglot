@@ -5,6 +5,7 @@ import {
   isElementPanelChildren,
   removePanel,
   showError,
+  showConfirmButton,
   showIndicator,
   showTranslation,
 } from "./panel";
@@ -62,6 +63,7 @@ function settingsHandler(received: ReceivedSettings): void {
     sourceLanguage: received.sourceLanguage,
     targetLanguage: received.targetLanguage,
     instantTranslation: received.instantTranslation || false,
+    confirmInstantTranslation: received.confirmInstantTranslation || false,
   };
   console.debug(settings);
 }
@@ -118,6 +120,8 @@ function handleKeypress(keyboardEvent: KeyboardEvent): void {
   }
 }
 
+let cursorX: Number = 0;
+
 // handle click event for instant translation
 function handleClick(e: MouseEvent): void {
   // return if the clicked element is one of the panel's children
@@ -136,12 +140,17 @@ function handleClick(e: MouseEvent): void {
     ) {
       return;
     }
+    cursorX = e.pageX;
 
-    performTranslation();
+    performTranslation(true);
   }
 }
 
-function performTranslation(): void {
+function isTranslationConfirmed(): Promise<boolean> {
+  return new Promise(resolve => showConfirmButton(resolve, cursorX))
+}
+
+async function performTranslation(isInPageClick?: Boolean): Promise<void> {
   const selectedText = getSelectedText();
   if (!selectedText) return;
 
@@ -156,6 +165,12 @@ function performTranslation(): void {
     language !== undefined &&
     language === settings.targetLanguage;
   if (prevent) return;
+
+  if (
+    isInPageClick &&
+    settings.confirmInstantTranslation &&
+    !await isTranslationConfirmed()
+  ) return;
 
   showIndicator();
 

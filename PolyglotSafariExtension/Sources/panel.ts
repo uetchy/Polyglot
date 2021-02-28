@@ -3,8 +3,14 @@ import { getSelectionBoundingRect, isDescendant } from "./dom";
 
 const PANEL_ID = "polyglot__panel";
 const INDICATOR = `<div class="polyglot__inner"><div class="polyglot__loader">Loading</div></div>`;
+const CONFIRM_BUTTON = `<div class="polyglot__inner">
+  <button class="polyglot__confirm-button">
+    <img alt="Translate" src="${safari.extension.baseURI}icon.png" />
+  </button>
+</div>`;
 
 let isPanelOpen = false;
+let panelIsClickedHandler: Function | undefined;
 
 export function isElementPanelChildren(dom: HTMLElement) {
   const panel = document.getElementById(PANEL_ID);
@@ -15,6 +21,10 @@ export function isElementPanelChildren(dom: HTMLElement) {
 
 export function showIndicator() {
   showPanel(INDICATOR);
+}
+
+export function showConfirmButton(isClickedHandler: Function, cursorX: Number) {
+  return showPanel(CONFIRM_BUTTON, isClickedHandler, cursorX);
 }
 
 export function showError(message: string) {
@@ -74,6 +84,10 @@ export function showTranslation(args: TranslationParams) {
 
 export function removePanel() {
   isPanelOpen = false;
+  if (panelIsClickedHandler) {
+    panelIsClickedHandler(false);
+    panelIsClickedHandler = undefined;
+  }
   const panel = document.getElementById(PANEL_ID);
   if (panel) {
     panel.remove();
@@ -81,17 +95,25 @@ export function removePanel() {
 }
 
 // Show panel with given text
-export function showPanel(content: string): void {
+export function showPanel(content: string, isClickedHandler?: Function, overrideLeft?: Number): void {
   if (isPanelOpen) removePanel();
 
   const bounds = getSelectionBoundingRect();
-  if (bounds === undefined) return;
+  if (bounds === undefined) {
+    if (isClickedHandler) isClickedHandler(false);
+    return;
+  }
 
   const el = document.createElement("div");
   el.innerHTML = content;
   el.id = PANEL_ID;
-  el.style.left = bounds.left + "px";
+  el.style.left = (overrideLeft || bounds.left) + "px";
   el.style.top = bounds.bottom + "px";
   document.body.insertBefore(el, document.body.firstChild);
   isPanelOpen = true;
+
+  if (isClickedHandler) {
+    panelIsClickedHandler = isClickedHandler;
+    el.addEventListener('click', () => isClickedHandler(true))
+  }
 }

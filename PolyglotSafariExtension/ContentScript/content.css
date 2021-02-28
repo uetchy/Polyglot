@@ -3,12 +3,20 @@
     --background: rgba(200, 200, 200, 0.7);
     --text: #2b2b2b;
   }
+
+  .polyglot__confirm-button img {
+    filter: invert(11%) sepia(0%) saturate(61%) hue-rotate(286deg) brightness(98%) contrast(84%);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   #polyglot__panel {
     --background: rgba(0, 0, 0, 0.5);
     --text: #d7d7db;
+  }
+
+  .polyglot__confirm-button img {
+    filter: invert(95%) sepia(7%) saturate(84%) hue-rotate(202deg) brightness(91%) contrast(91%);
   }
 }
 
@@ -89,6 +97,19 @@
   width: 40px !important;
   height: 40px !important;
   border-radius: 50% !important;
+}
+
+.polyglot__confirm-button {
+  display: block !important;
+  border: none !important;
+  background: transparent !important;
+  margin: -10px !important;
+  padding: 0 !important;
+}
+
+.polyglot__confirm-button img {
+  display: block !important;;
+  width: 30px !important;;
 }
 
 @keyframes polyglot__load8 {

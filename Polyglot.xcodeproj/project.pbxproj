@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		994124CB22D20FD6007830D4 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 994124CA22D20FD6007830D4 /* icon.icns */; };
-		994C4A4122C3205F00BACF66 /* toolbar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C4A3F22C3205F00BACF66 /* toolbar-icon.png */; };
+		994C4A4122C3205F00BACF66 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C4A3F22C3205F00BACF66 /* icon.png */; };
 		994C4A4322C3212600BACF66 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994C4A4222C3212600BACF66 /* Translator.swift */; };
 		99CC9B1222CB3115002650EF /* PolyglotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CC9B1122CB3115002650EF /* PolyglotTests.swift */; };
 		99CEF4F722D09A8900B7DF34 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CEF4F622D09A8900B7DF34 /* Constants.swift */; };
@@ -62,7 +62,7 @@
 
 /* Begin PBXFileReference section */
 		994124CA22D20FD6007830D4 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
-		994C4A3F22C3205F00BACF66 /* toolbar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-icon.png"; sourceTree = "<group>"; };
+		994C4A3F22C3205F00BACF66 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon.png"; sourceTree = "<group>"; };
 		994C4A4222C3212600BACF66 /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
 		99CC9B0F22CB3115002650EF /* PolyglotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolyglotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99CC9B1122CB3115002650EF /* PolyglotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotTests.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				99ED829E211812AB00505D83 /* ToolbarItemIcon.pdf */,
-				994C4A3F22C3205F00BACF66 /* toolbar-icon.png */,
+				994C4A3F22C3205F00BACF66 /* icon.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -372,7 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				994C4A4122C3205F00BACF66 /* toolbar-icon.png in Resources */,
+				994C4A4122C3205F00BACF66 /* icon.png in Resources */,
 				99ED829F211812AB00505D83 /* ToolbarItemIcon.pdf in Resources */,
 				99CEF50322D1A08800B7DF34 /* content.bundle.js in Resources */,
 				99CEF50222D1A08800B7DF34 /* content.css in Resources */,

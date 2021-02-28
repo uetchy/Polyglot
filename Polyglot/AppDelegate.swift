@@ -9,6 +9,7 @@ struct SettingsKey {
   static let SourceLanguage = "sourceLanguage"
   static let TargetLanguage = "targetLanguage"
   static let InstantTranslation = "instantTranslation"
+  static let ConfirmInstantTranslation = "confirmInstantTranslation"
 }
 
 let DEFAULT_SOURCE = ("auto", "Auto Detect")
@@ -31,13 +32,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet var sourceLanguagePopup: NSPopUpButton!
   @IBOutlet var targetLanguagePopup: NSPopUpButton!
   @IBOutlet var instantTranslation: NSButton!
+  @IBOutlet var confirmInstantTranslation: NSButton!
 
   var settings = UserDefaults(suiteName: GROUP_ID)!
 
   func applicationDidFinishLaunching(_: Notification) {
     setupPopupButtons()
     setupKeyComboView()
-    setupInstantCheckbox()
+    setupInstantCheckboxes()
   }
 
   func setupPopupButtons() {
@@ -69,11 +71,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     recordView.keyCombo = keyCombo
   }
 
-  func setupInstantCheckbox() {
+  func setupInstantCheckboxes() {
     // Restore settings
-    let isChecked: NSControl.StateValue = settings.bool(forKey: SettingsKey.InstantTranslation) ? .on : .off
-    instantTranslation.state = isChecked
+    var isChecked = settings.bool(forKey: SettingsKey.InstantTranslation)
+    instantTranslation.state = isChecked ? .on : .off
     instantTranslation.action = #selector(instantCheckboxChanged)
+
+    confirmInstantTranslation.isEnabled = isChecked
+    isChecked = settings.bool(forKey: SettingsKey.ConfirmInstantTranslation)
+    confirmInstantTranslation.state = isChecked ? .on : .off
+    confirmInstantTranslation.action = #selector(instantCheckboxChanged)
   }
 
   // NOTE: cmd = 256, shift = 512, alt = 2048, ctrl = 4096
@@ -90,8 +97,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   @objc func instantCheckboxChanged() {
     // save instant checkbox setting
-    let isChecked = instantTranslation.state == NSControl.StateValue.on ? true : false
+    var isChecked = instantTranslation.state == NSControl.StateValue.on ? true : false
     settings.set(isChecked, forKey: SettingsKey.InstantTranslation)
+
+    confirmInstantTranslation.isEnabled = isChecked
+    if !isChecked {
+      confirmInstantTranslation.state = .off
+    }
+    isChecked = confirmInstantTranslation.state == NSControl.StateValue.on ? true : false
+    settings.set(isChecked, forKey: SettingsKey.ConfirmInstantTranslation)
     settings.synchronize()
   }
 
