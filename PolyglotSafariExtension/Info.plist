@@ -62,7 +62,7 @@
         <key>Identifier</key>
         <string>translateButton</string>
         <key>Image</key>
-        <string>toolbar-icon.png</string>
+        <string>icon.png</string>
         <key>Label</key>
         <string>Translate</string>
       </dict>
