@@ -62,15 +62,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://uechi.io"><img src="https://avatars0.githubusercontent.com/u/431808?v=4" width="100px;" alt="Yasuaki Uechi"/><br /><sub><b>Yasuaki Uechi</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=uetchy" title="Code">💻</a> <a href="https://github.com/uetchy/Polyglot/commits?author=uetchy" title="Documentation">📖</a> <a href="#design-uetchy" title="Design">🎨</a></td>
-    <td align="center"><a href="https://github.com/devemio"><img src="https://avatars1.githubusercontent.com/u/5787193?v=4" width="100px;" alt="Sergey Sorokin"/><br /><sub><b>Sergey Sorokin</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=devemio" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/imserhii"><img src="https://avatars2.githubusercontent.com/u/4532683?v=4" width="100px;" alt="Serhii Dmytruk"/><br /><sub><b>Serhii Dmytruk</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=imserhii" title="Code">💻</a></td>
-    <td align="center"><a href="http://www.gingerbeardman.com"><img src="https://avatars2.githubusercontent.com/u/49612?v=4" width="100px;" alt="Matt Sephton"/><br /><sub><b>Matt Sephton</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=gingerbeardman" title="Documentation">📖</a> <a href="#question-gingerbeardman" title="Answering Questions">💬</a></td>
-    <td align="center"><a href="https://nixiesquid.com"><img src="https://avatars2.githubusercontent.com/u/21212032?v=4" width="100px;" alt="NixieSquid"/><br /><sub><b>NixieSquid</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=nixiesquid" title="Code">💻</a></td>
+    <td align="center"><a href="https://uechi.io"><img src="https://avatars0.githubusercontent.com/u/431808?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yasuaki Uechi</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=uetchy" title="Code">💻</a> <a href="https://github.com/uetchy/Polyglot/commits?author=uetchy" title="Documentation">📖</a> <a href="#design-uetchy" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/devemio"><img src="https://avatars1.githubusercontent.com/u/5787193?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sergey Sorokin</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=devemio" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/imserhii"><img src="https://avatars2.githubusercontent.com/u/4532683?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Serhii Dmytruk</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=imserhii" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.gingerbeardman.com"><img src="https://avatars2.githubusercontent.com/u/49612?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matt Sephton</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=gingerbeardman" title="Documentation">📖</a> <a href="#question-gingerbeardman" title="Answering Questions">💬</a></td>
+    <td align="center"><a href="https://nixiesquid.com"><img src="https://avatars2.githubusercontent.com/u/21212032?v=4?s=100" width="100px;" alt=""/><br /><sub><b>NixieSquid</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=nixiesquid" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.upwork.com/freelancers/~01df9ec96e07862b14"><img src="https://avatars.githubusercontent.com/u/9007851?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Denis Davidyuk</b></sub></a><br /><a href="https://github.com/uetchy/Polyglot/commits?author=davidyuk" title="Code">💻</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
