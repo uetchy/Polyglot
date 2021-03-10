@@ -57,7 +57,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "davidyuk",
+      "name": "Denis Davidyuk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9007851?v=4",
+      "profile": "https://www.upwork.com/freelancers/~01df9ec96e07862b14",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
