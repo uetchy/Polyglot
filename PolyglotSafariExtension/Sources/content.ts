@@ -1,22 +1,22 @@
 import franc from "franc";
 import to1 from "iso-639-3/to-1.json";
+import {
+  ReceivedSettings,
+  ReceivedTranslation,
+  RequestMessageType,
+  ResponseMessageType,
+  Settings,
+  UpstreamError,
+} from "./interfaces";
 import { expandModifiers, matchModifiers } from "./modifiers";
 import {
   isElementPanelChildren,
   removePanel,
-  showError,
   showConfirmButton,
+  showError,
   showIndicator,
   showTranslation,
 } from "./panel";
-import {
-  Settings,
-  RequestMessageType,
-  ResponseMessageType,
-  ReceivedSettings,
-  UpstreamError,
-  ReceivedTranslation,
-} from "./interfaces";
 
 let settings: Settings;
 
@@ -28,7 +28,8 @@ function init(): void {
 
   // handle js events in active page
   window.addEventListener("keypress", handleKeypress, false);
-  window.addEventListener("click", handleClick, false);
+  window.addEventListener("mousedown", handleMouseDown, false);
+  window.addEventListener("mouseup", handleMouseUp, false);
 
   // fetch global settings from App Extension
   safari.extension.dispatchMessage(RequestMessageType.RequestSettings);
@@ -120,37 +121,42 @@ function handleKeypress(keyboardEvent: KeyboardEvent): void {
   }
 }
 
-let cursorX: Number = 0;
-
-// handle click event for instant translation
-function handleClick(e: MouseEvent): void {
+// handle mousedown event to manage panel
+function handleMouseDown(e: MouseEvent): void {
   // return if the clicked element is one of the panel's children
   if (isElementPanelChildren(<HTMLElement>e.target)) return;
 
   // cleanup panel
   removePanel();
+}
 
-  // if instant translation is enabled
-  if (settings.instantTranslation) {
-    // return if the element is textarea or input
-    const activeElement = document.activeElement?.tagName.toLowerCase();
-    if (
-      activeElement &&
-      (activeElement === "textarea" || activeElement === "input")
-    ) {
-      return;
-    }
-    cursorX = e.pageX;
+// handle mouseup event for instant translation
+function handleMouseUp(e: MouseEvent): void {
+  // return if the clicked element is one of the panel's children
+  if (isElementPanelChildren(<HTMLElement>e.target)) return;
 
-    performTranslation(true);
+  // return if the element is textarea or input
+  const activeElement = document.activeElement?.tagName.toLowerCase();
+  if (
+    activeElement &&
+    (activeElement === "textarea" || activeElement === "input")
+  )
+    return;
+
+  // return if instant translation is disabled
+  if (!settings.instantTranslation) return;
+
+  if (settings.confirmInstantTranslation) {
+    if (!getSelectedText()) return;
+    showConfirmButton(() => {
+      performTranslation();
+    }, e.pageX);
+  } else {
+    performTranslation();
   }
 }
 
-function isTranslationConfirmed(): Promise<boolean> {
-  return new Promise(resolve => showConfirmButton(resolve, cursorX))
-}
-
-async function performTranslation(isInPageClick?: Boolean): Promise<void> {
+function performTranslation(): void {
   const selectedText = getSelectedText();
   if (!selectedText) return;
 
@@ -165,12 +171,6 @@ async function performTranslation(isInPageClick?: Boolean): Promise<void> {
     language !== undefined &&
     language === settings.targetLanguage;
   if (prevent) return;
-
-  if (
-    isInPageClick &&
-    settings.confirmInstantTranslation &&
-    !await isTranslationConfirmed()
-  ) return;
 
   showIndicator();
 
