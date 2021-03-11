@@ -10,6 +10,7 @@
 		994124CB22D20FD6007830D4 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 994124CA22D20FD6007830D4 /* icon.icns */; };
 		994C4A4122C3205F00BACF66 /* toolbar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C4A3F22C3205F00BACF66 /* toolbar-icon.png */; };
 		994C4A4322C3212600BACF66 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994C4A4222C3212600BACF66 /* Translator.swift */; };
+		99C32E1425CD008600BB4066 /* AXSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 99C32E1325CD008600BB4066 /* AXSwift */; };
 		99CC9B1222CB3115002650EF /* PolyglotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CC9B1122CB3115002650EF /* PolyglotTests.swift */; };
 		99CEF4F722D09A8900B7DF34 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CEF4F622D09A8900B7DF34 /* Constants.swift */; };
 		99CEF50222D1A08800B7DF34 /* content.css in Resources */ = {isa = PBXBuildFile; fileRef = 99CEF50022D1A08800B7DF34 /* content.css */; };
@@ -102,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99C32E1425CD008600BB4066 /* AXSwift in Frameworks */,
 				99F1987825BE6F430019BCF9 /* KeyHolder in Frameworks */,
 				99F1986D25BE6C7F0019BCF9 /* Alamofire in Frameworks */,
 			);
@@ -255,6 +257,7 @@
 			packageProductDependencies = (
 				99F1986C25BE6C7F0019BCF9 /* Alamofire */,
 				99F1987725BE6F430019BCF9 /* KeyHolder */,
+				99C32E1325CD008600BB4066 /* AXSwift */,
 			);
 			productName = Polyglot;
 			productReference = 99ED827A2118127C00505D83 /* Polyglot.app */;
@@ -338,6 +341,7 @@
 			packageReferences = (
 				99F1986B25BE6C7F0019BCF9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				99F1987625BE6F430019BCF9 /* XCRemoteSwiftPackageReference "KeyHolder" */,
+				99C32E1225CD008600BB4066 /* XCRemoteSwiftPackageReference "AXSwift" */,
 			);
 			productRefGroup = 99ED827B2118127C00505D83 /* Products */;
 			projectDirPath = "";
@@ -738,6 +742,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		99C32E1225CD008600BB4066 /* XCRemoteSwiftPackageReference "AXSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tmandry/AXSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 		99F1986B25BE6C7F0019BCF9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -757,6 +769,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		99C32E1325CD008600BB4066 /* AXSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 99C32E1225CD008600BB4066 /* XCRemoteSwiftPackageReference "AXSwift" */;
+			productName = AXSwift;
+		};
 		99F1986C25BE6C7F0019BCF9 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 99F1986B25BE6C7F0019BCF9 /* XCRemoteSwiftPackageReference "Alamofire" */;

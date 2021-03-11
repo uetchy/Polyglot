@@ -1,3 +1,4 @@
+import AXSwift
 import Cocoa
 import KeyHolder
 import Magnet
@@ -38,6 +39,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     setupPopupButtons()
     setupKeyComboView()
     setupInstantCheckbox()
+
+//    guard AXSwift.checkIsProcessTrusted(prompt: true) else {
+//      print("Not trusted as an AX process; please authorize and re-launch")
+//      //      NSApp.terminate(self)
+//      return
+//    }
+    // Check that we have permission
+    guard UIElement.isProcessTrusted(withPrompt: true) else {
+      NSLog("No accessibility API permission, exiting")
+//      NSRunningApplication.current.terminate()
+      return
+    }
+    // https://stackoverflow.com/questions/6544311/how-to-get-global-screen-coordinates-of-currently-selected-text-via-accessibilit
+    // https://github.com/tmandry/AXSwift/blob/dbf34341fd9a5892a5f8a646699c82308ae40c42/Sources/UIElement.swift#L169
+    if let application = NSWorkspace.shared.frontmostApplication {
+      NSLog("localizedName: \(String(describing: application.localizedName)), processIdentifier: \(application.processIdentifier)")
+      let uiApp = Application(application)!
+      NSLog("windows: \(String(describing: try! uiApp.windows()))")
+      NSLog("attributes: \(try! uiApp.attributes())")
+      NSLog("at 0,0: \(String(describing: try! uiApp.elementAtPosition(0, 0)))")
+      if let bundleIdentifier = application.bundleIdentifier {
+        NSLog("bundleIdentifier: \(bundleIdentifier)")
+        let windows = try! Application.allForBundleID(bundleIdentifier).first!.windows()
+        NSLog("windows: \(String(describing: windows))")
+      }
+    }
+  }
+
+  func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
+    return true
   }
 
   func setupPopupButtons() {
@@ -111,9 +142,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // save language option
     settings.set(targetLanguage, forKey: SettingsKey.TargetLanguage)
     settings.synchronize()
-  }
-
-  func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
-    return true
   }
 }
