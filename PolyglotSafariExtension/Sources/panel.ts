@@ -10,7 +10,6 @@ const CONFIRM_BUTTON = `<div class="polyglot__inner">
 </div>`;
 
 let isPanelOpen = false;
-let panelIsClickedHandler: Function | undefined;
 
 export function isElementPanelChildren(dom: HTMLElement) {
   const panel = document.getElementById(PANEL_ID);
@@ -23,8 +22,14 @@ export function showIndicator() {
   showPanel(INDICATOR);
 }
 
-export function showConfirmButton(isClickedHandler: Function, cursorX: Number) {
-  return showPanel(CONFIRM_BUTTON, isClickedHandler, cursorX);
+export function showConfirmButton(
+  onClick: ((ev: MouseEvent) => any) | null,
+  cursorX: number
+) {
+  showPanel(CONFIRM_BUTTON, {
+    onClick,
+    style: { left: cursorX + "px" },
+  });
 }
 
 export function showError(message: string) {
@@ -84,10 +89,6 @@ export function showTranslation(args: TranslationParams) {
 
 export function removePanel() {
   isPanelOpen = false;
-  if (panelIsClickedHandler) {
-    panelIsClickedHandler(false);
-    panelIsClickedHandler = undefined;
-  }
   const panel = document.getElementById(PANEL_ID);
   if (panel) {
     panel.remove();
@@ -95,25 +96,32 @@ export function removePanel() {
 }
 
 // Show panel with given text
-export function showPanel(content: string, isClickedHandler?: Function, overrideLeft?: Number): void {
+export function showPanel(
+  content: string,
+  {
+    style = {},
+    onClick = null,
+  }: {
+    style?: Partial<CSSStyleDeclaration>;
+    onClick?: ((ev: MouseEvent) => any) | null;
+  } = {}
+): void {
   if (isPanelOpen) removePanel();
 
   const bounds = getSelectionBoundingRect();
-  if (bounds === undefined) {
-    if (isClickedHandler) isClickedHandler(false);
-    return;
-  }
+  if (bounds === undefined) return;
 
   const el = document.createElement("div");
   el.innerHTML = content;
   el.id = PANEL_ID;
-  el.style.left = (overrideLeft || bounds.left) + "px";
+  el.style.left = bounds.left + "px";
   el.style.top = bounds.bottom + "px";
+  el.onclick = onClick;
+
+  for (const key in style) {
+    el.style[key] = style[key]!;
+  }
+
   document.body.insertBefore(el, document.body.firstChild);
   isPanelOpen = true;
-
-  if (isClickedHandler) {
-    panelIsClickedHandler = isClickedHandler;
-    el.addEventListener('click', () => isClickedHandler(true))
-  }
 }
