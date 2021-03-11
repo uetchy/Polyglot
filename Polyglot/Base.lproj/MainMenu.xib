@@ -689,16 +689,14 @@
         <window title="Polyglot" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="449" height="195"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
-            <value key="minSize" type="size" width="449" height="195"/>
-            <value key="maxSize" type="size" width="449" height="195"/>
+            <rect key="contentRect" x="335" y="390" width="449" height="226"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="449" height="195"/>
+                <rect key="frame" x="0.0" y="0.0" width="449" height="216"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X35-Si-YUo" userLabel="Source Language">
-                        <rect key="frame" x="17" y="111" width="182" height="25"/>
+                        <rect key="frame" x="17" y="148" width="182" height="25"/>
                         <popUpButtonCell key="cell" type="push" title="Japanese" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="iUt-YV-KdS" id="PsF-b8-Mh5">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -711,7 +709,7 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-eW-Y47" userLabel="Target Language">
-                        <rect key="frame" x="251" y="110" width="182" height="26"/>
+                        <rect key="frame" x="251" y="147" width="182" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Japanese" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="SIa-W0-K5e" id="2fe-zg-WH7">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -724,14 +722,14 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="TCa-tD-35P" customClass="RecordView" customModule="KeyHolder">
-                        <rect key="frame" x="20" y="50" width="409" height="47"/>
+                        <rect key="frame" x="20" y="87" width="409" height="47"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="409" id="lB5-bD-Sli"/>
                             <constraint firstAttribute="height" constant="47" id="wEY-VB-Ucr"/>
                         </constraints>
                     </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gvG-Ap-Bul">
-                        <rect key="frame" x="18" y="143" width="110" height="16"/>
+                        <rect key="frame" x="18" y="180" width="110" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Source Language" id="a0b-WJ-A8b">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -739,7 +737,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nf1-Ei-Ofi">
-                        <rect key="frame" x="252" y="143" width="179" height="16"/>
+                        <rect key="frame" x="252" y="180" width="179" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Target Language" id="j3e-Ct-KN8">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -747,7 +745,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Off-34-k11">
-                        <rect key="frame" x="213" y="118" width="23" height="16"/>
+                        <rect key="frame" x="213" y="155" width="23" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="👉" id="wqd-tz-n4F">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -755,56 +753,57 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="snC-Hi-0g2">
-                        <rect key="frame" x="18" y="18" width="195" height="18"/>
+                        <rect key="frame" x="18" y="55" width="138" height="18"/>
                         <buttonCell key="cell" type="check" title="Instant Translation" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8Cm-uX-mAy">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Seb-BD-Ysi">
+                        <rect key="frame" x="202" y="55" width="227" height="18"/>
+                        <buttonCell key="cell" type="check" title="Show Icon to Confirm Translation" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Orz-oG-XbX">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w2V-8L-csi">
-                        <rect key="frame" x="211" y="19" width="220" height="16"/>
+                        <rect key="frame" x="18" y="20" width="220" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Settings will be saved automatically" id="EDE-5d-s8y">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Seb-BD-Ysi">
-                        <rect key="frame" x="18" y="12" width="227" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Show Icon to Confirm Translation" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Orz-oG-XbX">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="LFb-eW-Y47" firstAttribute="firstBaseline" secondItem="Off-34-k11" secondAttribute="firstBaseline" id="09Z-cb-jfU"/>
                     <constraint firstItem="LFb-eW-Y47" firstAttribute="top" secondItem="nf1-Ei-Ofi" secondAttribute="bottom" constant="8" symbolic="YES" id="2BM-M7-Ukl"/>
                     <constraint firstItem="snC-Hi-0g2" firstAttribute="top" secondItem="TCa-tD-35P" secondAttribute="bottom" constant="15" id="2Go-Sh-IiD"/>
-                    <constraint firstItem="w2V-8L-csi" firstAttribute="top" secondItem="snC-Hi-0g2" secondAttribute="top" id="464-Nn-Aba"/>
-                    <constraint firstItem="snC-Hi-0g2" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="4sj-Fu-Uw9"/>
+                    <constraint firstItem="w2V-8L-csi" firstAttribute="top" secondItem="snC-Hi-0g2" secondAttribute="bottom" constant="20" id="3QY-LF-uiT"/>
+                    <constraint firstItem="Seb-BD-Ysi" firstAttribute="centerY" secondItem="snC-Hi-0g2" secondAttribute="centerY" id="7wt-V4-VpG"/>
                     <constraint firstItem="X35-Si-YUo" firstAttribute="leading" secondItem="TCa-tD-35P" secondAttribute="leading" id="BOV-2c-Svz"/>
                     <constraint firstItem="TCa-tD-35P" firstAttribute="top" secondItem="LFb-eW-Y47" secondAttribute="bottom" constant="17" id="CBf-Qz-H8K"/>
                     <constraint firstItem="LFb-eW-Y47" firstAttribute="firstBaseline" secondItem="X35-Si-YUo" secondAttribute="firstBaseline" id="E3e-dY-zgn"/>
+                    <constraint firstItem="w2V-8L-csi" firstAttribute="leading" secondItem="snC-Hi-0g2" secondAttribute="leading" id="EV1-v9-Wvn"/>
                     <constraint firstItem="nf1-Ei-Ofi" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Off-34-k11" secondAttribute="trailing" constant="20" id="FNn-n4-9lb"/>
                     <constraint firstItem="LFb-eW-Y47" firstAttribute="trailing" secondItem="TCa-tD-35P" secondAttribute="trailing" id="Hcf-ww-S5F"/>
                     <constraint firstItem="LFb-eW-Y47" firstAttribute="leading" secondItem="nf1-Ei-Ofi" secondAttribute="leading" id="MOk-W9-EP0"/>
                     <constraint firstItem="X35-Si-YUo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gvG-Ap-Bul" secondAttribute="trailing" id="Ns0-gV-qyo"/>
-                    <constraint firstItem="w2V-8L-csi" firstAttribute="trailing" secondItem="TCa-tD-35P" secondAttribute="trailing" id="Qlx-P1-Rsc"/>
+                    <constraint firstItem="Seb-BD-Ysi" firstAttribute="leading" secondItem="snC-Hi-0g2" secondAttribute="trailing" constant="48" id="QEn-Ra-dx0"/>
+                    <constraint firstItem="Seb-BD-Ysi" firstAttribute="trailing" secondItem="TCa-tD-35P" secondAttribute="trailing" id="SYu-nd-IAa"/>
                     <constraint firstItem="gvG-Ap-Bul" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="SaS-pK-8wy"/>
                     <constraint firstItem="nf1-Ei-Ofi" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="Sb0-qt-s06"/>
-                    <constraint firstItem="snC-Hi-0g2" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w2V-8L-csi" secondAttribute="leading" id="XIK-LR-X1c"/>
                     <constraint firstItem="X35-Si-YUo" firstAttribute="leading" secondItem="gvG-Ap-Bul" secondAttribute="leading" id="gfa-9K-ku8"/>
                     <constraint firstItem="X35-Si-YUo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Off-34-k11" secondAttribute="leading" constant="-20" id="hge-2O-QXj"/>
                     <constraint firstItem="nf1-Ei-Ofi" firstAttribute="trailing" secondItem="TCa-tD-35P" secondAttribute="trailing" id="ioW-n6-3cY"/>
                     <constraint firstItem="TCa-tD-35P" firstAttribute="trailing" secondItem="EiT-Mj-1SZ" secondAttribute="trailing" constant="-20" id="oAa-VZ-6wZ"/>
                     <constraint firstItem="TCa-tD-35P" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="qUj-1N-Plv"/>
+                    <constraint firstAttribute="bottom" secondItem="w2V-8L-csi" secondAttribute="bottom" constant="20" id="v6b-dD-hHZ"/>
                     <constraint firstItem="Off-34-k11" firstAttribute="centerX" secondItem="TCa-tD-35P" secondAttribute="centerX" id="wYN-MU-Ekc"/>
                     <constraint firstItem="LFb-eW-Y47" firstAttribute="bottom" secondItem="nf1-Ei-Ofi" secondAttribute="bottom" constant="29" id="yDe-Bb-fdH"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="105.5" y="285.5"/>
+            <point key="canvasLocation" x="105.5" y="301"/>
         </window>
     </objects>
 </document>
