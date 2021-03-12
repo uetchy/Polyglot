@@ -49,7 +49,12 @@ function handleMessage(msg: SafariExtensionMessageEvent): void {
       translationErrorHandler(msg.message);
       break;
     case ResponseMessageType.PerformTranslation:
-      performTranslation(); // TODO: support iframe
+      const selectedText = getSelectedText();
+
+      // return if selected text is empty
+      if (!selectedText) break;
+
+      performTranslation(selectedText);
       break;
     default:
   }
@@ -98,8 +103,13 @@ function translationHandler(message: ReceivedTranslation): void {
 }
 
 function handleKeypress(keyboardEvent: KeyboardEvent): void {
-  // Check if shortcut key is properly configured
+  const selectedText = getSelectedText();
   const { keyCode } = settings;
+
+  // return if selected text is empty
+  if (!selectedText) return;
+
+  // return if shortcut key is not configured
   if (!keyCode) return;
 
   const kbdKeyCode = keyboardEvent.key.toUpperCase().charCodeAt(0);
@@ -117,7 +127,7 @@ function handleKeypress(keyboardEvent: KeyboardEvent): void {
 
   if (isValidModifiers && isValidKeyCode) {
     keyboardEvent.preventDefault();
-    performTranslation();
+    performTranslation(selectedText);
   }
 }
 
@@ -132,6 +142,14 @@ function handleMouseDown(e: MouseEvent): void {
 
 // handle mouseup event for instant translation
 function handleMouseUp(e: MouseEvent): void {
+  const selectedText = getSelectedText();
+
+  // return if selected text is empty
+  if (!selectedText) return;
+
+  // return if instant translation is disabled
+  if (!settings.instantTranslation) return;
+
   // return if the clicked element is one of the panel's children
   if (isElementPanelChildren(<HTMLElement>e.target)) return;
 
@@ -143,24 +161,17 @@ function handleMouseUp(e: MouseEvent): void {
   )
     return;
 
-  // return if instant translation is disabled
-  if (!settings.instantTranslation) return;
-
   if (settings.confirmInstantTranslation) {
-    if (!getSelectedText()) return;
-    showConfirmButton(() => {
-      performTranslation();
+    return showConfirmButton((e) => {
+      performTranslation(selectedText);
     }, e.pageX);
-  } else {
-    performTranslation();
   }
+
+  performTranslation(selectedText);
 }
 
-function performTranslation(): void {
-  const selectedText = getSelectedText();
-  if (!selectedText) return;
-
-  const language = to1[franc(selectedText, { minLength: 1 })];
+function performTranslation(text: string): void {
+  const language = to1[franc(text, { minLength: 1 })];
   console.log("detected language", language);
 
   // prevent translation if all of conditions are met
@@ -168,6 +179,7 @@ function performTranslation(): void {
   // - detected language is equal to target language
   const prevent =
     settings.instantTranslation &&
+    !settings.confirmInstantTranslation &&
     language !== undefined &&
     language === settings.targetLanguage;
   if (prevent) return;
@@ -175,7 +187,7 @@ function performTranslation(): void {
   showIndicator();
 
   safari.extension.dispatchMessage(RequestMessageType.Translate, {
-    text: selectedText,
+    text,
     id: window.location.href,
   });
 }
