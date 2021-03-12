@@ -2,12 +2,20 @@ import Mustache from "mustache";
 import { getSelectionBoundingRect, isDescendant } from "./dom";
 
 const PANEL_ID = "polyglot__panel";
-const INDICATOR = `<div class="polyglot__inner"><div class="polyglot__loader">Loading</div></div>`;
-const CONFIRM_BUTTON = `<div class="polyglot__inner">
-  <button class="polyglot__confirm-button">
-    <img alt="Translate" src="${safari.extension.baseURI}icon.png" />
-  </button>
-</div>`;
+const INDICATOR = `
+<div class="polyglot__inner">
+  <div class="polyglot__loader-contrainer">
+  <div class="polyglot__loader">Loading</div>
+  </div>
+</div>
+`;
+const CONFIRM_BUTTON = `
+<div class="polyglot__inner">
+<button class="polyglot__confirm-button">
+  <img alt="Translate" src="${safari.extension.baseURI}icon.png" />
+</button>
+</div>
+`;
 
 let isPanelOpen = false;
 
@@ -60,23 +68,29 @@ export function showTranslation(args: TranslationParams) {
     `
   <div class="polyglot__inner">
     <div class="polyglot__section">
+      <div class="polyglot__translation">
       {{{translation}}}
+      </div>
     </div>
 
     {{#sourceTransliteration}}
     <div class="polyglot__section">
       <div class="polyglot__section--title">Transliteration</div>
+      <div class="polyglot__section--content">
       {{{sourceTransliteration}}}
+      </div>
     </div>
     {{/sourceTransliteration}}
 
     {{#synonyms}}
     <div class="polyglot__section">
       <div class="polyglot__section--title">{{pos}}</div>
-      <div class="polyglot__synonyms">
-        {{#entries}}
-        <div class="polyglot__synonyms--entry">{{.}}</div>
-        {{/entries}}
+      <div class="polyglot__section--content">
+        <div class="polyglot__synonyms">
+          {{#entries}}
+          <div class="polyglot__synonyms--entry">{{.}}</div>
+          {{/entries}}
+        </div>
       </div>
     </div>
     {{/synonyms}}
