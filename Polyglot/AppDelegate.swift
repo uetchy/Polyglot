@@ -73,13 +73,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func setupInstantCheckboxes() {
     // Restore settings
-    var isChecked = settings.bool(forKey: SettingsKey.InstantTranslation)
-    instantTranslation.state = isChecked ? .on : .off
+    let isInstantTranslationEnabled = settings.bool(forKey: SettingsKey.InstantTranslation)
+    instantTranslation.state = isInstantTranslationEnabled ? .on : .off
     instantTranslation.action = #selector(instantCheckboxChanged)
 
-    confirmInstantTranslation.isEnabled = isChecked
-    isChecked = settings.bool(forKey: SettingsKey.ConfirmInstantTranslation)
-    confirmInstantTranslation.state = isChecked ? .on : .off
+    let isConfirmInstantTranslationEnabled = settings.bool(forKey: SettingsKey.ConfirmInstantTranslation)
+    confirmInstantTranslation.isEnabled = isInstantTranslationEnabled
+    confirmInstantTranslation.state = isConfirmInstantTranslationEnabled ? .on : .off
     confirmInstantTranslation.action = #selector(instantCheckboxChanged)
   }
 
@@ -95,17 +95,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     settings.synchronize()
   }
 
+  // save instant checkbox setting
   @objc func instantCheckboxChanged() {
-    // save instant checkbox setting
-    var isChecked = instantTranslation.state == NSControl.StateValue.on ? true : false
-    settings.set(isChecked, forKey: SettingsKey.InstantTranslation)
+    let isInstantTranslationChecked = instantTranslation.state == NSControl.StateValue.on ? true : false
+    settings.set(isInstantTranslationChecked, forKey: SettingsKey.InstantTranslation)
 
-    confirmInstantTranslation.isEnabled = isChecked
-    if !isChecked {
-      confirmInstantTranslation.state = .off
-    }
-    isChecked = confirmInstantTranslation.state == NSControl.StateValue.on ? true : false
-    settings.set(isChecked, forKey: SettingsKey.ConfirmInstantTranslation)
+    let isConfirmInstantTranslationChecked = confirmInstantTranslation.state == NSControl.StateValue.on ? true : false
+    settings.set(isConfirmInstantTranslationChecked, forKey: SettingsKey.ConfirmInstantTranslation)
+
+    confirmInstantTranslation.isEnabled = isInstantTranslationChecked
+
     settings.synchronize()
   }
 
