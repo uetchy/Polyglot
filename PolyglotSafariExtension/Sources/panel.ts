@@ -130,7 +130,8 @@ export function showPanel(
   el.id = PANEL_ID;
   el.style.left = bounds.left + "px";
   el.style.top = bounds.bottom + "px";
-  el.onclick = onClick;
+
+  if (onClick) el.addEventListener("click", onClick, false);
 
   for (const key in style) {
     el.style[key] = style[key]!;
