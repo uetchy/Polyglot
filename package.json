@@ -11,7 +11,7 @@
   },
   "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
   "dependencies": {
-    "franc": "^5.0.0",
+    "franc": "^6.0.0",
     "iso-639-3": "^2.2.0",
     "isomorphic-unfetch": "^3.1.0",
     "mustache": "^4.1.0"

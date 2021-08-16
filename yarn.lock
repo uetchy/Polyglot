@@ -486,10 +486,10 @@ clone@^1.0.2:
   resolved "https://registry.npmjs.org/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
 
-collapse-white-space@^1.0.0:
-  version "1.0.6"
-  resolved "https://registry.npmjs.org/collapse-white-space/-/collapse-white-space-1.0.6.tgz#e63629c0016665792060dbbeb79c42239d2c5287"
-  integrity sha512-jEovNnrhMuqyCcjfEJA56v0Xq8SkIoPKDyaHahwo3POf4qcSXqMYuwNcOTzp74vTsR9Tn08z4MxWqAhcekogkQ==
+collapse-white-space@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/collapse-white-space/-/collapse-white-space-2.0.0.tgz#37d8521344cdd36635db180a7c83e9d515ac281b"
+  integrity sha512-eh9krktAIMDL0KHuN7WTBJ/0PMv8KUvfQRBkIlGmW61idRM2DJjgd1qXEPr4wyk2PimZZeNww3RVYo6CMvDGlg==
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -892,12 +892,12 @@ fmix@^0.1.0:
   dependencies:
     imul "^1.0.0"
 
-franc@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.npmjs.org/franc/-/franc-5.0.0.tgz#e2543f113a6b5d0a1a734cf782dd3d486215cbbe"
-  integrity sha512-ioKMLQlZv0T4qQ/AivMt8y8i4M3RWvVeOAm8y8SAjfcN+shtHVqR7NKAQAfQcrxWIbmfne4pRTcgNBcM0bj60A==
+franc@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/franc/-/franc-6.0.0.tgz#386eb6a4123f5fd67fcb69f69bf86797278a045b"
+  integrity sha512-kkdxPegeNzYrvZK0IiQUdJySzFeZkdXFdz8aqe076LtTMSrZk+G9MNsYWhoYEL+mX94VZaftJaxOMx/vlMM9IQ==
   dependencies:
-    trigram-utils "^1.0.0"
+    trigram-utils "^2.0.0"
 
 fs-temp@^1.0.0:
   version "1.2.1"
@@ -1510,10 +1510,10 @@ mute-stream@0.0.8:
   resolved "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-n-gram@^1.0.0:
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/n-gram/-/n-gram-1.1.2.tgz#69c609a5c83bb32f82774c9e297f8494c7326798"
-  integrity sha512-mBTpWKp0NHdujHmxrskPg2jc108mjyMmVxHN1rZGK/ogTLi9O0debDIXlQPqotNELdNmVGtL4jr7SCig+4OWvQ==
+n-gram@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/n-gram/-/n-gram-2.0.1.tgz#055adb9d4e12e16205b95e6213b9b865e611bc81"
+  integrity sha512-ECtaRCOsPvqdTMI7SAFVaPaHv1ofhGqstphMFDWF3yrOaJcFsaCTpTREjYaPYpMC1nzJdewuiqvYXGM9W+Radw==
 
 nan@^2.4.0:
   version "2.14.2"
@@ -2238,24 +2238,18 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-trigram-utils@^1.0.0:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/trigram-utils/-/trigram-utils-1.0.3.tgz#535da37a414dae249c4b023512cf2b3dc65c8ea4"
-  integrity sha512-UAhS1Ll21FtClVIzIN0I/SmGnJ+D08BOxX7Dl1penV8raC0ksf2dJkhNI6kU1Mj3uT86Bul12iMvxXquXSYSng==
+trigram-utils@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/trigram-utils/-/trigram-utils-2.0.0.tgz#22797fcd6f355ad9a80fd1c0f121ce8acaaca4a7"
+  integrity sha512-ss62Zy8WVu+oaR0FdzxXwzndVxe/MYwPulgkz003+bnS3EuaE6rFg7x229gkjuYro0C1RQwO7fa3st+OLqfukg==
   dependencies:
-    collapse-white-space "^1.0.0"
-    n-gram "^1.0.0"
-    trim "0.0.1"
+    collapse-white-space "^2.0.0"
+    n-gram "^2.0.0"
 
 trim-newlines@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/trim-newlines/-/trim-newlines-2.0.0.tgz#b403d0b91be50c331dfc4b82eeceb22c3de16d20"
   integrity sha1-tAPQuRvlDDMd/EuC7s6yLD3hbSA=
-
-trim@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/trim/-/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
-  integrity sha1-WFhUf2spB1fulczMZm+1AITEYN0=
 
 ts-loader@^8.0.18:
   version "8.0.18"
