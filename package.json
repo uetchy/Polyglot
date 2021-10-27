@@ -7,33 +7,29 @@
     "clean": "shx rm -rf PolyglotSafariExtension/ContentScript/*.js{,.map,.LICENSE.txt}",
     "dmg": "create-dmg Artifacts/Exported/Polyglot.app Artifacts",
     "format": "swiftformat . --swiftversion 4",
+    "prepare": "husky install",
     "start": "NODE_ENV=development webpack-cli -w --mode development"
   },
   "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
   "dependencies": {
-    "franc": "^5.0.0",
-    "iso-639-3": "^2.2.0",
+    "franc": "^6.0.0",
+    "iso-639-3": "^3.0.0",
     "isomorphic-unfetch": "^3.1.0",
-    "mustache": "^4.1.0"
+    "mustache": "^4.2.0"
   },
   "devDependencies": {
-    "@types/franc": "^5.0.0",
-    "@types/mustache": "^4.1.1",
+    "@types/franc": "^5.0.1",
+    "@types/mustache": "^4.1.2",
     "create-dmg": "^5.3.0",
-    "husky": "^4.3.8",
-    "lint-staged": "^10.5.4",
-    "plist": "^3.0.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
+    "plist": "^3.0.4",
     "shx": "^0.3.3",
-    "terser-webpack-plugin": "^5.1.1",
-    "ts-loader": "^8.0.18",
-    "typescript": "^4.2.3",
-    "webpack": "^5.26.2",
-    "webpack-cli": "^4.5.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "terser-webpack-plugin": "^5.2.4",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.4",
+    "webpack": "^5.60.0",
+    "webpack-cli": "^4.9.1"
   },
   "lint-staged": {
     "*.swift": [

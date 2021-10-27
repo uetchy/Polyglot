@@ -1,5 +1,5 @@
-import franc from "franc";
-import to1 from "iso-639-3/to-1.json";
+import { franc } from "franc";
+import { iso6393To1 } from "iso-639-3";
 import {
   ReceivedSettings,
   ReceivedTranslation,
@@ -171,7 +171,7 @@ function handleMouseUp(e: MouseEvent): void {
 }
 
 function performTranslation(text: string): void {
-  const language = to1[franc(text, { minLength: 1 })];
+  const language = (iso6393To1 as any)[franc(text, { minLength: 1 }) as any];
   console.log("detected language", language);
 
   // prevent translation if all of conditions are met
