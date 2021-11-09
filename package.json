@@ -8,6 +8,7 @@
     "dmg": "create-dmg Artifacts/Exported/Polyglot.app Artifacts",
     "format": "swiftformat . --swiftversion 4",
     "prepare": "husky install",
+    "readme": "mdmod README.md --define.owner uetchy",
     "start": "NODE_ENV=development webpack-cli -w --mode development"
   },
   "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
@@ -23,6 +24,8 @@
     "create-dmg": "^5.3.0",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
+    "mdmod": "^1.0.0",
+    "mdmod-plugin-github-sponsors": "^1.0.0",
     "plist": "^3.0.4",
     "shx": "^0.3.3",
     "terser-webpack-plugin": "^5.2.4",
