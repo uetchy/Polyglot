@@ -3,7 +3,7 @@
 [![Actions Status](https://github.com/uetchy/Polyglot/workflows/Polyglot/badge.svg)](https://github.com/uetchy/Polyglot/actions)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/uetchy/Polyglot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/uetchy/Polyglot/alerts/)
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
-[![AppStore](https://badge.now.sh/appstore/rating/us/id1471801525)](https://apps.apple.com/app/polyglot/id1471801525)
+[![AppStore](https://badge.vercel.app/appstore/rating/us/id1471801525)](https://apps.apple.com/app/polyglot/id1471801525)
 
 > Polyglot is a Safari extension that translates selected text into your native language.
 
@@ -56,7 +56,7 @@ See [Contribution Guide](https://github.com/uetchy/Polyglot/blob/master/CONTRIBU
 
 <!-- START mdmod {use: 'github-sponsors'} -->
 
-[<img src="https://avatars.githubusercontent.com/u/6936373?u=4edd14e6636c45d10ac6a3eecb4b3ffa6cc2bf5c&v=4" width="35" />](https://github.com/Naturalclar) [<img src="https://avatars.githubusercontent.com/u/79023920?v=4" width="35" />](https://github.com/Lierin8oracle)
+[<img src="https://avatars.githubusercontent.com/u/6936373?u=4edd14e6636c45d10ac6a3eecb4b3ffa6cc2bf5c&v=4" width="100" />](https://github.com/Naturalclar) [<img src="https://avatars.githubusercontent.com/u/79023920?v=4" width="100" />](https://github.com/Lierin8oracle)
 
 <!-- END mdmod -->
 
