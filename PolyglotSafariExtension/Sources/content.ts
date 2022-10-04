@@ -79,16 +79,28 @@ function translationErrorHandler(message: UpstreamError) {
   showError(message.error);
 }
 
+function convertNewlineToHTML(text: string): string {
+  return text.replace(/\n/g, "<br/>");
+}
+
+function convertHTMLToDisplayText(htmlString: string): string {
+  let encodedString = htmlString.replace(/&/g, "&amp;");
+  encodedString = encodedString.replace(/</g, "&lt;");
+  encodedString = encodedString.replace(/>/g, "&gt;");
+  encodedString = encodedString.replace(/"/g, "&quot;");
+
+  return convertNewlineToHTML(encodedString);
+}
+
 function translationHandler(message: ReceivedTranslation): void {
   if (message.id !== window.location.href) return;
 
   const args = {
     sourceLanguage: message.sourceLanguage || null,
-    translation: message.translation.replace(/\n/g, "<br/>"),
-    transliteration: message.transliteration.replace(/\n/g, "<br/>"),
-    sourceTransliteration: message.sourceTransliteration.replace(
-      /\n/g,
-      "<br/>"
+    translation: convertHTMLToDisplayText(message.translation),
+    transliteration: convertHTMLToDisplayText(message.transliteration),
+    sourceTransliteration: convertHTMLToDisplayText(
+      message.sourceTransliteration
     ),
     synonyms: message.synonyms
       ? message.synonyms.map((synonym) => ({
