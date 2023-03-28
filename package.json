@@ -1,7 +1,7 @@
 {
   "name": "polyglot",
   "description": "A Safari extension that translates selected text into your native language.",
-  "version": "3.4.1",
+  "version": "3.4.0",
   "scripts": {
     "build": "NODE_ENV=production webpack-cli --mode production",
     "clean": "shx rm -rf PolyglotSafariExtension/ContentScript/*.js{,.map,.LICENSE.txt}",
@@ -13,26 +13,26 @@
   },
   "main": "./PolyglotSafariExtension/ContentScript/content.bundle.js",
   "dependencies": {
-    "franc": "^6.1.0",
+    "franc": "^6.0.0",
     "iso-639-3": "^3.0.1",
-    "isomorphic-unfetch": "^4.0.2",
+    "isomorphic-unfetch": "^3.1.0",
     "mustache": "^4.2.0"
   },
   "devDependencies": {
     "@types/franc": "^5.0.1",
-    "@types/mustache": "^4.2.2",
-    "create-dmg": "^6.0.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.0",
+    "@types/mustache": "^4.1.2",
+    "create-dmg": "^5.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.5",
     "mdmod": "^2.0.0",
     "mdmod-plugin-github-sponsors": "^1.1.0",
-    "plist": "^3.0.6",
+    "plist": "^3.0.4",
     "shx": "^0.3.4",
-    "terser-webpack-plugin": "^5.3.7",
-    "ts-loader": "^9.4.2",
-    "typescript": "^5.0.2",
-    "webpack": "^5.76.3",
-    "webpack-cli": "^5.0.1"
+    "terser-webpack-plugin": "^5.3.1",
+    "ts-loader": "^9.2.7",
+    "typescript": "^4.6.2",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
   },
   "lint-staged": {
     "*.swift": [
