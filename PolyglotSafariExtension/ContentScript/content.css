@@ -36,7 +36,7 @@
 
   position: absolute !important;
   margin-right: 20px !important;
-  transform: scale(1,1) !important;
+  transform: scale(1) !important;
   transform-origin: 0 0 !important;
   z-index: 99999 !important;
 
